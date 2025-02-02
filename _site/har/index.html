@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects) | Welcome László Egri’s Homepage</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Overview" />
+<meta property="og:description" content="Overview" />
+<link rel="canonical" href="http://localhost:4000/har/" />
+<meta property="og:url" content="http://localhost:4000/har/" />
+<meta property="og:site_name" content="Welcome László Egri’s Homepage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-19T17:45:33-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-19T17:45:33-05:00","datePublished":"2025-01-19T17:45:33-05:00","description":"Overview","headline":"AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/har/"},"url":"http://localhost:4000/har/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Welcome László Egri&apos;s Homepage" /></head>
+<body><header class="site-header" role="banner">
+  <div class="wrapper">
+    <img src="../assets/images/banner.png" alt="Site Banner" class="banner-image" />
+
+    <div class="banner-content">
+      <a class="site-title" rel="author" href="/">Welcome László Egri's Homepage</a><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="..."/>
+              </svg>
+            </span>
+          </label>
+          <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        </nav></div><!-- .banner-content -->
+  </div><!-- .wrapper -->
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <script>
+  MathJax = {
+    tex: {
+      tags: 'ams'  // should be 'ams', 'none', or 'all'
+    }
+  };
+</script>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>  
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)</h1>
+    <p class="post-meta"></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="overview">Overview</h2>
+
+<p>Due to contractual obligations, only a high-level overview of the following three interrelated projects is provided.</p>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ol>
+  <li><a href="#exercise-repetition-counting">Exercise Repetition Counting</a></li>
+  <li><a href="#human-activity-recognition-har-with-deep-learning">Human Activity Recognition (HAR) with Deep Learning</a></li>
+  <li><a href="#fine-grained-human-motion-comparison">Fine-Grained Human Motion Comparison</a></li>
+</ol>
+
+<div style="margin-bottom: 40px;"></div>
+
+<hr />
+
+<h3 id="exercise-repetition-counting">1. Exercise Repetition Counting</h3>
+
+<p>I developed a precision exercise repetition counter specialized for gym workouts. The system uses four IMU (Inertial Measurement Unit) sensors attached to different parts of the body—depending on the exercise. Its parameters can be optimized via Bayesian optimization with Gaussian processes, allowing fine-tuning for specific exercises or individual users when sufficient data is available. Notably, it works “out of the box” without custom training data. See Figure 1 for a demonstration. While large-scale validation is pending, the counter has demonstrated near-perfect accuracy on limited test data.</p>
+
+<figure>
+  <center>
+    <video width="100%" muted="" autoplay="" loop="" poster="../assets/animations/exercise_recognition.mp4" preload="auto" controls="" aria-label="Exercise Recognition Demo">
+      <source src="../assets/animations/exercise_recognition.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </center>
+  <figcaption>
+    Figure 1. Exercise repetition counting (and recognition). Counts are shown in the small text at the top right corner, along with the time information of peaks recognized as exercise repetitions.
+  </figcaption>
+</figure>
+
+<div style="margin-bottom: 40px;"></div>
+
+<hr />
+
+<h3 id="human-activity-recognition-har-with-deep-learning">2. Human Activity Recognition (HAR) with Deep Learning</h3>
+
+<p>Building on the repetition counter, the system precisely marks the start and end of each repetition. Once isolated, the IMU sensor data is preprocessed—using methods such as SLERP (spherical linear interpolation) to ensure each repetition’s data is consistently sized. The standardized data is then fed into a custom deep neural network that classifies each repetition in real time on a mobile device, identifying the specific exercise performed. Although comprehensive evaluations require larger datasets, tests of an 11-class classifier have achieved near-perfect accuracy on the available data.</p>
+
+<div style="margin-top: 0px;"></div>
+<figure>
+  <center>
+    <video width="100%" muted="" autoplay="" loop="" poster="../assets/animations/3d_t_sne_of_exercise_dataset_animation.mp4" preload="auto" controls="" aria-label="3D t-SNE Visualization of Exercise Dataset">
+      <source src="../assets/animations/3d_t_sne_of_exercise_dataset_animation.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </center>
+  <figcaption>
+    Figure 2. Visualization of exercise data using t-SNE.
+  </figcaption>
+</figure>
+
+<div style="margin-top: 50px;"></div>
+<figure>
+  <center>
+    <img src="/assets/images/exercise_recognition_zoom.png" alt="Exercise Recognition" style="width:100%;" class="centered" />
+  </center>
+  <figcaption>
+    Figure 3. Demonstration of exercise recognition. The boxes at the bottom indicate the type of exercise identified by the deep-learning classifier (a zoomed-in screenshot from the animation in Figure 1).
+  </figcaption>
+</figure>
+
+<div style="margin-bottom: 40px;"></div>
+
+<hr />
+
+<h3 id="fine-grained-human-motion-comparison">3. Fine-Grained Human Motion Comparison</h3>
+
+<p>This project compares individual time points from a user’s exercise repetition against a reference sequence—be it an expert’s ideal form or the user’s own past performance—to assess technique and track improvements over time. To accomplish this, I customized Dynamic Time Warping (DTW) for more precise alignment of the IMU data across repetitions. A key challenge was devising an effective method to compare body-position data so that the motion matching remains both accurate and robust. See Figure 4 for a demonstration.</p>
+
+<div style="margin-top: 30px;"></div>
+<figure>
+  <center>
+    <video width="100%" muted="" autoplay="" loop="" poster="../assets/animations/motion_comparison.mp4" preload="auto" controls="" aria-label="Motion Comparison Demo">
+      <source src="../assets/animations/motion_comparison.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </center>
+  <figcaption>
+    Figure 4. Demonstration of matching a single exercise repetition (green) to motion time-series data (grey). The exercise is in the animation is deadlift.
+  </figcaption>
+</figure>
+
+<p>For more information on Dynamic Time Warping, please visit the <a href="https://en.wikipedia.org/wiki/Dynamic_time_warping" target="_blank" rel="noopener">Dynamic Time Warping — Wikipedia</a> page.</p>
+
+<hr />
+
+<p>For further details about the sensor technology, please visit <a href="https://www.wearnotch.com" target="_blank" rel="noopener">Wearnotch</a>. Note that the website content is updated frequently and may not reflect all project details.</p>
+
+  </div><a class="u-url" href="/har/" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">
+            </li><li><a class="u-email" href="mailto:juloss.site@gmail.com">email</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/juloss"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">juloss</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

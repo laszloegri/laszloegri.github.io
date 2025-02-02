@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Computing Di Zenzo’s multichannel image gradient faster (improving an existing algorithm using a simple insight) | Welcome László Egri’s Homepage</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Computing Di Zenzo’s multichannel image gradient faster (improving an existing algorithm using a simple insight)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction" />
+<meta property="og:description" content="Introduction" />
+<link rel="canonical" href="http://localhost:4000/di_zenzo_faster_gradient/" />
+<meta property="og:url" content="http://localhost:4000/di_zenzo_faster_gradient/" />
+<meta property="og:site_name" content="Welcome László Egri’s Homepage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-11-07T17:45:33-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Computing Di Zenzo’s multichannel image gradient faster (improving an existing algorithm using a simple insight)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-11-07T17:45:33-05:00","datePublished":"2022-11-07T17:45:33-05:00","description":"Introduction","headline":"Computing Di Zenzo’s multichannel image gradient faster (improving an existing algorithm using a simple insight)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/di_zenzo_faster_gradient/"},"url":"http://localhost:4000/di_zenzo_faster_gradient/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Welcome László Egri&apos;s Homepage" /></head>
+<body><header class="site-header" role="banner">
+  <div class="wrapper">
+    <img src="../assets/images/banner.png" alt="Site Banner" class="banner-image" />
+
+    <div class="banner-content">
+      <a class="site-title" rel="author" href="/">Welcome László Egri's Homepage</a><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="..."/>
+              </svg>
+            </span>
+          </label>
+          <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        </nav></div><!-- .banner-content -->
+  </div><!-- .wrapper -->
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <script>
+  MathJax = {
+    tex: {
+      tags: 'ams'  // should be 'ams', 'none', or 'all'
+    }
+  };
+</script>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>  
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Computing Di Zenzo&#39;s multichannel image gradient faster (improving an existing algorithm using a simple insight)</h1>
+    <p class="post-meta"></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h3 id="introduction">Introduction</h3>
+
+<p><a href="https://www.sciencedirect.com/science/article/abs/pii/0734189X86902239">Di Zenzo’s</a> algorithm computes the direction of ``maximum color change’’ at each point in an image.</p>
+
+<p>Here we describe an algorithm that is equivalent to Di Zenzo’s algorithm but does the computations in a slightly more efficient way. Di Zenzo maximizes a certain function \(\max_\theta F(\theta)\) (defined later) over \(\theta\) by setting \(\frac{dF}{d\theta} = 0\). This results in two values for \(\theta\) such that for one of them \(F\) achieves its maximum and for the other its minimum. To find the maximum of \(F\), we need to evaluate \(F\) at both values and choose the larger one.</p>
+
+<p>We show that it is possible to find the \(\theta\) that maximizes \(F\) without evaluating \(F\) at all, and to find the maximum of \(F\) by evaluating \(F\) only once. In fact, we can simply replace the arctan function in Di Zenzo’s closed-formula by the arctan2, and this way the modified formula gives the value of \(\theta^*\) such that \(F(\theta^*)\) is maximum. This computation does not involve evaluating \(F\). If we also want the maximum value of \(F\), naturally, we need to compute \(F(\theta^*)\). In our implementation, finding the maximum value of \(F\) at each point of a 960x720 image saved us about 0.03s. (So it’s not a big deal. :) )</p>
+
+<h3 id="derivation-of-faster-formula">Derivation of faster formula</h3>
+
+<p>We present the argument for \(3\)-channel images but the argument trivially generalizes to \(n\)-channel images. Let \(f: \mathbf{R}^2 \rightarrow \mathbf{R}^3\) be a \(3\)-channel image. We define the color difference between image locations \((a_0, a_1) \in \mathbf{R}^2\) and \((b_0, b_1) \in \mathbf{R}^2\) as the Euclidean distance between them, i.e., \(\lVert f(b) - f(a) \rVert\). For convencience, we work with \(\lVert f(b) - f(a) \rVert^2\) instead of \(\lVert f(b) - f(a) \rVert\), which makes no difference in practice. Assume we are at point \((a_0, a_1)\) in the image, and we want to determine in which direction the color difference is the largest. Let \(\theta\) be a direction and \(\epsilon\) a small step size. If we move from \((a_0, a_1)\) in the direction \(\theta\) an \(\epsilon\) amount then we arrive at \((a_0 + \epsilon \cos\theta, a_1 + \epsilon \sin\theta)\).
+We approximate the color difference between \((a_0, a_1)\) and \((a_0 + \epsilon \cos\theta, a_1 + \epsilon \sin\theta)\) using a first-order Taylor approximation. Let the partial derivatives of \(f\) with respect to \(x\) and \(y\) evaluated at \((a_0, a_1)\) be the vectors \(\mathbf{u} = \left. \frac{\partial f}{\partial x} \right|_{a_0, a_1}\) and \(\mathbf{v} = \left. \frac{\partial f}{\partial y} \right|_{a_0, a_1}\), respectively. Then</p>
+
+\[\begin{align}
+\big\lVert f(a_0, a_1) - f(a_0 + &amp;\epsilon \cos\theta, a_1 + \epsilon \sin\theta) \big\rVert^2\\
+\approx &amp; \big\lVert (\epsilon \cos\theta) \cdot \mathbf{u} + (\epsilon \sin\theta) \cdot \mathbf{v} \big\rVert^2\\
+= &amp;\big((\epsilon \cos\theta) \cdot \mathbf{u} + (\epsilon \sin\theta) \cdot \mathbf{v}\big) \cdot \big((\epsilon \cos\theta) \cdot \mathbf{u} + (\epsilon \sin\theta) \cdot \mathbf{v}\big) \\
+= &amp;\epsilon^2 \bigl((\cos^2\theta) \cdot (\mathbf{u} \cdot \mathbf{u}) + (2 \cos\theta \sin\theta) \cdot (\mathbf{u} \cdot \mathbf{v}) + (\sin^2\theta) \cdot (\mathbf{v} \cdot \mathbf{v}) \bigr)\label{maximize_this}.
+\end{align}\]
+
+<p>We wish to maximize \eqref{maximize_this}. Since \(\epsilon\) is a constant, we can drop it (\(\epsilon = 1\)) and maximize</p>
+
+\[F(\theta) = (\cos^2\theta) \cdot (\mathbf{u} \cdot \mathbf{u}) + (2 \cos\theta \sin\theta) \cdot (\mathbf{u} \cdot \mathbf{v}) + (\sin^2\theta) \cdot (\mathbf{v} \cdot \mathbf{v})\]
+
+<p>instead.</p>
+<style>
+figure {
+  border: 1px #cccccc solid;
+  padding: 4px;
+  margin: auto;
+}
+
+figcaption {
+  background-color: grey;
+  color: white;/assets/drawings/polarities.svg
+  font-style: italic;
+  padding: 2px;
+  text-align: left;
+}
+</style>
+
+<figure>
+<center>
+    <video width="80%" muted="" autoplay="" loop="" poster="" preload="" controls="">
+        <source src="../assets/animations/color_difference.mp4" type="video/mp4" />
+    </video>
+</center>
+<figcaption>Fig. 1. Function \(F(\theta)\) plotted for \(\theta \in [0^{\circ}, 360^{\circ})\),
+\(\mathbf{u}=\mathbf{[}1 \;\; .9 \;\; .6\mathbf{]}^T\), and \(\mathbf{v}=\mathbf{[}.2 \;\; .3 \;\; .4\mathbf{]}^T\). As we move around \((0, 0)\) at distance \(1\), the blue curve is the value of \(F(\theta)\).
+</figcaption>
+</figure>
+<p></p>
+<p>Using the identities \(\cos^2\theta =\frac{1}{2} (1 + \cos2 \theta)\), \(2 \sin\theta \cos\theta = \sin2 \theta\), and \(\sin^2\theta =\frac{1}{2} (1 - \cos2 \theta)\), we obtain</p>
+
+\[\begin{align}
+F(\theta) &amp;= \frac{1}{2} \big( (\mathbf{u} \cdot \mathbf{u} + \mathbf{v} \cdot \mathbf{v}) + (\cos2\theta) \cdot (\mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v}) + (\sin2\theta ) \cdot (2 \mathbf{u} \cdot \mathbf{v})\big)\label{two_theta}\\
+
+&amp;= \frac{1}{2} \left( (\mathbf{u} \cdot \mathbf{u} + \mathbf{v} \cdot \mathbf{v}) + \begin{bmatrix} \cos2\theta \\ \sin2\theta \end{bmatrix} \cdot \begin{bmatrix} \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v} \\ 2 \mathbf{u} \cdot \mathbf{v} \end{bmatrix}\right)\\
+
+&amp;= \frac{1}{2} \left( (\mathbf{u} \cdot \mathbf{u} + \mathbf{v} \cdot \mathbf{v}) + \left \lVert \begin{bmatrix} \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v} \\ 2 \mathbf{u} \cdot \mathbf{v} \end{bmatrix}\right \rVert \cdot \cos(\varphi) \right) \label{angle_between_vecs},
+
+\end{align}\]
+
+<p>where \(\varphi\) is the angle between \(2\theta\) and the angle of the vector \(\begin{bmatrix} \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v} \\ 2 \mathbf{u} \cdot \mathbf{v} \end{bmatrix}\). (We used the equality \(\mathbf{a} \cdot \mathbf{b} = \lVert \mathbf{a} \rVert \lVert \mathbf{b} \rVert \cos \alpha\), where \(\alpha\) is the angle between \(\mathbf{a}\) and \(\mathbf{b}\), and observed that \(\begin{bmatrix} \cos2\theta \\ \sin2\theta \end{bmatrix}\) has length \(1\).) The direction of \(\begin{bmatrix} \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v} \\ 2 \mathbf{u} \cdot \mathbf{v} \end{bmatrix}\) is \(\mathrm{arctan2}(2 \mathbf{u} \cdot \mathbf{v}, \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v})\).</p>
+
+<p>We can see from equation \eqref{angle_between_vecs} that because the length of a vector is always non-negtive, \(F\) is maximized when \(\cos \varphi\) is maximized. To maximize \(\cos \varphi\), we set \(\varphi = 0\). Therefore \(2\theta - \mathrm{arctan2}(2 \mathbf{u} \cdot \mathbf{v}, \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v}) = 0\), and it follows that the value \(\theta^*\) that maximizes \(F\) is</p>
+
+\[\begin{align}
+\theta^* = \frac{1}{2} \mathrm{arctan2}(2 \mathbf{u} \cdot \mathbf{v}, \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v}).\label{final}
+\end{align}\]
+
+<h3 id="remarks">Remarks</h3>
+<ul>
+  <li>
+    <p>Since \(\theta\) appears in equation \eqref{two_theta} only in the form \(2 \theta\), it follows that \(F(\theta^*) = F(\theta^* + k \pi)\) for any \(k \in \mathbf{Z}\). Therefore we can assume that \(\theta^* \in [0, \pi)\).</p>
+  </li>
+  <li>
+    <p>The \(\mathrm{arctan2}\) function is not defined when both its arguments are \(0\). In equation \eqref{final} this happens when \(\mathbf{u}\) and \(\mathbf{v}\) are perpendicular to each other and their magnitudes are the same. For example, when \(\mathbf{u}=\mathbf{[}1 \;\; 0 \;\; 0\mathbf{]}^T\) and \(\mathbf{v}=\mathbf{[}0 \;\; 1 \;\; 0\mathbf{]}^T\). If we have an RGB image, this corresponds to the situation that \(R\) changes most along the \(x\)-axis and \(G\) changes most along the \(y\) axis, and the magnitude of the changes are the same. So the \(R\) and \(G\) channels change at the same rate but in perpendicular directions, and therefore \(F\) becomes a constant. That is, the color changes the same amount in any direction. This cannot be interpreted as an edge, and we ignore such locations. In fact, we expect that at image boundaries, the lines along which the color channels change the most should be approximately parallel.</p>
+  </li>
+</ul>
+
+  </div><a class="u-url" href="/di_zenzo_faster_gradient/" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">
+            </li><li><a class="u-email" href="mailto:juloss.site@gmail.com">email</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/juloss"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">juloss</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+---
+layout: post
+title: "AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)"
+published: true
+date: 2025-01-19 17:45:33 -0500
+categories: projects
+permalink: /har/
+image0: /assets/images/exercise_recognition_zoom.png
+common_media_height: 150
+attachments:
+  - type: video
+    src: ../assets/animations/motion_comparison.mp4
+    alt: "Motion Comparison Demo"
+  - type: video
+    src: ../assets/animations/3d_t_sne_of_exercise_dataset_animation.mp4
+    alt: "3D t-SNE Visualization of Exercise Dataset"
+  - type: video
+    src: ../assets/animations/exercise_recognition_small.mp4
+    alt: "Exercise Recognition Demo"
+  - type: link
+    href: "https://www.wearnotch.com"
+    text: "Visit Wearnotch"
+---
+
+## Overview
+
+Due to contractual obligations, only a high-level overview of the following three interrelated projects is provided.
+
+## Table of Contents
+
+1. [Exercise Repetition Counting](#exercise-repetition-counting)
+2. [Human Activity Recognition (HAR) with Deep Learning](#human-activity-recognition-har-with-deep-learning)
+3. [Fine-Grained Human Motion Comparison](#fine-grained-human-motion-comparison)
+
+<div style="margin-bottom: 40px;"></div>
+
+---
+
+### 1. Exercise Repetition Counting {#exercise-repetition-counting}
+
+I developed a precision exercise repetition counter specialized for gym workouts. The system uses four IMU (Inertial Measurement Unit) sensors attached to different parts of the body—depending on the exercise. Its parameters can be optimized via Bayesian optimization with Gaussian processes, allowing fine-tuning for specific exercises or individual users when sufficient data is available. Notably, it works “out of the box” without custom training data. See Figure 1 for a demonstration. While large-scale validation is pending, the counter has demonstrated near-perfect accuracy on limited test data.
+
+<figure>
+  <center>
+    <video width="100%" muted autoplay loop poster="../assets/animations/exercise_recognition.mp4" preload="auto" controls aria-label="Exercise Recognition Demo">
+      <source src="../assets/animations/exercise_recognition.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </center>
+  <figcaption>
+    Figure 1. Exercise repetition counting (and recognition). Counts are shown in the small text at the top right corner, along with the time information of peaks recognized as exercise repetitions.
+  </figcaption>
+</figure>
+
+<div style="margin-bottom: 40px;"></div>
+
+---
+
+### 2. Human Activity Recognition (HAR) with Deep Learning {#human-activity-recognition-har-with-deep-learning}
+
+Building on the repetition counter, the system precisely marks the start and end of each repetition. Once isolated, the IMU sensor data is preprocessed—using methods such as SLERP (spherical linear interpolation) to ensure each repetition’s data is consistently sized. The standardized data is then fed into a custom deep neural network that classifies each repetition in real time on a mobile device, identifying the specific exercise performed. Although comprehensive evaluations require larger datasets, tests of an 11-class classifier have achieved near-perfect accuracy on the available data.
+
+<div style="margin-top: 0px;"></div>
+<figure>
+  <center>
+    <video width="100%" muted autoplay loop poster="../assets/animations/3d_t_sne_of_exercise_dataset_animation.mp4" preload="auto" controls aria-label="3D t-SNE Visualization of Exercise Dataset">
+      <source src="../assets/animations/3d_t_sne_of_exercise_dataset_animation.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </center>
+  <figcaption>
+    Figure 2. Visualization of exercise data using t-SNE.
+  </figcaption>
+</figure>
+
+<div style="margin-top: 50px;"></div>
+<figure>
+  <center>
+    <img src="{{ page.image0 }}" alt="Exercise Recognition" style="width:100%;" class="centered">
+  </center>
+  <figcaption>
+    Figure 3. Demonstration of exercise recognition. The boxes at the bottom indicate the type of exercise identified by the deep-learning classifier (a zoomed-in screenshot from the animation in Figure 1).
+  </figcaption>
+</figure>
+
+<div style="margin-bottom: 40px;"></div>
+
+---
+
+### 3. Fine-Grained Human Motion Comparison {#fine-grained-human-motion-comparison}
+
+This project compares individual time points from a user’s exercise repetition against a reference sequence—be it an expert’s ideal form or the user’s own past performance—to assess technique and track improvements over time. To accomplish this, I customized Dynamic Time Warping (DTW) for more precise alignment of the IMU data across repetitions. A key challenge was devising an effective method to compare body-position data so that the motion matching remains both accurate and robust. See Figure 4 for a demonstration.
+
+<div style="margin-top: 30px;"></div>
+<figure>
+  <center>
+    <video width="100%" muted autoplay loop poster="../assets/animations/motion_comparison.mp4" preload="auto" controls aria-label="Motion Comparison Demo">
+      <source src="../assets/animations/motion_comparison.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </center>
+  <figcaption>
+    Figure 4. Demonstration of matching a single exercise repetition (green) to motion time-series data (grey). The exercise is in the animation is deadlift.
+  </figcaption>
+</figure>
+
+For more information on Dynamic Time Warping, please visit the [Dynamic Time Warping — Wikipedia](https://en.wikipedia.org/wiki/Dynamic_time_warping){:target="_blank" rel="noopener"} page.
+
+---
+
+For further details about the sensor technology, please visit [Wearnotch](https://www.wearnotch.com){:target="_blank" rel="noopener"}. Note that the website content is updated frequently and may not reflect all project details.

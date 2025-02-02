@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Taming Hard and Soft Iron: An Application of Positive Definite Matrices in Magnetometer Calibration (project) | Welcome László Egri’s Homepage</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Taming Hard and Soft Iron: An Application of Positive Definite Matrices in Magnetometer Calibration (project)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction" />
+<meta property="og:description" content="Introduction" />
+<link rel="canonical" href="http://localhost:4000/magneto/" />
+<meta property="og:url" content="http://localhost:4000/magneto/" />
+<meta property="og:site_name" content="Welcome László Egri’s Homepage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-19T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Taming Hard and Soft Iron: An Application of Positive Definite Matrices in Magnetometer Calibration (project)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-19T00:00:00-05:00","datePublished":"2025-01-19T00:00:00-05:00","description":"Introduction","headline":"Taming Hard and Soft Iron: An Application of Positive Definite Matrices in Magnetometer Calibration (project)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/magneto/"},"url":"http://localhost:4000/magneto/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Welcome László Egri&apos;s Homepage" /></head>
+<body><header class="site-header" role="banner">
+  <div class="wrapper">
+    <img src="../assets/images/banner.png" alt="Site Banner" class="banner-image" />
+
+    <div class="banner-content">
+      <a class="site-title" rel="author" href="/">Welcome László Egri's Homepage</a><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="..."/>
+              </svg>
+            </span>
+          </label>
+          <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        </nav></div><!-- .banner-content -->
+  </div><!-- .wrapper -->
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <script>
+  MathJax = {
+    tex: {
+      tags: 'ams'  // should be 'ams', 'none', or 'all'
+    }
+  };
+</script>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>  
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Taming Hard and Soft Iron: An Application of Positive Definite Matrices in Magnetometer Calibration (project)</h1>
+    <p class="post-meta"></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="introduction">Introduction</h2>
+
+<h2 id="magnetometer-calibration">Magnetometer Calibration</h2>
+
+<p>In this project, I implemented an algorithm for magnetometer calibration. Here, I explain the algorithm and the math behind it. This work was guided by the material in <a href="#ref1">[1]</a>, although the objective function I minimize here is slightly different.</p>
+
+<p>Real-world magnetometer measurements often form a distorted ellipsoid due to:</p>
+
+<ul>
+  <li><strong>Hard iron distortion</strong>: This arises from permanent magnetic fields in or near the sensor, introducing a constant offset that shifts measured data away from the origin.</li>
+  <li><strong>Soft iron distortion</strong>: Nearby ferromagnetic materials alter the local magnetic field, turning the spherical distribution of magnetometer measurements into an ellipsoid. To compensate, the geomagnetic field vector measured by the magnetometer can be rotated, scaled to counteract the distortion, and then rotated back <a href="#ref1">[1]</a>. In other words, the sphere is scaled along orthogonal directions but <strong>no rotation is involved</strong>. (This is exactly what a symmetric positive definite matrix does.)</li>
+</ul>
+
+<p>Our goal is to convert these distorted measurements into a sphere of radius 1 centered at the origin, resulting in accurate magnetometer outputs.</p>
+
+<figure>
+  <center>
+    <video width="55%" muted="" autoplay="" loop="" poster="" preload="" controls="">
+      <source src="../assets/animations/magneto_calibration_demo.mp4" type="video/mp4" />
+    </video>
+  </center>
+  <figcaption style="font-size:inherit;">
+    Fig. 1. Demonstration of the magnetometer calibration process: transforming a distorted ellipsoid of synthetic measurements (without noise added) into a sphere. Specifically, red points (uncalibrated readings) are transformed into turquoise points (calibrated readings). The yellow arrows show how uncalibrated points are corrected. The transformation has the form \( \mathbf{y} = \mathbf{A} (\mathbf{x} - \mathbf{b}) \) (see main text below).
+  </figcaption>
+</figure>
+
+<figure>
+  <center>
+    <video width="55%" muted="" autoplay="" loop="" poster="" preload="" controls="">
+      <source src="../assets/animations/magneto_calibration_noisy_demo.mp4" type="video/mp4" />
+    </video>
+  </center>
+  <figcaption style="font-size:inherit;">
+    Fig. 2. Demonstration of the magnetometer calibration process using noisy synthetic data. Blue points are uncalibrated readings; red points are calibrated.
+  </figcaption>
+</figure>
+
+<h2 id="calibration-model">Calibration Model</h2>
+
+<p>We seek a transformation</p>
+
+\[\mathbf{y} = \mathbf{A}(\mathbf{x} - \mathbf{b}),\]
+
+<p>so that \(\|\mathbf{y}\| \approx 1\) for each measurement \(\mathbf{x}\). Here:</p>
+
+<ul>
+  <li>\(\mathbf{b}\) is the <strong>offset</strong> (addressing hard iron distortion).</li>
+  <li>\(\mathbf{A}\) is a <strong>symmetric, positive definite</strong> matrix (addressing soft iron distortion).</li>
+</ul>
+
+<h3 id="why-symmetric-and-positive-definite">Why Symmetric and Positive Definite?</h3>
+
+<ol>
+  <li>
+    <p><strong>Symmetry Avoids Unwanted Rotations</strong><br />
+We aim to reshape (scale) the measurement ellipsoid without rotating the measurement points. Therefore, we restrict \(\mathbf{A}\) to matrices that represent only scaling. By the spectral decomposition for real symmetric matrices:
+\(\mathbf{A} = \mathbf{Q}\,\mathbf{\Lambda}\,\mathbf{Q}^\top,\)
+where \(\mathbf{Q}\) is orthogonal (its columns are orthonormal eigenvectors) and \(\mathbf{\Lambda}\) is diagonal with the real eigenvalues of \(\mathbf{A}\). Geometrically, this transformation rotates the space with \(\mathbf{Q}^\top\), scales along orthogonal axes via \(\mathbf{\Lambda}\), and then applies \(\mathbf{Q}\) again. Consequently, \(\mathbf{A}\) scales the space along orthogonal directions defined by \(\mathbf{Q}\).</p>
+  </li>
+  <li>
+    <p><strong>Positive Definiteness Prevents Flips or Collapses</strong><br />
+A matrix \(\mathbf{A}\) is positive definite if the quadratic form \(\mathbf{x}^\top \mathbf{A} \mathbf{x}\) is positive for all nonzero \(\mathbf{x}\). Using the same spectral decomposition:
+\(\mathbf{A} = \mathbf{Q}\,\mathbf{\Lambda}\,\mathbf{Q}^\top \quad \Longrightarrow \quad
+\mathbf{x}^\top \mathbf{A} \mathbf{x} = \mathbf{y}^\top \mathbf{\Lambda}\,\mathbf{y},\)
+where \(\mathbf{y} = \mathbf{Q}^\top \mathbf{x}\). Since \(\mathbf{Q}\) is orthogonal, \(\mathbf{y}\) spans the same space as \(\mathbf{x}\). Thus, \(\mathbf{y}^\top \mathbf{\Lambda} \mathbf{y} &gt; 0\) for all nonzero \(\mathbf{y}\) if and only if the diagonal entries of \(\mathbf{\Lambda}\) (the eigenvalues of \(\mathbf{A}\)) are strictly positive. Therefore, no flips or collapses occur; \(\mathbf{A}\) simply scales space in orthogonal directions.</p>
+  </li>
+  <li>
+    <p><strong>Any Non-Symmetric Matrix Induces a Rotation</strong><br />
+Restricting \(\mathbf{A}\) to be symmetric is justified by the polar decomposition <a href="#ref3">[3]</a>, which states that any square matrix \(\mathbf{A}\) can be written as \(\mathbf{A} = \mathbf{R}\,\mathbf{S}\), where \(\mathbf{R}\) is orthogonal (a rotation/reflection) and \(\mathbf{S}\) is symmetric. If \(\mathbf{A}\) is not symmetric, then \(\mathbf{R}\) must be a non-identity rotation/reflection, introducing an unintended rotation. Hence, we enforce symmetry to avoid these effects.</p>
+  </li>
+</ol>
+
+<p>Therefore, in magnetometer calibration, \(\mathbf{A}\) must be <strong>symmetric and positive definite</strong> to ensure a pure, non-degenerate scaling without unwanted rotations or reflections.</p>
+
+<h2 id="calibration-objective">Calibration Objective</h2>
+
+<p>We want \(\|\mathbf{y}\| = 1\), where \(\mathbf{y} = \mathbf{A}(\mathbf{x} - \mathbf{b})\).</p>
+
+<p>Squaring the norm:
+\(\|\mathbf{y}\|^2 
+= \|\mathbf{A}(\mathbf{x} - \mathbf{b})\|^2
+= (\mathbf{x} - \mathbf{b})^\top \mathbf{A}^\top \mathbf{A} (\mathbf{x} - \mathbf{b})
+= (\mathbf{x} - \mathbf{b})^\top \mathbf{C} (\mathbf{x} - \mathbf{b}),\)
+where
+\(\mathbf{C} = \mathbf{A}^\top \mathbf{A}.\)</p>
+
+<p>The proof of the following claim can be found in any linear algebra textbook.</p>
+
+<p><strong>Claim.</strong></p>
+<ul>
+  <li>If \(\mathbf{A}\) is symmetric and positive definite, then \(\mathbf{C} = \mathbf{A}^\top \mathbf{A} = \mathbf{A}^2\) is also symmetric and positive definite.</li>
+  <li>Conversely, if \(\mathbf{C}\) is positive definite, then there exists a unique symmetric, positive-definite matrix \(\mathbf{D}\) such that \(\mathbf{C} = \mathbf{D}^\top \mathbf{D}\). Since \(\mathbf{D}\) is unique, when \(\mathbf{C} = \mathbf{A}^\top \mathbf{A}\), then \(\mathbf{A} = \mathbf{D}\). In fact, we can recover \(\mathbf{A}\) from \(\mathbf{C}\) via the <strong>principal square root</strong>,
+\(\mathbf{A} = \sqrt{\mathbf{C}}.\)</li>
+</ul>
+
+<p>Instead of forcing the calibrated measurements to have unit magnitude, we can choose a <strong>target radius</strong> \(\beta\) to match Earth’s magnetic field strength (often around \(50\,\mu\text{T}\)). This way after calibration, the calibrated norm reflects the actual magnetic field magnitude in the region. This is effectively a scaling adjustment on top of offset and shape corrections.</p>
+
+<h2 id="least-squares-formulation">Least Squares Formulation</h2>
+
+<p>Given measurements \(\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_n\), we want to find \(\mathbf{b}\) and a positive definite \(\mathbf{C}\) to minimize</p>
+
+\[\sum_{i=1}^n 
+\Bigl(\sqrt{(\mathbf{x}_i - \mathbf{b})^\top \mathbf{C}\, (\mathbf{x}_i - \mathbf{b})} - \beta \Bigr)^2,\]
+
+<p>assuming we target a radius \(\beta\). By including \(\mathbf{b}\) in the least squares formulation, we ensure the best overall fit for both offset and shape corrections.</p>
+
+<p>Notice that we have to optimize over symmetric positive definite matrices. One approach is to reparameterize \(\mathbf{C}\) using the <strong>Cholesky decomposition</strong>:</p>
+
+\[\mathbf{C} = \mathbf{L}\,\mathbf{L}^\top,\]
+
+<p>where \(\mathbf{L}\) is a lower triangular matrix with positive diagonal entries. Then we minimize</p>
+
+\[\sum_{i=1}^n 
+\Bigl(\sqrt{(\mathbf{x}_i - \mathbf{b})^\top \mathbf{L}\,\mathbf{L}^\top\, (\mathbf{x}_i - \mathbf{b})} - \beta\Bigr)^2\]
+
+<p>over the parameters in \(\mathbf{L}\) and \(\mathbf{b}\).</p>
+
+<h2 id="a-note-on-different-error-formulations">A Note on Different Error Formulations</h2>
+
+<p>A standard <strong>least squares</strong> approach might minimize</p>
+
+\[\sum_{i=1}^n \Bigl(\sqrt{(\mathbf{x}_i - \mathbf{b})^\top \mathbf{C} (\mathbf{x}_i - \mathbf{b})} - \beta \Bigr)^2,\]
+
+<p>penalizing the difference in <strong>distance</strong> between each point’s radius and \(\beta\).</p>
+
+<p>The MathWorks website gives an alternative formulation:</p>
+
+\[\frac{1}{2 \beta^2} \sqrt{ \frac{ \sum_{i=1}^n \|\mathbf{A}(\mathbf{x}_i - \mathbf{b})\|^2 - \beta^2 }{n} },\]
+
+<p>which looks at <strong>squared distances</strong> relative to \(\beta^2\). The difference is subtle: one approach directly penalizes deviations in distance (\(\|\mathbf{A}(\mathbf{x}-\mathbf{b})\| - \beta\)), while the other penalizes deviations in <strong>squared distance</strong> (\(\|\mathbf{A}(\mathbf{x}-\mathbf{b})\|^2 - \beta^2\)). Both methods aim to keep measurements on (or near) a sphere of radius \(\beta\), but each weights the deviations slightly differently.</p>
+
+<h2 id="summary-of-steps">Summary of Steps</h2>
+
+<ul>
+  <li>Collect data at various orientations.</li>
+  <li>Solve a least squares problem for \(\mathbf{b}\) and \(\mathbf{C}\).</li>
+  <li>Compute \(\mathbf{A} = \sqrt{\mathbf{C}}\).</li>
+  <li>(Optionally) scale \(\mathbf{A}\) so that the calibrated measurements have magnitude \(\beta\).</li>
+  <li>Use \(\mathbf{y} = \mathbf{A}(\mathbf{x} - \mathbf{b})\) for calibration.</li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<p><a id="ref1"></a>
+[1] MathWorks. <em>Magnetometer Calibration Documentation.</em><br />
+   <em>Available at:</em> <a href="https://www.mathworks.com/help/fusion/ug/magnetometer-calibration.html">https://www.mathworks.com/help/fusion/ug/magnetometer-calibration.html</a></p>
+
+<p><a id="ref2"></a>
+[2] MathTheBeautiful. <em>Linear Algebra 22g: Geometric Interpretation of the Eigenvalue Decomposition for Symmetric Matrices.</em><br />
+   <em>Available at:</em> <a href="https://www.youtube.com/watch?v=biKF85VOC2g&amp;list=PLlXfTHzgMRUIqYrutsFXCOmiqKUgOgGJ5&amp;index=102">https://www.youtube.com/watch?v=biKF85VOC2g&amp;list=PLlXfTHzgMRUIqYrutsFXCOmiqKUgOgGJ5&amp;index=102</a></p>
+
+<p><a id="ref3"></a>
+[3] MathTheBeautiful. <em>Linear Algebra 23a: Polar Decomposition - A Product of an Orthogonal and Symmetric Matrices.</em><br />
+   <em>Available at:</em> <a href="https://www.youtube.com/watch?v=qTIwqnweaf8">https://www.youtube.com/watch?v=qTIwqnweaf8</a></p>
+
+  </div><a class="u-url" href="/magneto/" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">
+            </li><li><a class="u-email" href="mailto:juloss.site@gmail.com">email</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/juloss"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">juloss</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

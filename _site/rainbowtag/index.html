@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>RainbowTag Fiducal Marker (published research project on fiducial markers) | Welcome László Egri’s Homepage</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="RainbowTag Fiducal Marker (published research project on fiducial markers)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In a nutshell" />
+<meta property="og:description" content="In a nutshell" />
+<link rel="canonical" href="http://localhost:4000/rainbowtag/" />
+<meta property="og:url" content="http://localhost:4000/rainbowtag/" />
+<meta property="og:site_name" content="Welcome László Egri’s Homepage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-11-08T17:45:33-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="RainbowTag Fiducal Marker (published research project on fiducial markers)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-11-08T17:45:33-05:00","datePublished":"2022-11-08T17:45:33-05:00","description":"In a nutshell","headline":"RainbowTag Fiducal Marker (published research project on fiducial markers)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/rainbowtag/"},"url":"http://localhost:4000/rainbowtag/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Welcome László Egri&apos;s Homepage" /></head>
+<body><header class="site-header" role="banner">
+  <div class="wrapper">
+    <img src="../assets/images/banner.png" alt="Site Banner" class="banner-image" />
+
+    <div class="banner-content">
+      <a class="site-title" rel="author" href="/">Welcome László Egri's Homepage</a><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="..."/>
+              </svg>
+            </span>
+          </label>
+          <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        </nav></div><!-- .banner-content -->
+  </div><!-- .wrapper -->
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <script>
+  MathJax = {
+    tex: {
+      tags: 'ams'  // should be 'ams', 'none', or 'all'
+    }
+  };
+</script>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>  
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">RainbowTag Fiducal Marker (published research project on fiducial markers)</h1>
+    <p class="post-meta"></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="in-a-nutshell">In a nutshell</h2>
+
+<p><em>RainbowTag</em> (<a href="https://ieeexplore.ieee.org/document/9743123"><em>paper here</em></a>, <a href="https://github.com/juloss/rainbowtag"><em>code here</em></a>, <a href="http://localhost:4000/assets/slides/RT_short.odp"><em>download slides</em></a>) is a color-based fiducial marker together with a detection algorithm that is robust to (motion) blur and marker deformations. Below is an example marker. Although lighting conditions affect color appearance, the RainbowTag detection algorithm is designed work reliably in everyday lighting conditions (e.g.,  lightbulbs with various color temperature or sunlight).</p>
+
+<p><img src="/assets/images/marker.svg" alt="RainbowTag marker" class="centered" width="20%" /></p>
+
+<h1 id="advantages-of-rainbowtag">Advantages of RainbowTag:</h1>
+
+<p>Works well when (see experimental demonstration in <a href="https://ieeexplore.ieee.org/document/9743123"><em>paper</em></a>)</p>
+<ul>
+  <li>there is blur (e.g., because of movement),</li>
+  <li>markers are partially occluded,</li>
+  <li>markers are folded,</li>
+  <li>markers are placed on an uneven surface,</li>
+  <li>markers are far from the camera.</li>
+</ul>
+
+<h1 id="disadvantages-of-rainbowtag">Disadvantages of RainbowTag:</h1>
+<ul>
+  <li>current implementation (python using numba for certain tasks) is not very fast, about 3-4 fps on a Surface Book 2 laptop (for 1920 x 1080 images),</li>
+  <li>it does not work with black and white images,</li>
+  <li>there are only 30 different markers.
+<br /><br /></li>
+</ul>
+
+<h2 id="demos">Demos</h2>
+
+<h5 id="note-1-all-markers-rainbowtag-aruco-chromatag-have-area-265-pm-05-textcm2-in-the-videos-and-images-below-rainbowtag-markers-look-larger-than-aruco-and-chromatag-markers-because-aruco-and-chromatag-have-a-white-frame-around-them-that-is-not-visible-on-the-white-background-rainbowtag-uses-a-black-frame-which-is-visible-2-four-detector-algorithms-are-running-in-the-videos-and-images-rainbowtag-aruco-6x6-aruco-4x4-chromatag"><em>Note:</em> <em>(1)</em> All markers (RainbowTag, Aruco, ChromaTag) have area \(26.5 \pm 0.5 \text{cm}^2\). In the videos and images below, RainbowTag markers look larger than Aruco and ChromaTag markers because Aruco and ChromaTag have a white frame around them that is not visible on the white background. RainbowTag uses a black frame which is visible. <em>(2)</em> Four detector algorithms are running in the videos and images: RainbowTag, Aruco 6x6, Aruco 4x4, ChromaTag.</h5>
+
+<h1 id="detection-videos">Detection Videos</h1>
+
+<h4 id="markers-in-occlusion">Markers in occlusion</h4>
+<h5 id="camera-sony-alpha-5000">(camera: Sony Alpha 5000)</h5>
+
+<center>
+<video width="100%" muted="" controls="">
+    <source src="../assets/videos/stick.mp4" type="video/mp4" />
+</video>
+</center>
+<p><br /><br /></p>
+
+<h4 id="small-and-blurry-markers">Small and blurry markers</h4>
+<h5 id="camera-sony-alpha-5000-1">(camera: Sony Alpha 5000)</h5>
+
+<center>
+<video width="100%" muted="" controls="">
+    <source src="../assets/videos/sony_camera.mp4" type="video/mp4" />
+</video>
+</center>
+<p><br /><br /></p>
+
+<h4 id="markers-on-uneven-surface">Markers on uneven surface</h4>
+<h5 id="camera-sony-alpha-5000-2">(camera: Sony Alpha 5000)</h5>
+
+<center>
+<video width="100%" muted="" controls="">
+    <source src="../assets/videos/slowmo_uneven.mp4" type="video/mp4" />
+</video>
+</center>
+<p><br /><br /></p>
+
+<h4 id="folded-marker-detection">Folded marker detection</h4>
+<h5 id="camera-sony-alpha-5000-3">(camera: Sony Alpha 5000)</h5>
+
+<center>
+<video width="100%" muted="" controls="">
+    <source src="../assets/videos/slowmo_cube.mp4" type="video/mp4" />
+</video>
+</center>
+<p><br /><br /></p>
+
+<h4 id="weak-yellowish-illumination">Weak yellowish illumination</h4>
+<h5 id="camera-samsung-galaxy-s5-phone-camera">(camera: Samsung Galaxy S5 phone camera)</h5>
+
+<center>
+<video width="60%" muted="" controls="">
+    <source src="../assets/videos/galaxyS5.mp4" type="video/mp4" />
+</video>
+</center>
+<p><br /><br /></p>
+
+<h4 id="next-to-window-daylight">Next to window (daylight)</h4>
+<h5 id="camera-umidigi-f2-phone-camera">(camera: Umidigi F2 phone camera)</h5>
+
+<center>
+<video width="60%" muted="" controls="">
+    <source src="../assets/videos/umidigiF2.mp4" type="video/mp4" />
+</video>
+</center>
+<p><br /><br /></p>
+
+<h1 id="detection-demo-images">Detection Demo Images</h1>
+
+<p><img src="/assets/images/demo_images.svg" alt="Detection demo images" class="centered" width="80%" /></p>
+
+<p>Rows are described from top to bottom and from left to right. The left side of an image shows the marker, and the right side shows the marker with detection overlayed. \(d\) is the distance between the camera and the markers.</p>
+
+<p><em>Row 1:</em>
+<strong>(1)</strong>  \(d=1.1\)m, 6500K lightbulb.
+<strong>(2)</strong> \(d=2.1\)m, 2700K lightbulb.
+<strong>(3)</strong> and <strong>(4)</strong> Detection algorithm with same settings (i.e., same white point) in both conditions (3) (2700K lightbulb) and (4) (6500K lightbulb), \(d=1.1\)m.</p>
+
+<p><em>Row 2:</em> 
+<strong>(1)</strong> High blur: \(v = 0.45 \frac{m}{s}\), shutter speed \(=\frac{1}{15}s\), \(d=2.1m\), 2700K lightbulb.</p>
+
+<p>etc.</p>
+
+  </div><a class="u-url" href="/rainbowtag/" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">
+            </li><li><a class="u-email" href="mailto:juloss.site@gmail.com">email</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/juloss"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">juloss</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

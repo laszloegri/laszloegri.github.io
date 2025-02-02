@@ -1,0 +1,91 @@
+---
+layout: default
+---
+
+<div class="home">
+  {% if page.title %}
+    <h1 class="page-heading">{{ page.title }}</h1>
+  {% endif %}
+
+  {{ content }}
+
+  {% if site.posts.size > 0 %}
+    <h2 class="page-heading">{{ page.list_title | default: "Selected AI, computer vision and other projects:" }}</h2>
+    <ul class="post-list">
+      {% for post in site.posts %}
+        {% unless post.categories contains "publications" %}
+          <li>
+            <h3>
+              <a class="post-link" href="{{ post.url | relative_url }}">
+                {{ post.title | escape }}
+              </a>
+            </h3>
+
+            {% if post.attachments %}
+              {% assign final_h = post.common_media_height | default: 200 %}
+              <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                {% for item in post.attachments %}
+                  {% if item.type == "video" %}
+                    <video muted autoplay loop controls preload style="height: {{ final_h }}px; object-fit: cover; overflow: hidden;">
+                      <source src="{{ item.src | absolute_url }}" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  {% elsif item.type == "image" %}
+                    <img src="{{ item.src | absolute_url }}" alt="Project media" style="height: {{ final_h }}px; object-fit: cover; overflow: hidden;" />
+                  {% endif %}
+                {% endfor %}
+              </div>
+              {% for item in post.attachments %}
+                {% if item.type == "link" %}
+                  <div style="margin-top: 1rem;">
+                    <a class="post-link" style="font-size: 1.0rem;" href="{{ item.href }}" target="_blank" rel="noopener noreferrer">
+                      {{ item.text | default: "Visit website" }}
+                    </a>
+                  </div>  
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
+            {% if site.show_excerpts %}
+              {{ post.excerpt }}
+            {% endif %}
+          </li>
+        {% endunless %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+<h2 class="page-heading publications-heading">Publications:</h2>
+<ul class="publication-list">
+  <li>
+    <a class="post-link" href="{{ '/publications/' | relative_url }}">All papers</a>
+  </li>
+  <li>
+    <a class="post-link" href="https://dblp.org/pid/02/6401.html" target="_blank" rel="noopener noreferrer">
+      DBLP Profile
+    </a>
+  </li>
+</ul>
+
+<footer>
+  <h2 class="page-heading publications-heading">Disclaimer:</h2>
+  <div class="disclaimer-content">
+    <ul>
+      <li>
+        <strong>Work-for-Hire Animations (Specific Subpages)</strong><br>
+        The animations displayed on the <strong>“AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 research projects)”</strong>
+        and <strong>“Implementing and Improving Existing Accelerometer and Gyroscope Calibration Algorithms”</strong>
+        subpages were created under a work-for-hire agreement with <strong>Notch Interfaces Inc.</strong> They are presented solely to showcase my research and development skills.
+        <strong>No portion of these materials may be reproduced, duplicated, or used for any other purpose without explicit permission from Notch Interfaces Inc.</strong>
+      </li>
+      <li>
+        <strong>Other Website Content</strong><br>
+        Unless otherwise noted, all other materials on
+        <a href="https://juloss.github.io">https://juloss.github.io</a>
+        may be shared or adapted, provided that you clearly acknowledge the source and include a link back to
+        <a href="https://juloss.github.io">https://juloss.github.io</a>.
+      </li>
+    </ul>
+  </div>
+</footer>

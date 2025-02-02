@@ -1,0 +1,119 @@
+---
+---
+
+/* main.scss */
+
+/* Import the Minima theme styles first, so we can override them */
+@import "minima";
+
+.site-header {
+  min-height: auto; /* Remove unnecessary height constraints */
+  position: relative;
+}
+
+.site-title {
+  color: white !important;  /* Force white for the About link */
+  font-size: 2.5rem; /* Adjust text size as desired */
+}
+
+.site-title a {
+  text-decoration: none;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Improves readability */
+}
+
+.site-nav a[href="/about/"] {
+  font-size: 1.5rem;
+  color: rgb(183, 183, 183) !important;  /* Force grey color for the About link */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Hover color */
+.site-nav a:hover {
+  color: #ccc;
+}
+
+.wrapper {
+  position: relative;  /* Establish positioning context for absolute children */
+  max-width: 1000px;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0 auto;
+}
+
+.site-header .banner-image {
+  display: block;
+  width: 100%;
+  height: 180px;      /* Set your desired fixed height */
+  object-fit: cover;   /* Crop the image to fill the area without distortion */
+}
+
+.banner-content {
+  position: absolute;      /* Position relative to .wrapper */
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0 20px;         /* Horizontal padding for content */
+  color: #fff;             /* Contrast text on the banner */
+}
+
+/* Target the About link specifically on the homepage */
+body.home-page .page-link[href="/about/"] {
+  color: white !important; /* Force white color */
+}
+
+/* Styling for bullet points on the main page's project list (posts) */
+.post-list {
+  list-style-type: disc;         /* Solid circle bullets */
+  list-style-position: outside;    /* Default positioning */
+  margin-left: 40px;               /* Indent the list */
+  color: inherit;                  /* Ensure text color cascades to bullets if supported */
+}
+
+.post-list li {
+  margin-bottom: 1.5em;            /* Spacing between items */
+  line-height: 1.5;                /* Adjust line-height to improve marker alignment */
+  font-size: 1.625rem;             /* Match the font size you're using */
+}
+
+/* Styling for bullet points on the publications list (spacing is smaller) */
+.publication-list {
+  list-style-type: disc;         /* Solid circle bullets */
+  list-style-position: outside;    /* Default positioning */
+  margin-left: 40px;               /* Indent the list */
+  color: inherit;                  /* Ensure text color cascades to bullets if supported */
+}
+
+.publication-list li {
+  margin-bottom: 0.0em;              /* Reduced spacing between items */
+  line-height: 1.5;                /* Same line-height as posts */
+  font-size: 1.625rem;             /* Match the font size you're using */
+}
+
+.page-heading {
+  margin-bottom: 0.6rem; /* Add more space below the heading */
+}
+
+/* Scoped link styling for blog posts */
+.post a {
+  font-size: inherit; /* Ensure links match surrounding text */
+  color: #007acc;     /* Optional: Customize link color within posts */
+  text-decoration: underline; /* Optional: Add underline for better visibility */
+}
+
+/* Optional: Add hover effect for links within posts */
+.post a:hover {
+  color: #005fa3; /* Darker shade on hover */
+}
+
+/* Specific Styling for Attachment Links */
+.attachment-link {
+  font-size: 0.7em; /* Adjust to desired smaller size */
+  color: #007acc;    /* Maintain link color consistency */
+  text-decoration: none; /* Remove underline for attachment links */
+}
+
+/* Optional: Add hover effect for attachment links */
+.attachment-link:hover {
+  color: #005fa3; /* Darker shade on hover */
+  text-decoration: underline; /* Add underline on hover if desired */
+}

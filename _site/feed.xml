@@ -1,0 +1,1075 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-02T17:05:32-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Welcome László Egri’s Homepage</title><entry><title type="html">AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)</title><link href="http://localhost:4000/har/" rel="alternate" type="text/html" title="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)" /><published>2025-01-19T17:45:33-05:00</published><updated>2025-01-19T17:45:33-05:00</updated><id>http://localhost:4000/HAR</id><content type="html" xml:base="http://localhost:4000/har/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+
+&lt;p&gt;Due to contractual obligations, only a high-level overview of the following three interrelated projects is provided.&lt;/p&gt;
+
+&lt;h2 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;#exercise-repetition-counting&quot;&gt;Exercise Repetition Counting&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#human-activity-recognition-har-with-deep-learning&quot;&gt;Human Activity Recognition (HAR) with Deep Learning&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#fine-grained-human-motion-comparison&quot;&gt;Fine-Grained Human Motion Comparison&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div style=&quot;margin-bottom: 40px;&quot;&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;exercise-repetition-counting&quot;&gt;1. Exercise Repetition Counting&lt;/h3&gt;
+
+&lt;p&gt;I developed a precision exercise repetition counter specialized for gym workouts. The system uses four IMU (Inertial Measurement Unit) sensors attached to different parts of the body—depending on the exercise. Its parameters can be optimized via Bayesian optimization with Gaussian processes, allowing fine-tuning for specific exercises or individual users when sufficient data is available. Notably, it works “out of the box” without custom training data. See Figure 1 for a demonstration. While large-scale validation is pending, the counter has demonstrated near-perfect accuracy on limited test data.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;center&gt;
+    &lt;video width=&quot;100%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;../assets/animations/exercise_recognition.mp4&quot; preload=&quot;auto&quot; controls=&quot;&quot; aria-label=&quot;Exercise Recognition Demo&quot;&gt;
+      &lt;source src=&quot;../assets/animations/exercise_recognition.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+      Your browser does not support the video tag.
+    &lt;/video&gt;
+  &lt;/center&gt;
+  &lt;figcaption&gt;
+    Figure 1. Exercise repetition counting (and recognition). Counts are shown in the small text at the top right corner, along with the time information of peaks recognized as exercise repetitions.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;div style=&quot;margin-bottom: 40px;&quot;&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;human-activity-recognition-har-with-deep-learning&quot;&gt;2. Human Activity Recognition (HAR) with Deep Learning&lt;/h3&gt;
+
+&lt;p&gt;Building on the repetition counter, the system precisely marks the start and end of each repetition. Once isolated, the IMU sensor data is preprocessed—using methods such as SLERP (spherical linear interpolation) to ensure each repetition’s data is consistently sized. The standardized data is then fed into a custom deep neural network that classifies each repetition in real time on a mobile device, identifying the specific exercise performed. Although comprehensive evaluations require larger datasets, tests of an 11-class classifier have achieved near-perfect accuracy on the available data.&lt;/p&gt;
+
+&lt;div style=&quot;margin-top: 0px;&quot;&gt;&lt;/div&gt;
+&lt;figure&gt;
+  &lt;center&gt;
+    &lt;video width=&quot;100%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;../assets/animations/3d_t_sne_of_exercise_dataset_animation.mp4&quot; preload=&quot;auto&quot; controls=&quot;&quot; aria-label=&quot;3D t-SNE Visualization of Exercise Dataset&quot;&gt;
+      &lt;source src=&quot;../assets/animations/3d_t_sne_of_exercise_dataset_animation.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+      Your browser does not support the video tag.
+    &lt;/video&gt;
+  &lt;/center&gt;
+  &lt;figcaption&gt;
+    Figure 2. Visualization of exercise data using t-SNE.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;div style=&quot;margin-top: 50px;&quot;&gt;&lt;/div&gt;
+&lt;figure&gt;
+  &lt;center&gt;
+    &lt;img src=&quot;/assets/images/exercise_recognition_zoom.png&quot; alt=&quot;Exercise Recognition&quot; style=&quot;width:100%;&quot; class=&quot;centered&quot; /&gt;
+  &lt;/center&gt;
+  &lt;figcaption&gt;
+    Figure 3. Demonstration of exercise recognition. The boxes at the bottom indicate the type of exercise identified by the deep-learning classifier (a zoomed-in screenshot from the animation in Figure 1).
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;div style=&quot;margin-bottom: 40px;&quot;&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;fine-grained-human-motion-comparison&quot;&gt;3. Fine-Grained Human Motion Comparison&lt;/h3&gt;
+
+&lt;p&gt;This project compares individual time points from a user’s exercise repetition against a reference sequence—be it an expert’s ideal form or the user’s own past performance—to assess technique and track improvements over time. To accomplish this, I customized Dynamic Time Warping (DTW) for more precise alignment of the IMU data across repetitions. A key challenge was devising an effective method to compare body-position data so that the motion matching remains both accurate and robust. See Figure 4 for a demonstration.&lt;/p&gt;
+
+&lt;div style=&quot;margin-top: 30px;&quot;&gt;&lt;/div&gt;
+&lt;figure&gt;
+  &lt;center&gt;
+    &lt;video width=&quot;100%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;../assets/animations/motion_comparison.mp4&quot; preload=&quot;auto&quot; controls=&quot;&quot; aria-label=&quot;Motion Comparison Demo&quot;&gt;
+      &lt;source src=&quot;../assets/animations/motion_comparison.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+      Your browser does not support the video tag.
+    &lt;/video&gt;
+  &lt;/center&gt;
+  &lt;figcaption&gt;
+    Figure 4. Demonstration of matching a single exercise repetition (green) to motion time-series data (grey). The exercise is in the animation is deadlift.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;For more information on Dynamic Time Warping, please visit the &lt;a href=&quot;https://en.wikipedia.org/wiki/Dynamic_time_warping&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Dynamic Time Warping — Wikipedia&lt;/a&gt; page.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;For further details about the sensor technology, please visit &lt;a href=&quot;https://www.wearnotch.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Wearnotch&lt;/a&gt;. Note that the website content is updated frequently and may not reflect all project details.&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Overview</summary></entry><entry><title type="html">Taming Hard and Soft Iron: An Application of Positive Definite Matrices in Magnetometer Calibration (project)</title><link href="http://localhost:4000/magneto/" rel="alternate" type="text/html" title="Taming Hard and Soft Iron: An Application of Positive Definite Matrices in Magnetometer Calibration (project)" /><published>2025-01-19T00:00:00-05:00</published><updated>2025-01-19T00:00:00-05:00</updated><id>http://localhost:4000/Magneto</id><content type="html" xml:base="http://localhost:4000/magneto/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;h2 id=&quot;magnetometer-calibration&quot;&gt;Magnetometer Calibration&lt;/h2&gt;
+
+&lt;p&gt;In this project, I implemented an algorithm for magnetometer calibration. Here, I explain the algorithm and the math behind it. This work was guided by the material in &lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt;, although the objective function I minimize here is slightly different.&lt;/p&gt;
+
+&lt;p&gt;Real-world magnetometer measurements often form a distorted ellipsoid due to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Hard iron distortion&lt;/strong&gt;: This arises from permanent magnetic fields in or near the sensor, introducing a constant offset that shifts measured data away from the origin.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Soft iron distortion&lt;/strong&gt;: Nearby ferromagnetic materials alter the local magnetic field, turning the spherical distribution of magnetometer measurements into an ellipsoid. To compensate, the geomagnetic field vector measured by the magnetometer can be rotated, scaled to counteract the distortion, and then rotated back &lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt;. In other words, the sphere is scaled along orthogonal directions but &lt;strong&gt;no rotation is involved&lt;/strong&gt;. (This is exactly what a symmetric positive definite matrix does.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Our goal is to convert these distorted measurements into a sphere of radius 1 centered at the origin, resulting in accurate magnetometer outputs.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;center&gt;
+    &lt;video width=&quot;55%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;&quot; preload=&quot;&quot; controls=&quot;&quot;&gt;
+      &lt;source src=&quot;../assets/animations/magneto_calibration_demo.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+    &lt;/video&gt;
+  &lt;/center&gt;
+  &lt;figcaption style=&quot;font-size:inherit;&quot;&gt;
+    Fig. 1. Demonstration of the magnetometer calibration process: transforming a distorted ellipsoid of synthetic measurements (without noise added) into a sphere. Specifically, red points (uncalibrated readings) are transformed into turquoise points (calibrated readings). The yellow arrows show how uncalibrated points are corrected. The transformation has the form \( \mathbf{y} = \mathbf{A} (\mathbf{x} - \mathbf{b}) \) (see main text below).
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+  &lt;center&gt;
+    &lt;video width=&quot;55%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;&quot; preload=&quot;&quot; controls=&quot;&quot;&gt;
+      &lt;source src=&quot;../assets/animations/magneto_calibration_noisy_demo.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+    &lt;/video&gt;
+  &lt;/center&gt;
+  &lt;figcaption style=&quot;font-size:inherit;&quot;&gt;
+    Fig. 2. Demonstration of the magnetometer calibration process using noisy synthetic data. Blue points are uncalibrated readings; red points are calibrated.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;calibration-model&quot;&gt;Calibration Model&lt;/h2&gt;
+
+&lt;p&gt;We seek a transformation&lt;/p&gt;
+
+\[\mathbf{y} = \mathbf{A}(\mathbf{x} - \mathbf{b}),\]
+
+&lt;p&gt;so that \(\|\mathbf{y}\| \approx 1\) for each measurement \(\mathbf{x}\). Here:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;\(\mathbf{b}\) is the &lt;strong&gt;offset&lt;/strong&gt; (addressing hard iron distortion).&lt;/li&gt;
+  &lt;li&gt;\(\mathbf{A}\) is a &lt;strong&gt;symmetric, positive definite&lt;/strong&gt; matrix (addressing soft iron distortion).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;why-symmetric-and-positive-definite&quot;&gt;Why Symmetric and Positive Definite?&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Symmetry Avoids Unwanted Rotations&lt;/strong&gt;&lt;br /&gt;
+We aim to reshape (scale) the measurement ellipsoid without rotating the measurement points. Therefore, we restrict \(\mathbf{A}\) to matrices that represent only scaling. By the spectral decomposition for real symmetric matrices:
+\(\mathbf{A} = \mathbf{Q}\,\mathbf{\Lambda}\,\mathbf{Q}^\top,\)
+where \(\mathbf{Q}\) is orthogonal (its columns are orthonormal eigenvectors) and \(\mathbf{\Lambda}\) is diagonal with the real eigenvalues of \(\mathbf{A}\). Geometrically, this transformation rotates the space with \(\mathbf{Q}^\top\), scales along orthogonal axes via \(\mathbf{\Lambda}\), and then applies \(\mathbf{Q}\) again. Consequently, \(\mathbf{A}\) scales the space along orthogonal directions defined by \(\mathbf{Q}\).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Positive Definiteness Prevents Flips or Collapses&lt;/strong&gt;&lt;br /&gt;
+A matrix \(\mathbf{A}\) is positive definite if the quadratic form \(\mathbf{x}^\top \mathbf{A} \mathbf{x}\) is positive for all nonzero \(\mathbf{x}\). Using the same spectral decomposition:
+\(\mathbf{A} = \mathbf{Q}\,\mathbf{\Lambda}\,\mathbf{Q}^\top \quad \Longrightarrow \quad
+\mathbf{x}^\top \mathbf{A} \mathbf{x} = \mathbf{y}^\top \mathbf{\Lambda}\,\mathbf{y},\)
+where \(\mathbf{y} = \mathbf{Q}^\top \mathbf{x}\). Since \(\mathbf{Q}\) is orthogonal, \(\mathbf{y}\) spans the same space as \(\mathbf{x}\). Thus, \(\mathbf{y}^\top \mathbf{\Lambda} \mathbf{y} &amp;gt; 0\) for all nonzero \(\mathbf{y}\) if and only if the diagonal entries of \(\mathbf{\Lambda}\) (the eigenvalues of \(\mathbf{A}\)) are strictly positive. Therefore, no flips or collapses occur; \(\mathbf{A}\) simply scales space in orthogonal directions.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Any Non-Symmetric Matrix Induces a Rotation&lt;/strong&gt;&lt;br /&gt;
+Restricting \(\mathbf{A}\) to be symmetric is justified by the polar decomposition &lt;a href=&quot;#ref3&quot;&gt;[3]&lt;/a&gt;, which states that any square matrix \(\mathbf{A}\) can be written as \(\mathbf{A} = \mathbf{R}\,\mathbf{S}\), where \(\mathbf{R}\) is orthogonal (a rotation/reflection) and \(\mathbf{S}\) is symmetric. If \(\mathbf{A}\) is not symmetric, then \(\mathbf{R}\) must be a non-identity rotation/reflection, introducing an unintended rotation. Hence, we enforce symmetry to avoid these effects.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Therefore, in magnetometer calibration, \(\mathbf{A}\) must be &lt;strong&gt;symmetric and positive definite&lt;/strong&gt; to ensure a pure, non-degenerate scaling without unwanted rotations or reflections.&lt;/p&gt;
+
+&lt;h2 id=&quot;calibration-objective&quot;&gt;Calibration Objective&lt;/h2&gt;
+
+&lt;p&gt;We want \(\|\mathbf{y}\| = 1\), where \(\mathbf{y} = \mathbf{A}(\mathbf{x} - \mathbf{b})\).&lt;/p&gt;
+
+&lt;p&gt;Squaring the norm:
+\(\|\mathbf{y}\|^2 
+= \|\mathbf{A}(\mathbf{x} - \mathbf{b})\|^2
+= (\mathbf{x} - \mathbf{b})^\top \mathbf{A}^\top \mathbf{A} (\mathbf{x} - \mathbf{b})
+= (\mathbf{x} - \mathbf{b})^\top \mathbf{C} (\mathbf{x} - \mathbf{b}),\)
+where
+\(\mathbf{C} = \mathbf{A}^\top \mathbf{A}.\)&lt;/p&gt;
+
+&lt;p&gt;The proof of the following claim can be found in any linear algebra textbook.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Claim.&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;If \(\mathbf{A}\) is symmetric and positive definite, then \(\mathbf{C} = \mathbf{A}^\top \mathbf{A} = \mathbf{A}^2\) is also symmetric and positive definite.&lt;/li&gt;
+  &lt;li&gt;Conversely, if \(\mathbf{C}\) is positive definite, then there exists a unique symmetric, positive-definite matrix \(\mathbf{D}\) such that \(\mathbf{C} = \mathbf{D}^\top \mathbf{D}\). Since \(\mathbf{D}\) is unique, when \(\mathbf{C} = \mathbf{A}^\top \mathbf{A}\), then \(\mathbf{A} = \mathbf{D}\). In fact, we can recover \(\mathbf{A}\) from \(\mathbf{C}\) via the &lt;strong&gt;principal square root&lt;/strong&gt;,
+\(\mathbf{A} = \sqrt{\mathbf{C}}.\)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Instead of forcing the calibrated measurements to have unit magnitude, we can choose a &lt;strong&gt;target radius&lt;/strong&gt; \(\beta\) to match Earth’s magnetic field strength (often around \(50\,\mu\text{T}\)). This way after calibration, the calibrated norm reflects the actual magnetic field magnitude in the region. This is effectively a scaling adjustment on top of offset and shape corrections.&lt;/p&gt;
+
+&lt;h2 id=&quot;least-squares-formulation&quot;&gt;Least Squares Formulation&lt;/h2&gt;
+
+&lt;p&gt;Given measurements \(\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_n\), we want to find \(\mathbf{b}\) and a positive definite \(\mathbf{C}\) to minimize&lt;/p&gt;
+
+\[\sum_{i=1}^n 
+\Bigl(\sqrt{(\mathbf{x}_i - \mathbf{b})^\top \mathbf{C}\, (\mathbf{x}_i - \mathbf{b})} - \beta \Bigr)^2,\]
+
+&lt;p&gt;assuming we target a radius \(\beta\). By including \(\mathbf{b}\) in the least squares formulation, we ensure the best overall fit for both offset and shape corrections.&lt;/p&gt;
+
+&lt;p&gt;Notice that we have to optimize over symmetric positive definite matrices. One approach is to reparameterize \(\mathbf{C}\) using the &lt;strong&gt;Cholesky decomposition&lt;/strong&gt;:&lt;/p&gt;
+
+\[\mathbf{C} = \mathbf{L}\,\mathbf{L}^\top,\]
+
+&lt;p&gt;where \(\mathbf{L}\) is a lower triangular matrix with positive diagonal entries. Then we minimize&lt;/p&gt;
+
+\[\sum_{i=1}^n 
+\Bigl(\sqrt{(\mathbf{x}_i - \mathbf{b})^\top \mathbf{L}\,\mathbf{L}^\top\, (\mathbf{x}_i - \mathbf{b})} - \beta\Bigr)^2\]
+
+&lt;p&gt;over the parameters in \(\mathbf{L}\) and \(\mathbf{b}\).&lt;/p&gt;
+
+&lt;h2 id=&quot;a-note-on-different-error-formulations&quot;&gt;A Note on Different Error Formulations&lt;/h2&gt;
+
+&lt;p&gt;A standard &lt;strong&gt;least squares&lt;/strong&gt; approach might minimize&lt;/p&gt;
+
+\[\sum_{i=1}^n \Bigl(\sqrt{(\mathbf{x}_i - \mathbf{b})^\top \mathbf{C} (\mathbf{x}_i - \mathbf{b})} - \beta \Bigr)^2,\]
+
+&lt;p&gt;penalizing the difference in &lt;strong&gt;distance&lt;/strong&gt; between each point’s radius and \(\beta\).&lt;/p&gt;
+
+&lt;p&gt;The MathWorks website gives an alternative formulation:&lt;/p&gt;
+
+\[\frac{1}{2 \beta^2} \sqrt{ \frac{ \sum_{i=1}^n \|\mathbf{A}(\mathbf{x}_i - \mathbf{b})\|^2 - \beta^2 }{n} },\]
+
+&lt;p&gt;which looks at &lt;strong&gt;squared distances&lt;/strong&gt; relative to \(\beta^2\). The difference is subtle: one approach directly penalizes deviations in distance (\(\|\mathbf{A}(\mathbf{x}-\mathbf{b})\| - \beta\)), while the other penalizes deviations in &lt;strong&gt;squared distance&lt;/strong&gt; (\(\|\mathbf{A}(\mathbf{x}-\mathbf{b})\|^2 - \beta^2\)). Both methods aim to keep measurements on (or near) a sphere of radius \(\beta\), but each weights the deviations slightly differently.&lt;/p&gt;
+
+&lt;h2 id=&quot;summary-of-steps&quot;&gt;Summary of Steps&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Collect data at various orientations.&lt;/li&gt;
+  &lt;li&gt;Solve a least squares problem for \(\mathbf{b}\) and \(\mathbf{C}\).&lt;/li&gt;
+  &lt;li&gt;Compute \(\mathbf{A} = \sqrt{\mathbf{C}}\).&lt;/li&gt;
+  &lt;li&gt;(Optionally) scale \(\mathbf{A}\) so that the calibrated measurements have magnitude \(\beta\).&lt;/li&gt;
+  &lt;li&gt;Use \(\mathbf{y} = \mathbf{A}(\mathbf{x} - \mathbf{b})\) for calibration.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;p&gt;&lt;a id=&quot;ref1&quot;&gt;&lt;/a&gt;
+[1] MathWorks. &lt;em&gt;Magnetometer Calibration Documentation.&lt;/em&gt;&lt;br /&gt;
+   &lt;em&gt;Available at:&lt;/em&gt; &lt;a href=&quot;https://www.mathworks.com/help/fusion/ug/magnetometer-calibration.html&quot;&gt;https://www.mathworks.com/help/fusion/ug/magnetometer-calibration.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;ref2&quot;&gt;&lt;/a&gt;
+[2] MathTheBeautiful. &lt;em&gt;Linear Algebra 22g: Geometric Interpretation of the Eigenvalue Decomposition for Symmetric Matrices.&lt;/em&gt;&lt;br /&gt;
+   &lt;em&gt;Available at:&lt;/em&gt; &lt;a href=&quot;https://www.youtube.com/watch?v=biKF85VOC2g&amp;amp;list=PLlXfTHzgMRUIqYrutsFXCOmiqKUgOgGJ5&amp;amp;index=102&quot;&gt;https://www.youtube.com/watch?v=biKF85VOC2g&amp;amp;list=PLlXfTHzgMRUIqYrutsFXCOmiqKUgOgGJ5&amp;amp;index=102&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;ref3&quot;&gt;&lt;/a&gt;
+[3] MathTheBeautiful. &lt;em&gt;Linear Algebra 23a: Polar Decomposition - A Product of an Orthogonal and Symmetric Matrices.&lt;/em&gt;&lt;br /&gt;
+   &lt;em&gt;Available at:&lt;/em&gt; &lt;a href=&quot;https://www.youtube.com/watch?v=qTIwqnweaf8&quot;&gt;https://www.youtube.com/watch?v=qTIwqnweaf8&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Introduction</summary></entry><entry><title type="html">Fisheye to Rectilinear: A Custom Dewarping Journey (project)</title><link href="http://localhost:4000/dewarp/" rel="alternate" type="text/html" title="Fisheye to Rectilinear: A Custom Dewarping Journey (project)" /><published>2025-01-17T00:00:00-05:00</published><updated>2025-01-17T00:00:00-05:00</updated><id>http://localhost:4000/Dewarp</id><content type="html" xml:base="http://localhost:4000/dewarp/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;In this project, I developed a tool to transform fisheye camera footage into a rectilinear (perspective-like) view. Although libraries like OpenCV can dewarp fisheye images, they do not provide fine-grained control over which portion of the fisheye view is converted. To fill that gap, I derived the geometry and math from scratch, enabling precise selection of the dewarping region. No existing “dewarping” library is used; every step of my fisheye projection model is coded by hand.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;center&gt;
+    &lt;video width=&quot;100%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;&quot; preload=&quot;&quot; controls=&quot;&quot;&gt;
+      &lt;source src=&quot;../assets/animations/dewarp_-90_60_-90_95_95_2000_2000_360_640_320_180.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+    &lt;/video&gt;
+  &lt;/center&gt;
+  &lt;figcaption style=&quot;font-size:inherit;&quot;&gt;
+    Fig. 1. Demonstration of my dewarping tool in action.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;high-level-project-description&quot;&gt;High-level project description&lt;/h2&gt;
+
+&lt;p&gt;The fisheye camera model I use [&lt;a href=&quot;#ref1&quot;&gt;1&lt;/a&gt;, &lt;a href=&quot;#ref2&quot;&gt;2&lt;/a&gt;] can be viewed as a generalization of the pinhole camera model. First, consider the pinhole model (Fig. 2, top). The camera coordinate frame is defined so that the pinhole (camera center) \(C\) is at the origin. In Fig. 2, the positive \(z\)-axis extends forward, the positive \(x\)-axis extends to the left, and the positive \(y\)-axis extends upward. The image plane lies behind the optical center.&lt;/p&gt;
+
+&lt;h3 id=&quot;pinhole-model&quot;&gt;Pinhole model&lt;/h3&gt;
+&lt;p&gt;Given a point \(\mathbf{p_W}\) in the world, I draw a line segment \(L\) from \(\mathbf{p_W}\) to \(C\). For a pinhole camera, \(L\) is extended beyond \(C\) in the &lt;strong&gt;same direction&lt;/strong&gt; until it intersects the image plane at \(\mathbf{p}\). The distance \(\rho\) between \(\mathbf{p}\) and the central (optical) axis is given by
+\(\rho = f \,\tan(\theta),\)
+where \(f\) is the focal length parameter, and \(\theta\) is the angle between segment \(L\) and the optical axis. Each lens type has its own projection formula, describing how the intersection with the image plane depends on the entrance angle [&lt;a href=&quot;#ref3&quot;&gt;3&lt;/a&gt;].&lt;/p&gt;
+
+&lt;h3 id=&quot;fisheye-model&quot;&gt;Fisheye model&lt;/h3&gt;
+&lt;p&gt;In the fisheye model (Fig. 2, bottom), the projection from \(C\) to the image plane differs from the pinhole approach. I still define a line segment \(L\) from \(\mathbf{p_W}\) to \(C\), but instead of extending \(L\) beyond \(C\) in the same direction, I introduce a new segment \(K\). Both \(L\) and \(K\) lie in the plane determined by \(L\) and the optical axis. Let \(\theta\) be the angle between \(L\) and the optical axis. The fisheye lens formula specifies how \(K\) is oriented, so that its endpoint on the image plane is at a distance&lt;/p&gt;
+
+\[\rho = g(\theta)\]
+
+&lt;p&gt;from the optical axis. Here, \(g(\theta)\) is the fisheye projection function. Examples include:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Equidistant&lt;/strong&gt;&lt;br /&gt;
+\(\rho = f\,\theta\)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Stereographic&lt;/strong&gt;&lt;br /&gt;
+\(\rho = 2f \,\tan\bigl(\tfrac{\theta}{2}\bigr)\)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Equisolid&lt;/strong&gt;&lt;br /&gt;
+\(\rho = 2f \,\sin\bigl(\tfrac{\theta}{2}\bigr)\)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Orthographic&lt;/strong&gt;&lt;br /&gt;
+\(\rho = f \,\sin(\theta)\)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here, \(f\) is a parameter that sets the lens scale, and \(\theta\) ranges from 0 (along the optical axis) up to the lens’s maximum field of view.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;center&gt;
+    &lt;img src=&quot;/assets/images/fisheye_projection.png&quot; alt=&quot;fisheye projection&quot; style=&quot;width:75%;&quot; class=&quot;centered&quot; /&gt;
+  &lt;/center&gt;
+  &lt;figcaption style=&quot;font-size:inherit;&quot;&gt;
+    Fig. 2. Comparison of camera geometries: top shows the pinhole model, bottom shows the fisheye model.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;dewarping-process&quot;&gt;Dewarping process&lt;/h2&gt;
+
+&lt;p&gt;Once my fisheye projection model is defined, I invert it to produce a rectilinear image. The animation at the top of this page (Fig. 1) shows one example of this transformation. Conceptually, the process involves:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Select a virtual view plane&lt;/strong&gt;&lt;br /&gt;
+I place a rectangle \(R\) perpendicular to the \(z\)-axis, intersecting it at \(z = 1\). One edge is parallel to the \(x\)-axis, and the other to the \(y\)-axis. A grid \(G\) is then overlaid on this rectangle.&lt;/p&gt;
+
+    &lt;p&gt;My tool supports several adjustments for \(R\):&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Field of view&lt;/strong&gt; (horizontal &amp;amp; vertical) in degrees&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Rotation&lt;/strong&gt; around the \(x\)-, \(y\)-, and \(z\)-axes&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Grid density&lt;/strong&gt;, which affects output resolution&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Trace rays to determine colors&lt;/strong&gt;&lt;br /&gt;
+For each point \(\mathbf{v} \in G\), I use the fisheye model to find where \(\mathbf{v}\) maps onto the original fisheye image. First, I compute the angle \(\theta\) from the optical axis and then use the fisheye formula to get the corresponding distance (radius) \(\rho\) on the image plane. This information, along with the angular position around the optical axis, yields a location on the fisheye image that may not fall exactly on a pixel center. In such cases, surrounding pixels are sampled and linearly interpolated to estimate the correct color, ensuring a smooth result and reducing aliasing. I then assign this interpolated color value to \(\mathbf{v}\) in the output image.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;By applying these steps to every point in \(G\), I form a rectilinear view of the scene on \(R\), effectively “unwrapping” the fisheye source.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;div id=&quot;ref1&quot;&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; &lt;a href=&quot;https://doi.org/10.1049/iet-its.2009.0052&quot;&gt;Automatic calibration of fish-eye cameras from automotive video sequences&lt;/a&gt;&lt;/p&gt;
+
+&lt;div id=&quot;ref2&quot;&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; &lt;a href=&quot;https://en.wikipedia.org/wiki/Fisheye_lens&quot;&gt;Fisheye Lens — Wikipedia&lt;/a&gt;&lt;/p&gt;
+
+&lt;div id=&quot;ref3&quot;&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;3.&lt;/strong&gt; &lt;a href=&quot;https://articles.adsabs.harvard.edu/pdf/2005JIMO...33....9B&quot;&gt;Bettonvil, F. (2005). “Imaging: Fisheye lenses,” &lt;em&gt;WGN, the Journal of the IMO&lt;/em&gt;, 33(1), 9.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Code availability:&lt;/strong&gt;&lt;br /&gt;
+Not publicly available due to contractual obligations.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Video Attribution:&lt;/strong&gt;&lt;br /&gt;
+Fisheye footage by &lt;a href=&quot;https://www.videvo.net/video/fisheye-timelapse-of-building/2964/#rs=video-box&quot;&gt;Videvo&lt;/a&gt; (CC-BY 3.0)&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Introduction</summary></entry><entry><title type="html">Automatic Shape Matching (Research Project)</title><link href="http://localhost:4000/shape/" rel="alternate" type="text/html" title="Automatic Shape Matching (Research Project)" /><published>2025-01-13T17:45:33-05:00</published><updated>2025-01-13T17:45:33-05:00</updated><id>http://localhost:4000/Shape</id><content type="html" xml:base="http://localhost:4000/shape/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;The primary aim of this research project is to explore how complex shapes can be deconstructed into simpler, fundamental building blocks. In particular, the shape components examined here (though the curve segmentation algorithm is somewhat more fine-grained) are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Straight lines&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Maximal strictly convex segments&lt;/strong&gt; (each exhibiting a single maximum curvature)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Maximal strictly concave segments&lt;/strong&gt; (each exhibiting a single minimum curvature)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Each component is characterized by various parameters—for example, the direction in which a concave segment opens. This “language” of shape provides a structured foundation for shape comparison. To match two shapes, the algorithm identifies corresponding components in the target shape by evaluating the similarity of their relative positions and component parameters. This process forms the core of this project.&lt;/p&gt;
+
+&lt;p&gt;There is a substantial body of literature on shape analysis and object detection that demonstrates diverse ways of exploiting contours. For example, see &lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt;, &lt;a href=&quot;#ref2&quot;&gt;[2]&lt;/a&gt;, &lt;a href=&quot;#ref4&quot;&gt;[4]&lt;/a&gt;, &lt;a href=&quot;#ref8&quot;&gt;[8]&lt;/a&gt;, or &lt;a href=&quot;#ref9&quot;&gt;[9]&lt;/a&gt;. However, to the best of my knowledge, no existing research employs the specific shape components and matching algorithm developed in this project.&lt;/p&gt;
+
+&lt;p&gt;Our approach integrates shape decomposition with object segmentation models, specifically the &lt;a href=&quot;https://segment-anything.com/&quot;&gt;Segment Anything Model (SAM)&lt;/a&gt; &lt;a href=&quot;#ref3&quot;&gt;[3]&lt;/a&gt; by Meta AI. First, SAM is used to extract object contours. Then, using my shape decomposition algorithm and a matching procedure, the shape components of a template are matched to the corresponding components of another shape.&lt;/p&gt;
+
+&lt;p&gt;Before delving into technical details, here are some visual examples of the final results.&lt;/p&gt;
+
+&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
+
+&lt;h3 id=&quot;stop-sign&quot;&gt;Stop Sign&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Template curve&lt;/strong&gt;: hand-drawn&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Target curve&lt;/strong&gt;: contour of a mask obtained using SAM&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Process Overview:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The images below illustrate how the stop sign is broken down into its basic components and how these components are matched between the template and the segmented image.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/stop_full.png&quot; alt=&quot;Stop sign&quot; class=&quot;centered&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Zoomed-In View:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A closer view shows the alignment of specific segments between the hand-drawn template and the extracted contour.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/stop_zoom.png&quot; alt=&quot;Stop sign&quot; class=&quot;centered&quot; width=&quot;55%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;mnist-digit-matching&quot;&gt;MNIST Digit Matching&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Template curve&lt;/strong&gt;: contour of a “4” from the MNIST dataset&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Target curve&lt;/strong&gt;: contour of another “4” from the MNIST dataset&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Process Overview:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Below, you can see the deconstruction of the MNIST digit “4,” highlighting the correspondence between the template and the segmented contour.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/mnist_full.png&quot; alt=&quot;MNIST Digit&quot; class=&quot;centered&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Zoomed-In View:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The zoomed view reveals the precise matching of segments and how the algorithm handles subtle differences.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/mnist_zoom.png&quot; alt=&quot;MNIST Digit&quot; class=&quot;centered&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;car&quot;&gt;Car&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Template curve&lt;/strong&gt;: hand-drawn car shape&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Target curve&lt;/strong&gt;: contour of a car obtained using SAM&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Process Overview:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The visualization below shows how a complex car outline is simplified into core components and then matched between the template and the segmented shape.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/car_full.png&quot; alt=&quot;Car&quot; class=&quot;centered&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Zoomed-In View:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This closer look highlights the correspondence between segments of the hand-drawn car and the segmented shape.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/car_zoom.png&quot; alt=&quot;Car&quot; class=&quot;centered&quot; width=&quot;65%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;cat&quot;&gt;Cat&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Template curve&lt;/strong&gt;: hand-drawn cat shape&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Target curve&lt;/strong&gt;: contour of a cat obtained using SAM&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Process Overview:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, the transformation of a cat sketch into fundamental shapes is presented, along with the matching that aligns the hand-drawn and segmented contours.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/cat_full.png&quot; alt=&quot;Cat&quot; class=&quot;centered&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Zoomed-In View:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A magnified view focuses on the alignment of specific features and contours in the cat shape.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/cat_zoom.png&quot; alt=&quot;Cat&quot; class=&quot;centered&quot; width=&quot;55%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;swan&quot;&gt;Swan&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Template curve&lt;/strong&gt;: hand-drawn swan shape&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Target curve&lt;/strong&gt;: contour of a swan obtained using SAM&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Process Overview:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The sequence below shows the deconstruction of a swan outline into basic shapes, as well as the subsequent matching between the template and segmented shapes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/swan_full.png&quot; alt=&quot;Swan&quot; class=&quot;centered&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Zoomed-In View:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A detailed close-up illustrates how precisely the features of the swan’s shape are matched.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/swan_zoom.png&quot; alt=&quot;Swan&quot; class=&quot;centered&quot; width=&quot;100%&quot; /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;some-technical-details&quot;&gt;Some Technical Details&lt;/h2&gt;
+
+&lt;h3 id=&quot;measuring-curvature-of-discrete-plane-curves&quot;&gt;Measuring Curvature of Discrete Plane Curves&lt;/h3&gt;
+
+&lt;figure&gt;
+   &lt;center&gt;
+      &lt;video width=&quot;80%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;&quot; preload=&quot;&quot; controls=&quot;&quot;&gt;
+         &lt;source src=&quot;../assets/animations/curvature_animation.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+      &lt;/video&gt;
+   &lt;/center&gt;
+   &lt;figcaption style=&quot;font-size:inherit;&quot;&gt;
+      Fig. 1. Demonstration of how discrete curvature is measured.
+   &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h4 id=&quot;curvature-of-a-plane-curve&quot;&gt;Curvature of a Plane Curve&lt;/h4&gt;
+
+&lt;p&gt;Let \(\boldsymbol{\gamma}(s) = (x(s),\,y(s))\) be a twice-differentiable plane curve parameterized by &lt;strong&gt;arc length&lt;/strong&gt; \(s\), such that \(\|\boldsymbol{\gamma}&apos;(s)\| = 1\). The &lt;strong&gt;curvature&lt;/strong&gt; \(\kappa(s)\) at a point \(s\) is defined as the magnitude of the second derivative of \(\boldsymbol{\gamma}\) with respect to \(s\):&lt;/p&gt;
+
+\[\kappa(s) = \|\boldsymbol{\gamma}&apos;&apos;(s)\|.\]
+
+&lt;p&gt;Equivalently, \(\kappa(s)\) measures how quickly the &lt;strong&gt;unit tangent vector&lt;/strong&gt; rotates as \(s\) increases. High curvature corresponds to a sharper bend, while zero curvature indicates a perfectly straight segment.&lt;/p&gt;
+
+&lt;h4 id=&quot;discrete-curves-and-curvature-measurement&quot;&gt;Discrete Curves and Curvature Measurement&lt;/h4&gt;
+
+&lt;p&gt;In many practical settings (e.g., image analysis), curves are represented discretely as a sequence of points. To adapt the continuous definition of curvature to such discrete curves, the following preprocessing steps are employed:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Initial Arc-Length Parameterization&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;Resample&lt;/strong&gt; the curve so that consecutive points are equally spaced by a fixed Euclidean distance, approximating a continuous arc-length parameterization.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Smoothing the Curve&lt;/strong&gt;&lt;br /&gt;
+After the initial parameterization, &lt;strong&gt;smooth&lt;/strong&gt; the curve (e.g., by applying a Gaussian filter) to reduce noise. For &lt;strong&gt;closed&lt;/strong&gt; curves, perform smoothing in a wraparound manner to preserve continuity at the endpoints.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Second Arc-Length Parameterization&lt;/strong&gt;&lt;br /&gt;
+Since smoothing alters the spacing between points, &lt;strong&gt;resample&lt;/strong&gt; the curve a second time to ensure uniform spacing.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I developed this procedure independently, but later discovered that it aligns with the approach in &lt;a href=&quot;#ref6&quot;&gt;[6]&lt;/a&gt;, where both \(x(s)\) and \(y(s)\) are convolved with a Gaussian kernel. In addition, &lt;a href=&quot;#ref7&quot;&gt;[7]&lt;/a&gt; offers an overview of the material presented in &lt;a href=&quot;#ref6&quot;&gt;[6]&lt;/a&gt;, while &lt;a href=&quot;#ref5&quot;&gt;[5]&lt;/a&gt; addresses the problem of curve shrinkage that occurs during Gaussian smoothing.&lt;/p&gt;
+
+&lt;h4 id=&quot;curvature-definition-using-bar-length&quot;&gt;Curvature Definition Using Bar Length&lt;/h4&gt;
+
+&lt;p&gt;To estimate the &lt;strong&gt;signed curvature&lt;/strong&gt; at each point \(p\) of the discrete, arc-length-parameterized curve, we pick a fixed &lt;strong&gt;bar length&lt;/strong&gt; parameter \(L\) (for instance, \(L = 2\)). The process is:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Select Neighboring Points&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;From point \(p\), move a distance \(L\) &lt;strong&gt;backwards&lt;/strong&gt; along the curve to find point \(a\).&lt;/li&gt;
+      &lt;li&gt;Move a distance \(L\) &lt;strong&gt;forwards&lt;/strong&gt; along the curve to find point \(b\).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Compute the Signed Curvature Angle&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Determine the &lt;strong&gt;angle&lt;/strong&gt; \(\theta\) between vectors \(\overrightarrow{pa}\) and \(\overrightarrow{pb}\).&lt;/li&gt;
+      &lt;li&gt;Assign a &lt;strong&gt;sign&lt;/strong&gt; to \(\theta\) based on the orientation:
+        &lt;ul&gt;
+          &lt;li&gt;&lt;strong&gt;Positive&lt;/strong&gt; if moving from \(\mathbf{a}\) to \(\mathbf{p}\) to \(\mathbf{b}\) is a counterclockwise turn.&lt;/li&gt;
+          &lt;li&gt;&lt;strong&gt;Negative&lt;/strong&gt; if it is a clockwise turn.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Thus, the &lt;strong&gt;signed curvature&lt;/strong&gt; at \(p\) is:
+\(\kappa(p) = \pm \,\angle\big(\overrightarrow{pa}, \,\overrightarrow{pb}\big).\)&lt;/p&gt;
+
+&lt;p&gt;The bar length \(L\) acts as a &lt;strong&gt;scale parameter&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Larger \(L\)&lt;/strong&gt;: smooths out minor fluctuations, giving a broader notion of curvature.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Smaller \(L\)&lt;/strong&gt;: more sensitive to local bends, capturing finer detail.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In practice, \(\kappa(p)\) is thresholded; if \(\kappa(p)\) is below some small threshold, it is set to \(0\).&lt;/p&gt;
+
+&lt;h4 id=&quot;shape-component-definition&quot;&gt;Shape Component Definition&lt;/h4&gt;
+
+&lt;p&gt;For shape matching, we focus on the following key components. This overview is slightly simplified; the underlying shape component extractor can handle additional refinements.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Straight Line&lt;/strong&gt;&lt;br /&gt;
+A &lt;strong&gt;maximal subsegment&lt;/strong&gt; where the curvature \(\kappa(p) = 0\) (after applying a threshold). In shape matching, the &lt;strong&gt;midpoint&lt;/strong&gt; and &lt;strong&gt;angle&lt;/strong&gt; of each line serve as key attributes.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Maximal Strictly Convex Curve with a Single Peak (Convex Subcurve)&lt;/strong&gt;&lt;br /&gt;
+A subsegment with \(\kappa(p) &amp;gt; 0\) (strict convexity) containing a &lt;strong&gt;single local maximum&lt;/strong&gt;. In shape matching, we utilize its &lt;strong&gt;facing angle&lt;/strong&gt; and the degree to which the curve is “open” (see Fig. 1):
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Start Angle&lt;/strong&gt; and &lt;strong&gt;End Angle&lt;/strong&gt;: Approximations of the tangent orientations at the subcurve’s start and end points.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Facing Angle&lt;/strong&gt;: The average of the start and end angles.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Turning Angle&lt;/strong&gt;: The absolute difference between the start and end angles.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Maximal Strictly Concave Curve with a Single Peak (Concave Subcurve)&lt;/strong&gt;&lt;br /&gt;
+Defined similarly to a convex subcurve, but with \(\kappa(p) &amp;lt; 0\).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The convexity or concavity of a subcurve depends on the direction in which the curve is traversed. In the results section above, &lt;strong&gt;red&lt;/strong&gt; segments represent convex subcurves, while &lt;strong&gt;blue&lt;/strong&gt; segments represent concave subcurves.&lt;/p&gt;
+
+&lt;h3 id=&quot;comparing-shapes&quot;&gt;Comparing Shapes&lt;/h3&gt;
+
+&lt;p&gt;Let \(C_1\) denote the template curve and \(C_2\) denote the target curve. The goal of shape comparison is to determine the optimal parameters that best align \(C_1\) with \(C_2\). These parameters include:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;The bar length to use for \(C_1\) to extract its subcurves and straight-line features.&lt;/li&gt;
+  &lt;li&gt;The bar length to use for \(C_2\) to extract its subcurves and straight-line features.&lt;/li&gt;
+  &lt;li&gt;The scaling factor to apply to \(C_1\).&lt;/li&gt;
+  &lt;li&gt;The rotation angle to apply to \(C_1\).&lt;/li&gt;
+  &lt;li&gt;The translation vector to apply to \(C_1\).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The algorithm exhaustively explores various combinations of these parameters. For each configuration, it extracts the corresponding shape components from both \(C_1\) and \(C_2\), computes the matches, and assigns a similarity score—finally selecting the configuration with the highest overall score.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Translation Matching:&lt;/strong&gt;&lt;br /&gt;
+Once the scaling, rotation, and bar length parameters are fixed, the algorithm extracts the features from both curves. Suppose \(C_1\) yields subcurves \(a_1, a_2, \ldots, a_k\) and \(C_2\) yields subcurves \(b_1, b_2, \ldots, b_l\) (and similarly for the straight-line segments). The algorithm considers all possible pairings; for example, mapping \(a_1\) to \(b_1\) yields a candidate translation vector \(t\). Then, \(C_1\) is translated by \(t\), and for each feature in \(C_1\) the nearest corresponding feature in \(C_2\) is identified based solely on relative position. Once these correspondences are established, a similarity score is computed for that configuration.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Similarity Computation&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The similarity between \(C_1\) and \(C_2\) is computed by evaluating the geometric and angular differences between each pair of matched features. A higher value (close to 1) indicates more similar, and a lower value (close to 0) less similar. For a given pair of matched features, the similarity score is calculated using Gaussian-like functions. For convex (or concave) subcurves, the score is computed as:&lt;/p&gt;
+
+\[S = \left( \exp\left(-\frac{(\Delta \alpha)^2}{2\sigma_{\alpha}^2}\right) \times \exp\left(-\frac{(\Delta \theta)^2}{2\sigma_{\theta}^2}\right) \times \exp\left(-\frac{d^2}{2\sigma_d^2}\right) \right) - \epsilon_1,\]
+
+&lt;p&gt;where:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;\(\Delta \alpha\) is the difference in facing angles,&lt;/li&gt;
+  &lt;li&gt;\(\Delta \theta\) is the difference in total turning angles,&lt;/li&gt;
+  &lt;li&gt;\(d\) is the Euclidean distance between the corresponding feature points,&lt;/li&gt;
+  &lt;li&gt;\(\sigma_{\alpha}\), \(\sigma_{\theta}\), and \(\sigma_d\) are the respective width parameters,&lt;/li&gt;
+  &lt;li&gt;and \(\epsilon\) is a small constant.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The product of the Gaussian functions is always non-negative. Subtracting \(\epsilon_1\) ensures that if the computed similarity for a feature is below \(\epsilon_1\), then the similarity score is negative. Such a score is deemed to low, and that subcurve match is removed.&lt;/p&gt;
+
+&lt;p&gt;For straight-line features, the similarity is computed as:&lt;/p&gt;
+
+\[S = \left( \exp\left(-\frac{(\Delta \phi)^2}{2\sigma_{\phi}^2}\right) \times \exp\left(-\frac{d^2}{2\sigma_d^2}\right) \right) - \epsilon_2,\]
+
+&lt;p&gt;where \(\Delta \phi\) is the difference in line orientations and \(\sigma_{\phi}\) is its corresponding width parameter.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The role \(\epsilon_2\) is the same as the role of \(\epsilon_1\) above.&lt;/p&gt;
+
+&lt;p&gt;The overall similarity score for a particular alignment is obtained by summing these scores over all matched features and normalizing by the total number of features. This comprehensive measure captures both positional and angular discrepancies between the two curves.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Optimal Matching&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The complete matching procedure is executed over all possible combinations of transformations (scaling, rotation, and bar lengths) and translations. The configuration that yields the highest overall similarity score is selected as the optimal match. This final alignment specifies:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The exact scale, rotation, and bar lengths used for segmenting \(C_1\) and \(C_2\).&lt;/li&gt;
+  &lt;li&gt;The translation vector that best aligns \(C_1\) with \(C_2\).&lt;/li&gt;
+  &lt;li&gt;The corresponding pairings of straight lines, convex subcurves, and concave subcurves between the two shapes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This comprehensive process ensures that even when \(C_1\) and \(C_2\) differ in size, orientation, or smoothness, their intrinsic geometric components are reasonably well-matched.&lt;/p&gt;
+
+&lt;h3 id=&quot;opportunities-for-improvements&quot;&gt;Opportunities for Improvements&lt;/h3&gt;
+
+&lt;p&gt;While the current algorithm provides a robust framework for matching shapes, several enhancements could further improve its efficiency and accuracy:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Faster Parameter Optimization:&lt;/strong&gt;&lt;br /&gt;
+The matching algorithm currently explores all possible parameter settings exhaustively. Incorporating Bayesian Optimization using Gaussian Processes could dramatically reduce computation time by intelligently guiding the search for optimal parameters.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Enhanced Feature Matching:&lt;/strong&gt;&lt;br /&gt;
+At present, the algorithm first matches straight lines and subcurves based solely on location, and then computes similarity scores between these matched pairs. A more integrated approach—where the similarity score is considered during the matching process—could improve the overall robustness and accuracy of the feature pairing.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Learning Comparison Parameters:&lt;/strong&gt;&lt;br /&gt;
+The various width parameters (e.g., \(\sigma_{\alpha}\), \(\sigma_{\theta}\), \(\sigma_d\), etc.) are currently set heuristically. These parameters could be optimized or even learned using supervised learning techniques on a labeled dataset, ensuring that the similarity measures are better tuned to the specific characteristics of the shapes being compared.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Multi-Curve Matching:&lt;/strong&gt;&lt;br /&gt;
+The present implementation handles the matching of a single pair of curves (C1 and C2). Future enhancements could extend the algorithm to compare entire sets of curves, enabling applications such as shape clustering or multi-object recognition.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;some-references&quot;&gt;Some References&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a id=&quot;ref1&quot;&gt;&lt;/a&gt; &lt;strong&gt;Belongie, S., Malik, J., &amp;amp; Puzicha, S. (2002).&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Shape matching and object recognition using shape contexts.&lt;/em&gt;&lt;br /&gt;
+IEEE Transactions on Pattern Analysis and Machine Intelligence, 24(4), 509-522.&lt;br /&gt;
+DOI: &lt;a href=&quot;https://doi.org/10.1109/34.993558&quot;&gt;10.1109/34.993558&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a id=&quot;ref2&quot;&gt;&lt;/a&gt; &lt;strong&gt;Blum, H. (1967).&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;A transformation for extracting new descriptors of shape.&lt;/em&gt;&lt;br /&gt;
+In W. Weiant Wathen-Dunn (Ed.), &lt;em&gt;Models for the Perception of Speech and Visual Form&lt;/em&gt; (pp. 362–380). MIT Press, Cambridge.&lt;br /&gt;
+&lt;a href=&quot;http://pageperso.lif.univ-mrs.fr/~edouard.thiel/rech/1967-blum.pdf&quot;&gt;http://pageperso.lif.univ-mrs.fr/~edouard.thiel/rech/1967-blum.pdf&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a id=&quot;ref3&quot;&gt;&lt;/a&gt; &lt;strong&gt;Kirillov, A., Mintun, E., Ravi, N., Mao, H., Rolland, C., Gustafson, L., Xiao, T., Whitehead, S., Berg, A. C., Lo, W.-Y., Dollár, P., &amp;amp; Girshick, R. (2023).&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Segment Anything.&lt;/em&gt;&lt;br /&gt;
+In &lt;em&gt;2023 IEEE/CVF International Conference on Computer Vision (ICCV)&lt;/em&gt;, 3992-4003.&lt;br /&gt;
+DOI: &lt;a href=&quot;https://doi.org/10.1109/ICCV51070.2023.00371&quot;&gt;10.1109/ICCV51070.2023.00371&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a id=&quot;ref4&quot;&gt;&lt;/a&gt; &lt;strong&gt;Leavers, V. F. (1992).&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Shape Detection in Computer Vision Using the Hough Transform.&lt;/em&gt;&lt;br /&gt;
+Springer-Verlag London Limited, 1992.&lt;br /&gt;
+DOI: &lt;a href=&quot;https://doi.org/10.1007/978-1-4471-1940-1&quot;&gt;10.1007/978-1-4471-1940-1&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a id=&quot;ref5&quot;&gt;&lt;/a&gt; &lt;strong&gt;Lowe, D. G. (1989).&lt;/strong&gt;&lt;br /&gt;
+Organization of smooth image curves at multiple scales.&lt;br /&gt;
+&lt;em&gt;International Journal of Computer Vision&lt;/em&gt;, 3, 119–130.&lt;br /&gt;
+DOI: &lt;a href=&quot;https://doi.org/10.1007/BF00126428&quot;&gt;10.1007/BF00126428&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a id=&quot;ref6&quot;&gt;&lt;/a&gt; &lt;strong&gt;Mokhtarian, F., &amp;amp; Mackworth, A. (1986).&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Scale-Based Description and Recognition of Planar Curves and Two-Dimensional Shapes.&lt;/em&gt;&lt;br /&gt;
+IEEE Transactions on Pattern Analysis and Machine Intelligence, PAMI-8(1), 34-43.&lt;br /&gt;
+DOI: &lt;a href=&quot;https://doi.org/10.1109/TPAMI.1986.4767750&quot;&gt;10.1109/TPAMI.1986.4767750&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a id=&quot;ref7&quot;&gt;&lt;/a&gt; &lt;strong&gt;Mokhtarian, F., &amp;amp; Bober, M. (2003).&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Curvature Scale Space Representation: Theory, Applications, and MPEG-7 Standardization.&lt;/em&gt;&lt;br /&gt;
+Kluwer Academic Publishers / Springer.&lt;br /&gt;
+DOI: &lt;a href=&quot;https://doi.org/10.1007/978-94-017-0343-7&quot;&gt;10.1007/978-94-017-0343-7&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a id=&quot;ref8&quot;&gt;&lt;/a&gt; &lt;strong&gt;Schindler, K., &amp;amp; Suter, D. (2008).&lt;/strong&gt;&lt;br /&gt;
+Object detection by global contour shape.&lt;br /&gt;
+&lt;em&gt;Pattern Recognition&lt;/em&gt;, 41(12), 3736-3748.&lt;br /&gt;
+DOI: &lt;a href=&quot;https://doi.org/10.1016/j.patcog.2008.05.025&quot;&gt;10.1016/j.patcog.2008.05.025&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a id=&quot;ref9&quot;&gt;&lt;/a&gt; &lt;strong&gt;Šukilović, T. (2015).&lt;/strong&gt;&lt;br /&gt;
+Curvature based shape detection.&lt;br /&gt;
+&lt;em&gt;Computational Geometry&lt;/em&gt;, 48(3), 180-188.&lt;br /&gt;
+DOI: &lt;a href=&quot;https://doi.org/10.1016/j.comgeo.2014.09.005&quot;&gt;10.1016/j.comgeo.2014.09.005&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Introduction</summary></entry><entry><title type="html">Implementing and Improving Existing Accelerometer and Gyroscope Calibration Algorithms (project, also includes improving some known approaches)</title><link href="http://localhost:4000/accelero_gyro/" rel="alternate" type="text/html" title="Implementing and Improving Existing Accelerometer and Gyroscope Calibration Algorithms (project, also includes improving some known approaches)" /><published>2025-01-12T00:00:00-05:00</published><updated>2025-01-12T00:00:00-05:00</updated><id>http://localhost:4000/Accelero_Gyro</id><content type="html" xml:base="http://localhost:4000/accelero_gyro/">&lt;p&gt;In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developped in &lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt; and &lt;a href=&quot;#ref2&quot;&gt;[2]&lt;/a&gt;. (Details are limited due to contractual obligations.)&lt;/p&gt;
+
+&lt;p&gt;For &lt;strong&gt;accelerometer calibration&lt;/strong&gt;, the device is placed in various orientations. From these measurements, the algorithm estimates calibration parameters, leveraging the principle that the norm of the accelerometer measurement vector is equal to the magnitude of the specific force.&lt;/p&gt;
+
+&lt;p&gt;Traditional &lt;strong&gt;gyroscope calibration&lt;/strong&gt; often employs a high-precision two-axis or three-axis turntable, which can be expensive and sensitive to mechanical precision. In contrast, the method from &lt;a href=&quot;#ref2&quot;&gt;[2]&lt;/a&gt; allows calibration using only a flat surface and an object to affix the IMU onto. By manually sliding the IMU in different orientations, the approach exploits the fact that the norm of the measured gyroscope output corresponds to the rotational velocity input.&lt;/p&gt;
+
+&lt;p&gt;However, manual calibration may not be sufficiently precise for inter-triad alignment, making a one-axis turntable preferable. Since full technical details are provided in &lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt; and &lt;a href=&quot;#ref2&quot;&gt;[2]&lt;/a&gt;, below is a selection of media illustrating the implemented calibration algorithms.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/accelero_calibration.png&quot; alt=&quot;Accelerometer Calibration&quot; class=&quot;centered&quot; style=&quot;width:50%;&quot; /&gt;
+  &lt;figcaption style=&quot;font-size:inherit;&quot;&gt;
+    Fig. 1. A demonstration of how the accelerometer measurements are corrected by the calibration.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+  &lt;center&gt;
+    &lt;video width=&quot;70%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; controls=&quot;&quot; poster=&quot;/assets/images/video_poster.png&quot;&gt;
+      &lt;source src=&quot;/assets/animations/gyro_rotation_axes.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+      Your browser does not support the video tag.
+    &lt;/video&gt;
+  &lt;/center&gt;
+  &lt;figcaption style=&quot;font-size:inherit;&quot;&gt;
+    Fig. 2. The plots represent gyroscope measurements during the calibration process. The blue and red dots correspond to opposite rotation directions.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+  &lt;center&gt;
+    &lt;video width=&quot;70%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; controls=&quot;&quot; poster=&quot;/assets/images/video_poster.png&quot;&gt;
+      &lt;source src=&quot;/assets/animations/accelero_gyro_intertriad_calibration.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+      Your browser does not support the video tag.
+    &lt;/video&gt;
+  &lt;/center&gt;
+  &lt;figcaption style=&quot;font-size:inherit;&quot;&gt;
+    Fig. 3. Green arrows show gyroscope-derived rotation axes, while red axes represent those derived from the accelerometer. Alignment is achieved if these axes coincide. The calibration algorithm computes a rotation that best aligns them.
+    (Blue and red points represent accelerometer data collected while rotating in opposite directions.)
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a id=&quot;ref1&quot;&gt;&lt;/a&gt; &lt;strong&gt;A Multi-Position Calibration Algorithm for Inertial Measurement Units&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;AIAA Guidance, Navigation and Control Conference and Exhibit, August 2008&lt;/em&gt;&lt;br /&gt;
+DOI: &lt;a href=&quot;https://doi.org/10.2514/6.2008-7437&quot;&gt;10.2514/6.2008-7437&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a id=&quot;ref2&quot;&gt;&lt;/a&gt; &lt;strong&gt;Improved Multi-Position Calibration for Inertial Measurement Units&lt;/strong&gt;&lt;br /&gt;
+Hongliang Zhang, Yuanxin Wu, Wenqi Wu, Meiping Wu, and Xiaoping Hu&lt;br /&gt;
+&lt;em&gt;Measurement Science and Technology&lt;/em&gt;, Volume 21, Number 1, 2010&lt;br /&gt;
+DOI: &lt;a href=&quot;https://doi.org/10.1088/0957-0233/21/1/015107&quot;&gt;10.1088/0957-0233/21/1/015107&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="projects" /><summary type="html">In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developped in [1] and [2]. (Details are limited due to contractual obligations.)</summary></entry><entry><title type="html">RainbowTag Fiducal Marker (published research project on fiducial markers)</title><link href="http://localhost:4000/rainbowtag/" rel="alternate" type="text/html" title="RainbowTag Fiducal Marker (published research project on fiducial markers)" /><published>2022-11-08T17:45:33-05:00</published><updated>2022-11-08T17:45:33-05:00</updated><id>http://localhost:4000/RainbowTag</id><content type="html" xml:base="http://localhost:4000/rainbowtag/">&lt;h2 id=&quot;in-a-nutshell&quot;&gt;In a nutshell&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;RainbowTag&lt;/em&gt; (&lt;a href=&quot;https://ieeexplore.ieee.org/document/9743123&quot;&gt;&lt;em&gt;paper here&lt;/em&gt;&lt;/a&gt;, &lt;a href=&quot;https://github.com/juloss/rainbowtag&quot;&gt;&lt;em&gt;code here&lt;/em&gt;&lt;/a&gt;, &lt;a href=&quot;http://localhost:4000/assets/slides/RT_short.odp&quot;&gt;&lt;em&gt;download slides&lt;/em&gt;&lt;/a&gt;) is a color-based fiducial marker together with a detection algorithm that is robust to (motion) blur and marker deformations. Below is an example marker. Although lighting conditions affect color appearance, the RainbowTag detection algorithm is designed work reliably in everyday lighting conditions (e.g.,  lightbulbs with various color temperature or sunlight).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/marker.svg&quot; alt=&quot;RainbowTag marker&quot; class=&quot;centered&quot; width=&quot;20%&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;advantages-of-rainbowtag&quot;&gt;Advantages of RainbowTag:&lt;/h1&gt;
+
+&lt;p&gt;Works well when (see experimental demonstration in &lt;a href=&quot;https://ieeexplore.ieee.org/document/9743123&quot;&gt;&lt;em&gt;paper&lt;/em&gt;&lt;/a&gt;)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;there is blur (e.g., because of movement),&lt;/li&gt;
+  &lt;li&gt;markers are partially occluded,&lt;/li&gt;
+  &lt;li&gt;markers are folded,&lt;/li&gt;
+  &lt;li&gt;markers are placed on an uneven surface,&lt;/li&gt;
+  &lt;li&gt;markers are far from the camera.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;disadvantages-of-rainbowtag&quot;&gt;Disadvantages of RainbowTag:&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;current implementation (python using numba for certain tasks) is not very fast, about 3-4 fps on a Surface Book 2 laptop (for 1920 x 1080 images),&lt;/li&gt;
+  &lt;li&gt;it does not work with black and white images,&lt;/li&gt;
+  &lt;li&gt;there are only 30 different markers.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;demos&quot;&gt;Demos&lt;/h2&gt;
+
+&lt;h5 id=&quot;note-1-all-markers-rainbowtag-aruco-chromatag-have-area-265-pm-05-textcm2-in-the-videos-and-images-below-rainbowtag-markers-look-larger-than-aruco-and-chromatag-markers-because-aruco-and-chromatag-have-a-white-frame-around-them-that-is-not-visible-on-the-white-background-rainbowtag-uses-a-black-frame-which-is-visible-2-four-detector-algorithms-are-running-in-the-videos-and-images-rainbowtag-aruco-6x6-aruco-4x4-chromatag&quot;&gt;&lt;em&gt;Note:&lt;/em&gt; &lt;em&gt;(1)&lt;/em&gt; All markers (RainbowTag, Aruco, ChromaTag) have area \(26.5 \pm 0.5 \text{cm}^2\). In the videos and images below, RainbowTag markers look larger than Aruco and ChromaTag markers because Aruco and ChromaTag have a white frame around them that is not visible on the white background. RainbowTag uses a black frame which is visible. &lt;em&gt;(2)&lt;/em&gt; Four detector algorithms are running in the videos and images: RainbowTag, Aruco 6x6, Aruco 4x4, ChromaTag.&lt;/h5&gt;
+
+&lt;h1 id=&quot;detection-videos&quot;&gt;Detection Videos&lt;/h1&gt;
+
+&lt;h4 id=&quot;markers-in-occlusion&quot;&gt;Markers in occlusion&lt;/h4&gt;
+&lt;h5 id=&quot;camera-sony-alpha-5000&quot;&gt;(camera: Sony Alpha 5000)&lt;/h5&gt;
+
+&lt;center&gt;
+&lt;video width=&quot;100%&quot; muted=&quot;&quot; controls=&quot;&quot;&gt;
+    &lt;source src=&quot;../assets/videos/stick.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+&lt;/video&gt;
+&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;small-and-blurry-markers&quot;&gt;Small and blurry markers&lt;/h4&gt;
+&lt;h5 id=&quot;camera-sony-alpha-5000-1&quot;&gt;(camera: Sony Alpha 5000)&lt;/h5&gt;
+
+&lt;center&gt;
+&lt;video width=&quot;100%&quot; muted=&quot;&quot; controls=&quot;&quot;&gt;
+    &lt;source src=&quot;../assets/videos/sony_camera.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+&lt;/video&gt;
+&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;markers-on-uneven-surface&quot;&gt;Markers on uneven surface&lt;/h4&gt;
+&lt;h5 id=&quot;camera-sony-alpha-5000-2&quot;&gt;(camera: Sony Alpha 5000)&lt;/h5&gt;
+
+&lt;center&gt;
+&lt;video width=&quot;100%&quot; muted=&quot;&quot; controls=&quot;&quot;&gt;
+    &lt;source src=&quot;../assets/videos/slowmo_uneven.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+&lt;/video&gt;
+&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;folded-marker-detection&quot;&gt;Folded marker detection&lt;/h4&gt;
+&lt;h5 id=&quot;camera-sony-alpha-5000-3&quot;&gt;(camera: Sony Alpha 5000)&lt;/h5&gt;
+
+&lt;center&gt;
+&lt;video width=&quot;100%&quot; muted=&quot;&quot; controls=&quot;&quot;&gt;
+    &lt;source src=&quot;../assets/videos/slowmo_cube.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+&lt;/video&gt;
+&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;weak-yellowish-illumination&quot;&gt;Weak yellowish illumination&lt;/h4&gt;
+&lt;h5 id=&quot;camera-samsung-galaxy-s5-phone-camera&quot;&gt;(camera: Samsung Galaxy S5 phone camera)&lt;/h5&gt;
+
+&lt;center&gt;
+&lt;video width=&quot;60%&quot; muted=&quot;&quot; controls=&quot;&quot;&gt;
+    &lt;source src=&quot;../assets/videos/galaxyS5.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+&lt;/video&gt;
+&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;next-to-window-daylight&quot;&gt;Next to window (daylight)&lt;/h4&gt;
+&lt;h5 id=&quot;camera-umidigi-f2-phone-camera&quot;&gt;(camera: Umidigi F2 phone camera)&lt;/h5&gt;
+
+&lt;center&gt;
+&lt;video width=&quot;60%&quot; muted=&quot;&quot; controls=&quot;&quot;&gt;
+    &lt;source src=&quot;../assets/videos/umidigiF2.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+&lt;/video&gt;
+&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;detection-demo-images&quot;&gt;Detection Demo Images&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/demo_images.svg&quot; alt=&quot;Detection demo images&quot; class=&quot;centered&quot; width=&quot;80%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Rows are described from top to bottom and from left to right. The left side of an image shows the marker, and the right side shows the marker with detection overlayed. \(d\) is the distance between the camera and the markers.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Row 1:&lt;/em&gt;
+&lt;strong&gt;(1)&lt;/strong&gt;  \(d=1.1\)m, 6500K lightbulb.
+&lt;strong&gt;(2)&lt;/strong&gt; \(d=2.1\)m, 2700K lightbulb.
+&lt;strong&gt;(3)&lt;/strong&gt; and &lt;strong&gt;(4)&lt;/strong&gt; Detection algorithm with same settings (i.e., same white point) in both conditions (3) (2700K lightbulb) and (4) (6500K lightbulb), \(d=1.1\)m.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Row 2:&lt;/em&gt; 
+&lt;strong&gt;(1)&lt;/strong&gt; High blur: \(v = 0.45 \frac{m}{s}\), shutter speed \(=\frac{1}{15}s\), \(d=2.1m\), 2700K lightbulb.&lt;/p&gt;
+
+&lt;p&gt;etc.&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">In a nutshell</summary></entry><entry><title type="html">Computing Di Zenzo’s multichannel image gradient faster (improving an existing algorithm using a simple insight)</title><link href="http://localhost:4000/di_zenzo_faster_gradient/" rel="alternate" type="text/html" title="Computing Di Zenzo’s multichannel image gradient faster (improving an existing algorithm using a simple insight)" /><published>2022-11-07T17:45:33-05:00</published><updated>2022-11-07T17:45:33-05:00</updated><id>http://localhost:4000/Making_Di_Zenzo_Faster</id><content type="html" xml:base="http://localhost:4000/di_zenzo_faster_gradient/">&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.sciencedirect.com/science/article/abs/pii/0734189X86902239&quot;&gt;Di Zenzo’s&lt;/a&gt; algorithm computes the direction of ``maximum color change’’ at each point in an image.&lt;/p&gt;
+
+&lt;p&gt;Here we describe an algorithm that is equivalent to Di Zenzo’s algorithm but does the computations in a slightly more efficient way. Di Zenzo maximizes a certain function \(\max_\theta F(\theta)\) (defined later) over \(\theta\) by setting \(\frac{dF}{d\theta} = 0\). This results in two values for \(\theta\) such that for one of them \(F\) achieves its maximum and for the other its minimum. To find the maximum of \(F\), we need to evaluate \(F\) at both values and choose the larger one.&lt;/p&gt;
+
+&lt;p&gt;We show that it is possible to find the \(\theta\) that maximizes \(F\) without evaluating \(F\) at all, and to find the maximum of \(F\) by evaluating \(F\) only once. In fact, we can simply replace the arctan function in Di Zenzo’s closed-formula by the arctan2, and this way the modified formula gives the value of \(\theta^*\) such that \(F(\theta^*)\) is maximum. This computation does not involve evaluating \(F\). If we also want the maximum value of \(F\), naturally, we need to compute \(F(\theta^*)\). In our implementation, finding the maximum value of \(F\) at each point of a 960x720 image saved us about 0.03s. (So it’s not a big deal. :) )&lt;/p&gt;
+
+&lt;h3 id=&quot;derivation-of-faster-formula&quot;&gt;Derivation of faster formula&lt;/h3&gt;
+
+&lt;p&gt;We present the argument for \(3\)-channel images but the argument trivially generalizes to \(n\)-channel images. Let \(f: \mathbf{R}^2 \rightarrow \mathbf{R}^3\) be a \(3\)-channel image. We define the color difference between image locations \((a_0, a_1) \in \mathbf{R}^2\) and \((b_0, b_1) \in \mathbf{R}^2\) as the Euclidean distance between them, i.e., \(\lVert f(b) - f(a) \rVert\). For convencience, we work with \(\lVert f(b) - f(a) \rVert^2\) instead of \(\lVert f(b) - f(a) \rVert\), which makes no difference in practice. Assume we are at point \((a_0, a_1)\) in the image, and we want to determine in which direction the color difference is the largest. Let \(\theta\) be a direction and \(\epsilon\) a small step size. If we move from \((a_0, a_1)\) in the direction \(\theta\) an \(\epsilon\) amount then we arrive at \((a_0 + \epsilon \cos\theta, a_1 + \epsilon \sin\theta)\).
+We approximate the color difference between \((a_0, a_1)\) and \((a_0 + \epsilon \cos\theta, a_1 + \epsilon \sin\theta)\) using a first-order Taylor approximation. Let the partial derivatives of \(f\) with respect to \(x\) and \(y\) evaluated at \((a_0, a_1)\) be the vectors \(\mathbf{u} = \left. \frac{\partial f}{\partial x} \right|_{a_0, a_1}\) and \(\mathbf{v} = \left. \frac{\partial f}{\partial y} \right|_{a_0, a_1}\), respectively. Then&lt;/p&gt;
+
+\[\begin{align}
+\big\lVert f(a_0, a_1) - f(a_0 + &amp;amp;\epsilon \cos\theta, a_1 + \epsilon \sin\theta) \big\rVert^2\\
+\approx &amp;amp; \big\lVert (\epsilon \cos\theta) \cdot \mathbf{u} + (\epsilon \sin\theta) \cdot \mathbf{v} \big\rVert^2\\
+= &amp;amp;\big((\epsilon \cos\theta) \cdot \mathbf{u} + (\epsilon \sin\theta) \cdot \mathbf{v}\big) \cdot \big((\epsilon \cos\theta) \cdot \mathbf{u} + (\epsilon \sin\theta) \cdot \mathbf{v}\big) \\
+= &amp;amp;\epsilon^2 \bigl((\cos^2\theta) \cdot (\mathbf{u} \cdot \mathbf{u}) + (2 \cos\theta \sin\theta) \cdot (\mathbf{u} \cdot \mathbf{v}) + (\sin^2\theta) \cdot (\mathbf{v} \cdot \mathbf{v}) \bigr)\label{maximize_this}.
+\end{align}\]
+
+&lt;p&gt;We wish to maximize \eqref{maximize_this}. Since \(\epsilon\) is a constant, we can drop it (\(\epsilon = 1\)) and maximize&lt;/p&gt;
+
+\[F(\theta) = (\cos^2\theta) \cdot (\mathbf{u} \cdot \mathbf{u}) + (2 \cos\theta \sin\theta) \cdot (\mathbf{u} \cdot \mathbf{v}) + (\sin^2\theta) \cdot (\mathbf{v} \cdot \mathbf{v})\]
+
+&lt;p&gt;instead.&lt;/p&gt;
+&lt;style&gt;
+figure {
+  border: 1px #cccccc solid;
+  padding: 4px;
+  margin: auto;
+}
+
+figcaption {
+  background-color: grey;
+  color: white;/assets/drawings/polarities.svg
+  font-style: italic;
+  padding: 2px;
+  text-align: left;
+}
+&lt;/style&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+    &lt;video width=&quot;80%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;&quot; preload=&quot;&quot; controls=&quot;&quot;&gt;
+        &lt;source src=&quot;../assets/animations/color_difference.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+    &lt;/video&gt;
+&lt;/center&gt;
+&lt;figcaption&gt;Fig. 1. Function \(F(\theta)\) plotted for \(\theta \in [0^{\circ}, 360^{\circ})\),
+\(\mathbf{u}=\mathbf{[}1 \;\; .9 \;\; .6\mathbf{]}^T\), and \(\mathbf{v}=\mathbf{[}.2 \;\; .3 \;\; .4\mathbf{]}^T\). As we move around \((0, 0)\) at distance \(1\), the blue curve is the value of \(F(\theta)\).
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;Using the identities \(\cos^2\theta =\frac{1}{2} (1 + \cos2 \theta)\), \(2 \sin\theta \cos\theta = \sin2 \theta\), and \(\sin^2\theta =\frac{1}{2} (1 - \cos2 \theta)\), we obtain&lt;/p&gt;
+
+\[\begin{align}
+F(\theta) &amp;amp;= \frac{1}{2} \big( (\mathbf{u} \cdot \mathbf{u} + \mathbf{v} \cdot \mathbf{v}) + (\cos2\theta) \cdot (\mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v}) + (\sin2\theta ) \cdot (2 \mathbf{u} \cdot \mathbf{v})\big)\label{two_theta}\\
+
+&amp;amp;= \frac{1}{2} \left( (\mathbf{u} \cdot \mathbf{u} + \mathbf{v} \cdot \mathbf{v}) + \begin{bmatrix} \cos2\theta \\ \sin2\theta \end{bmatrix} \cdot \begin{bmatrix} \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v} \\ 2 \mathbf{u} \cdot \mathbf{v} \end{bmatrix}\right)\\
+
+&amp;amp;= \frac{1}{2} \left( (\mathbf{u} \cdot \mathbf{u} + \mathbf{v} \cdot \mathbf{v}) + \left \lVert \begin{bmatrix} \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v} \\ 2 \mathbf{u} \cdot \mathbf{v} \end{bmatrix}\right \rVert \cdot \cos(\varphi) \right) \label{angle_between_vecs},
+
+\end{align}\]
+
+&lt;p&gt;where \(\varphi\) is the angle between \(2\theta\) and the angle of the vector \(\begin{bmatrix} \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v} \\ 2 \mathbf{u} \cdot \mathbf{v} \end{bmatrix}\). (We used the equality \(\mathbf{a} \cdot \mathbf{b} = \lVert \mathbf{a} \rVert \lVert \mathbf{b} \rVert \cos \alpha\), where \(\alpha\) is the angle between \(\mathbf{a}\) and \(\mathbf{b}\), and observed that \(\begin{bmatrix} \cos2\theta \\ \sin2\theta \end{bmatrix}\) has length \(1\).) The direction of \(\begin{bmatrix} \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v} \\ 2 \mathbf{u} \cdot \mathbf{v} \end{bmatrix}\) is \(\mathrm{arctan2}(2 \mathbf{u} \cdot \mathbf{v}, \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v})\).&lt;/p&gt;
+
+&lt;p&gt;We can see from equation \eqref{angle_between_vecs} that because the length of a vector is always non-negtive, \(F\) is maximized when \(\cos \varphi\) is maximized. To maximize \(\cos \varphi\), we set \(\varphi = 0\). Therefore \(2\theta - \mathrm{arctan2}(2 \mathbf{u} \cdot \mathbf{v}, \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v}) = 0\), and it follows that the value \(\theta^*\) that maximizes \(F\) is&lt;/p&gt;
+
+\[\begin{align}
+\theta^* = \frac{1}{2} \mathrm{arctan2}(2 \mathbf{u} \cdot \mathbf{v}, \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v}).\label{final}
+\end{align}\]
+
+&lt;h3 id=&quot;remarks&quot;&gt;Remarks&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Since \(\theta\) appears in equation \eqref{two_theta} only in the form \(2 \theta\), it follows that \(F(\theta^*) = F(\theta^* + k \pi)\) for any \(k \in \mathbf{Z}\). Therefore we can assume that \(\theta^* \in [0, \pi)\).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The \(\mathrm{arctan2}\) function is not defined when both its arguments are \(0\). In equation \eqref{final} this happens when \(\mathbf{u}\) and \(\mathbf{v}\) are perpendicular to each other and their magnitudes are the same. For example, when \(\mathbf{u}=\mathbf{[}1 \;\; 0 \;\; 0\mathbf{]}^T\) and \(\mathbf{v}=\mathbf{[}0 \;\; 1 \;\; 0\mathbf{]}^T\). If we have an RGB image, this corresponds to the situation that \(R\) changes most along the \(x\)-axis and \(G\) changes most along the \(y\) axis, and the magnitude of the changes are the same. So the \(R\) and \(G\) channels change at the same rate but in perpendicular directions, and therefore \(F\) becomes a constant. That is, the color changes the same amount in any direction. This cannot be interpreted as an edge, and we ignore such locations. In fact, we expect that at image boundaries, the lines along which the color channels change the most should be approximately parallel.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Introduction</summary></entry><entry><title type="html">Publications</title><link href="http://localhost:4000/publications/" rel="alternate" type="text/html" title="Publications" /><published>2021-02-28T19:00:00-05:00</published><updated>2021-02-28T19:00:00-05:00</updated><id>http://localhost:4000/publications</id><content type="html" xml:base="http://localhost:4000/publications/">&lt;h2 id=&quot;notes-on-recognitions&quot;&gt;Notes on Recognitions&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;ESA 2013 Best Paper Award (Co-winner)&lt;/strong&gt;
+&lt;em&gt;List H-Coloring a Graph by Removing Few Vertices&lt;/em&gt; by Rajesh Chitnis, László Egri, Dániel Marx (see Computational Complexity Theory)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://link.springer.com/article/10.1007/s00224-012-9401-8&quot;&gt;&lt;strong&gt;STACS 2010 Special Issue (Top 6 Paper)&lt;/strong&gt;&lt;/a&gt; &amp;amp; &lt;a href=&quot;http://www.computingreviews.com/recommend/bestof/notableitems_2012.cfm&quot;&gt;&lt;strong&gt;Best of 2012 Recognition&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;em&gt;The Complexity of the List Homomorphism Problem for Graphs&lt;/em&gt; by László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson
+(see Computational Complexity Theory)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;neural-networks-cognitive-science-computer-vision&quot;&gt;Neural Networks, Cognitive Science, Computer Vision&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;RainbowTag: a Fiducial Marker System with a New Color Segmentation Algorithm&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;László Egri, Hamid Nabati, Jia Yuan Yu&lt;/em&gt;&lt;br /&gt;
+ICCVE 2022: 1–6&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Constraint-Satisfaction Models&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Egri, L., Shultz, T. R.&lt;/em&gt;&lt;br /&gt;
+In James D. Wright (editor), International Encyclopedia of the Social &amp;amp; Behavioral Sciences, 2nd ed., Vol. 4, Oxford: Elsevier, pp. 716–723 (Invited article)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Could knowledge-based neural learning be useful in developmental robotics? The case of KBCC&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Shultz, T. R., Rivest, F., Egri, L., Thivierge, J-P., &amp;amp; Dandurand, F.&lt;/em&gt;&lt;br /&gt;
+International Journal of Humanoid Robotics, 4(2): 245–279, 2007&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;A compositional neural-network solution to prime-number testing&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Egri, L., &amp;amp; Shultz, T. R.&lt;/em&gt;&lt;br /&gt;
+Proceedings of the 28th Annual Conference of the Cognitive Science Society (CogSci), 1263–1268, 2006 (Poster presentation)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Knowledge-based learning with KBCC&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Shultz, T. R., Rivest, F., Egri, L., &amp;amp; Thivierge, J-P.&lt;/em&gt;&lt;br /&gt;
+Proceedings of the 5th IEEE International Conference on Development and Learning (ICDL), 2006&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;computational-complexity-theory&quot;&gt;Computational Complexity Theory&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Parameterized Intractability of Even Set and Shortest Vector Problem&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Arnab Bhattacharyya, Édouard Bonnet, László Egri, Suprovat Ghoshal, Karthik C. S., Bingkai Lin, Pasin Manurangsi, Dániel Marx&lt;/em&gt;&lt;br /&gt;
+J. ACM 68(3): 16:1–16:40, 2021&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Finding List Homomorphisms from Bounded-treewidth Graphs to Reflexive Graphs: a Complete Complexity Characterization&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;László Egri, Dániel Marx, Pawel Rzazewski&lt;/em&gt;&lt;br /&gt;
+STACS 2018: 27:1–27:15&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;List H-Coloring a Graph by Removing Few Vertices&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Rajesh Chitnis, László Egri, Dániel Marx&lt;/em&gt;&lt;br /&gt;
+Algorithmica 78(1): 110–146, 2017&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;On Constraint Satisfaction Problems Below P&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;László Egri&lt;/em&gt;&lt;br /&gt;
+J. Log. Comput. 26(3): 893–922, 2016&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Fixed-Parameter Approximability of Boolean MinCSPs&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Édouard Bonnet, László Egri, Dániel Marx&lt;/em&gt;&lt;br /&gt;
+ESA 2016: 18:1–18:18&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;On Maltsev Digraphs&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Catarina Carvalho, László Egri, Marcel Jackson, Todd Niven&lt;/em&gt;&lt;br /&gt;
+Electron. J. Comb. 22(1): 1, 2015&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Descriptive Complexity of List H-Coloring Problems in Logspace: A Refined Dichotomy&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Víctor Dalmau, László Egri, Pavol Hell, Benoît Larose, Arash Rafiey&lt;/em&gt;&lt;br /&gt;
+LICS 2015: 487–498&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Space Complexity of List H-Coloring: a Dichotomy&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;László Egri, Pavol Hell, Benoît Larose, Arash Rafiey&lt;/em&gt;&lt;br /&gt;
+SODA 2014: 349–365&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;List H-Coloring a Graph by Removing Few Vertices&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Rajesh Hemant Chitnis, László Egri, Dániel Marx&lt;/em&gt;&lt;br /&gt;
+ESA 2013: 313–324 (Co-winner of the ESA 2013 Best Paper Award)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;The Complexity of the List Homomorphism Problem for Graphs&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson&lt;/em&gt;&lt;br /&gt;
+Theory of Computing Systems (Special Issue) 51(2): 143–178, 2012&lt;br /&gt;
+(Invited extended version of a top-6 paper at STACS 2010; also featured on the Best of 2012 list)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;On Constraint Satisfaction Problems below P&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;László Egri&lt;/em&gt;&lt;br /&gt;
+CSL 2011: 203–217&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;On Maltsev Digraphs&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Catarina Carvalho, László Egri, Marcel Jackson, Todd Niven&lt;/em&gt;&lt;br /&gt;
+CSR 2011: 181–194&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;The Complexity of the List Homomorphism Problem for Graphs&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson&lt;/em&gt;&lt;br /&gt;
+STACS 2010: 335–346&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Directed st-Connectivity Is Not Expressible in Symmetric Datalog&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;László Egri, Benoît Larose, Pascal Tesson&lt;/em&gt;&lt;br /&gt;
+ICALP (2) 2008: 172–183&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Symmetric Datalog and Constraint Satisfaction Problems in Logspace&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;László Egri, Benoît Larose, Pascal Tesson&lt;/em&gt;&lt;br /&gt;
+LICS 2007: 193–202&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;theses&quot;&gt;Theses&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;The Fine-Grained Complexity of Constraint Satisfaction Problems&lt;/strong&gt;&lt;br /&gt;
+PhD thesis, McGill University, 2012&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;The Complexity of Constraint Satisfaction Problems and Symmetric Datalog&lt;/strong&gt;&lt;br /&gt;
+Master’s thesis (Dean’s Honour List), McGill University, 2007&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;unpublished-manuscript&quot;&gt;Unpublished Manuscript&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Space Complexity of List H-Coloring Revisited: The Case of Oriented Trees&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;L. Egri&lt;/em&gt;&lt;br /&gt;
+arXiv:1510.07124 [cs.CC], October 2015&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="publications" /><summary type="html">Notes on Recognitions</summary></entry></feed>

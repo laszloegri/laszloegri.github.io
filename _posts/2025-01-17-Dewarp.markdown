@@ -1,0 +1,105 @@
+---
+layout: post
+title: "Fisheye to Rectilinear: A Custom Dewarping Journey (project)"
+published: true
+categories: projects
+permalink: /dewarp/
+image0: /assets/images/fisheye_projection.png
+
+common_media_height: 150
+attachments:
+  - type: video
+    src: ../assets/animations/dewarp_-90_60_-90_95_95_2000_2000_360_640_320_180.mp4
+---
+
+## Introduction
+
+In this project, I developed a tool to transform fisheye camera footage into a rectilinear (perspective-like) view. Although libraries like OpenCV can dewarp fisheye images, they do not provide fine-grained control over which portion of the fisheye view is converted. To fill that gap, I derived the geometry and math from scratch, enabling precise selection of the dewarping region. No existing “dewarping” library is used; every step of my fisheye projection model is coded by hand.
+
+<figure>
+  <center>
+    <video width="100%" muted autoplay loop poster preload controls>
+      <source src="../assets/animations/dewarp_-90_60_-90_95_95_2000_2000_360_640_320_180.mp4" type="video/mp4">
+    </video>
+  </center>
+  <figcaption style="font-size:inherit;">
+    Fig. 1. Demonstration of my dewarping tool in action.
+  </figcaption>
+</figure>
+
+## High-level project description
+
+The fisheye camera model I use [<a href="#ref1">1</a>, <a href="#ref2">2</a>] can be viewed as a generalization of the pinhole camera model. First, consider the pinhole model (Fig. 2, top). The camera coordinate frame is defined so that the pinhole (camera center) $$C$$ is at the origin. In Fig. 2, the positive $$z$$-axis extends forward, the positive $$x$$-axis extends to the left, and the positive $$y$$-axis extends upward. The image plane lies behind the optical center.
+
+### Pinhole model
+Given a point $$\mathbf{p_W}$$ in the world, I draw a line segment $$L$$ from $$\mathbf{p_W}$$ to $$C$$. For a pinhole camera, $$L$$ is extended beyond $$C$$ in the **same direction** until it intersects the image plane at $$\mathbf{p}$$. The distance $$\rho$$ between $$\mathbf{p}$$ and the central (optical) axis is given by
+$$
+\rho = f \,\tan(\theta),
+$$
+where $$f$$ is the focal length parameter, and $$\theta$$ is the angle between segment $$L$$ and the optical axis. Each lens type has its own projection formula, describing how the intersection with the image plane depends on the entrance angle [<a href="#ref3">3</a>].
+
+### Fisheye model
+In the fisheye model (Fig. 2, bottom), the projection from $$C$$ to the image plane differs from the pinhole approach. I still define a line segment $$L$$ from $$\mathbf{p_W}$$ to $$C$$, but instead of extending $$L$$ beyond $$C$$ in the same direction, I introduce a new segment $$K$$. Both $$L$$ and $$K$$ lie in the plane determined by $$L$$ and the optical axis. Let $$\theta$$ be the angle between $$L$$ and the optical axis. The fisheye lens formula specifies how $$K$$ is oriented, so that its endpoint on the image plane is at a distance
+
+$$
+\rho = g(\theta)
+$$
+
+from the optical axis. Here, $$g(\theta)$$ is the fisheye projection function. Examples include:
+
+- **Equidistant**  
+  $$\rho = f\,\theta$$
+
+- **Stereographic**  
+  $$\rho = 2f \,\tan\bigl(\tfrac{\theta}{2}\bigr)$$
+
+- **Equisolid**  
+  $$\rho = 2f \,\sin\bigl(\tfrac{\theta}{2}\bigr)$$
+
+- **Orthographic**  
+  $$\rho = f \,\sin(\theta)$$
+
+Here, $$f$$ is a parameter that sets the lens scale, and $$\theta$$ ranges from 0 (along the optical axis) up to the lens’s maximum field of view.
+
+<figure>
+  <center>
+    <img src="{{ page.image0 }}" alt="fisheye projection" style="width:75%;" class="centered">
+  </center>
+  <figcaption style="font-size:inherit;">
+    Fig. 2. Comparison of camera geometries: top shows the pinhole model, bottom shows the fisheye model.
+  </figcaption>
+</figure>
+
+## Dewarping process
+
+Once my fisheye projection model is defined, I invert it to produce a rectilinear image. The animation at the top of this page (Fig. 1) shows one example of this transformation. Conceptually, the process involves:
+
+1. **Select a virtual view plane**  
+   I place a rectangle $$R$$ perpendicular to the $$z$$-axis, intersecting it at $$z = 1$$. One edge is parallel to the $$x$$-axis, and the other to the $$y$$-axis. A grid $$G$$ is then overlaid on this rectangle.  
+
+   My tool supports several adjustments for $$R$$:
+   - **Field of view** (horizontal & vertical) in degrees  
+   - **Rotation** around the $$x$$-, $$y$$-, and $$z$$-axes  
+   - **Grid density**, which affects output resolution
+
+2. **Trace rays to determine colors**  
+   For each point $$\mathbf{v} \in G$$, I use the fisheye model to find where $$\mathbf{v}$$ maps onto the original fisheye image. First, I compute the angle $$\theta$$ from the optical axis and then use the fisheye formula to get the corresponding distance (radius) $$\rho$$ on the image plane. This information, along with the angular position around the optical axis, yields a location on the fisheye image that may not fall exactly on a pixel center. In such cases, surrounding pixels are sampled and linearly interpolated to estimate the correct color, ensuring a smooth result and reducing aliasing. I then assign this interpolated color value to $$\mathbf{v}$$ in the output image.
+
+By applying these steps to every point in $$G$$, I form a rectilinear view of the scene on $$R$$, effectively “unwrapping” the fisheye source.
+
+## References
+
+<div id="ref1"></div>
+**1.** [Automatic calibration of fish-eye cameras from automotive video sequences](https://doi.org/10.1049/iet-its.2009.0052)
+
+<div id="ref2"></div>
+**2.** [Fisheye Lens — Wikipedia](https://en.wikipedia.org/wiki/Fisheye_lens)
+
+<div id="ref3"></div>
+**3.** [Bettonvil, F. (2005). "Imaging: Fisheye lenses," *WGN, the Journal of the IMO*, 33(1), 9.](https://articles.adsabs.harvard.edu/pdf/2005JIMO...33....9B)
+
+**Code availability:**  
+Not publicly available due to contractual obligations.
+
+**Video Attribution:**  
+Fisheye footage by [Videvo](https://www.videvo.net/video/fisheye-timelapse-of-building/2964/#rs=video-box) (CC-BY 3.0)

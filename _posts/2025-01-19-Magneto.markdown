@@ -1,0 +1,177 @@
+---
+layout: post
+title: "Taming Hard and Soft Iron: An Application of Positive Definite Matrices in Magnetometer Calibration (project)"
+published: true
+categories: projects
+permalink: /magneto/
+
+common_media_height: 150
+attachments:
+  - type: video
+    src: ../assets/animations/magneto_calibration_demo.mp4
+  - type: video
+    src: ../assets/animations/magneto_calibration_noisy_demo.mp4
+---
+
+## Introduction
+
+## Magnetometer Calibration
+
+In this project, I implemented an algorithm for magnetometer calibration. Here, I explain the algorithm and the math behind it. This work was guided by the material in [\[1\]](#ref1), although the objective function I minimize here is slightly different.
+
+Real-world magnetometer measurements often form a distorted ellipsoid due to:
+
+- **Hard iron distortion**: This arises from permanent magnetic fields in or near the sensor, introducing a constant offset that shifts measured data away from the origin.
+- **Soft iron distortion**: Nearby ferromagnetic materials alter the local magnetic field, turning the spherical distribution of magnetometer measurements into an ellipsoid. To compensate, the geomagnetic field vector measured by the magnetometer can be rotated, scaled to counteract the distortion, and then rotated back [\[1\]](#ref1). In other words, the sphere is scaled along orthogonal directions but **no rotation is involved**. (This is exactly what a symmetric positive definite matrix does.)
+
+Our goal is to convert these distorted measurements into a sphere of radius 1 centered at the origin, resulting in accurate magnetometer outputs.
+
+<figure>
+  <center>
+    <video width="55%" muted autoplay loop poster preload controls>
+      <source src="../assets/animations/magneto_calibration_demo.mp4" type="video/mp4">
+    </video>
+  </center>
+  <figcaption style="font-size:inherit;">
+    Fig. 1. Demonstration of the magnetometer calibration process: transforming a distorted ellipsoid of synthetic measurements (without noise added) into a sphere. Specifically, red points (uncalibrated readings) are transformed into turquoise points (calibrated readings). The yellow arrows show how uncalibrated points are corrected. The transformation has the form \( \mathbf{y} = \mathbf{A} (\mathbf{x} - \mathbf{b}) \) (see main text below).
+  </figcaption>
+</figure>
+
+<figure>
+  <center>
+    <video width="55%" muted autoplay loop poster preload controls>
+      <source src="../assets/animations/magneto_calibration_noisy_demo.mp4" type="video/mp4">
+    </video>
+  </center>
+  <figcaption style="font-size:inherit;">
+    Fig. 2. Demonstration of the magnetometer calibration process using noisy synthetic data. Blue points are uncalibrated readings; red points are calibrated.
+  </figcaption>
+</figure>
+
+## Calibration Model
+
+We seek a transformation
+
+$$
+\mathbf{y} = \mathbf{A}(\mathbf{x} - \mathbf{b}),
+$$
+
+so that $$\|\mathbf{y}\| \approx 1$$ for each measurement $$\mathbf{x}$$. Here:
+
+- $$\mathbf{b}$$ is the **offset** (addressing hard iron distortion).
+- $$\mathbf{A}$$ is a **symmetric, positive definite** matrix (addressing soft iron distortion).
+
+### Why Symmetric and Positive Definite?
+
+1. **Symmetry Avoids Unwanted Rotations**  
+   We aim to reshape (scale) the measurement ellipsoid without rotating the measurement points. Therefore, we restrict $$\mathbf{A}$$ to matrices that represent only scaling. By the spectral decomposition for real symmetric matrices:
+   $$
+   \mathbf{A} = \mathbf{Q}\,\mathbf{\Lambda}\,\mathbf{Q}^\top,
+   $$
+   where $$\mathbf{Q}$$ is orthogonal (its columns are orthonormal eigenvectors) and $$\mathbf{\Lambda}$$ is diagonal with the real eigenvalues of $$\mathbf{A}$$. Geometrically, this transformation rotates the space with $$\mathbf{Q}^\top$$, scales along orthogonal axes via $$\mathbf{\Lambda}$$, and then applies $$\mathbf{Q}$$ again. Consequently, $$\mathbf{A}$$ scales the space along orthogonal directions defined by $$\mathbf{Q}$$.
+
+2. **Positive Definiteness Prevents Flips or Collapses**  
+   A matrix $$\mathbf{A}$$ is positive definite if the quadratic form $$\mathbf{x}^\top \mathbf{A} \mathbf{x}$$ is positive for all nonzero $$\mathbf{x}$$. Using the same spectral decomposition:
+   $$
+   \mathbf{A} = \mathbf{Q}\,\mathbf{\Lambda}\,\mathbf{Q}^\top \quad \Longrightarrow \quad
+   \mathbf{x}^\top \mathbf{A} \mathbf{x} = \mathbf{y}^\top \mathbf{\Lambda}\,\mathbf{y},
+   $$
+   where $$\mathbf{y} = \mathbf{Q}^\top \mathbf{x}$$. Since $$\mathbf{Q}$$ is orthogonal, $$\mathbf{y}$$ spans the same space as $$\mathbf{x}$$. Thus, $$\mathbf{y}^\top \mathbf{\Lambda} \mathbf{y} > 0$$ for all nonzero $$\mathbf{y}$$ if and only if the diagonal entries of $$\mathbf{\Lambda}$$ (the eigenvalues of $$\mathbf{A}$$) are strictly positive. Therefore, no flips or collapses occur; $$\mathbf{A}$$ simply scales space in orthogonal directions.
+
+3. **Any Non-Symmetric Matrix Induces a Rotation**  
+   Restricting $$\mathbf{A}$$ to be symmetric is justified by the polar decomposition [\[3\]](#ref3), which states that any square matrix $$\mathbf{A}$$ can be written as $$\mathbf{A} = \mathbf{R}\,\mathbf{S}$$, where $$\mathbf{R}$$ is orthogonal (a rotation/reflection) and $$\mathbf{S}$$ is symmetric. If $$\mathbf{A}$$ is not symmetric, then $$\mathbf{R}$$ must be a non-identity rotation/reflection, introducing an unintended rotation. Hence, we enforce symmetry to avoid these effects.
+
+Therefore, in magnetometer calibration, $$\mathbf{A}$$ must be **symmetric and positive definite** to ensure a pure, non-degenerate scaling without unwanted rotations or reflections.
+
+## Calibration Objective
+
+We want $$\|\mathbf{y}\| = 1$$, where $$\mathbf{y} = \mathbf{A}(\mathbf{x} - \mathbf{b})$$.
+
+Squaring the norm:
+$$
+\|\mathbf{y}\|^2 
+= \|\mathbf{A}(\mathbf{x} - \mathbf{b})\|^2
+= (\mathbf{x} - \mathbf{b})^\top \mathbf{A}^\top \mathbf{A} (\mathbf{x} - \mathbf{b})
+= (\mathbf{x} - \mathbf{b})^\top \mathbf{C} (\mathbf{x} - \mathbf{b}),
+$$
+where
+$$
+\mathbf{C} = \mathbf{A}^\top \mathbf{A}.
+$$
+
+The proof of the following claim can be found in any linear algebra textbook.
+
+**Claim.**  
+- If $$\mathbf{A}$$ is symmetric and positive definite, then $$\mathbf{C} = \mathbf{A}^\top \mathbf{A} = \mathbf{A}^2$$ is also symmetric and positive definite.  
+- Conversely, if $$\mathbf{C}$$ is positive definite, then there exists a unique symmetric, positive-definite matrix $$\mathbf{D}$$ such that $$\mathbf{C} = \mathbf{D}^\top \mathbf{D}$$. Since $$\mathbf{D}$$ is unique, when $$\mathbf{C} = \mathbf{A}^\top \mathbf{A}$$, then $$\mathbf{A} = \mathbf{D}$$. In fact, we can recover $$\mathbf{A}$$ from $$\mathbf{C}$$ via the **principal square root**,
+$$
+\mathbf{A} = \sqrt{\mathbf{C}}.
+$$
+
+Instead of forcing the calibrated measurements to have unit magnitude, we can choose a **target radius** $$\beta$$ to match Earth’s magnetic field strength (often around $$50\,\mu\text{T}$$). This way after calibration, the calibrated norm reflects the actual magnetic field magnitude in the region. This is effectively a scaling adjustment on top of offset and shape corrections.
+
+## Least Squares Formulation
+
+Given measurements $$\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_n$$, we want to find $$\mathbf{b}$$ and a positive definite $$\mathbf{C}$$ to minimize
+
+$$
+\sum_{i=1}^n 
+\Bigl(\sqrt{(\mathbf{x}_i - \mathbf{b})^\top \mathbf{C}\, (\mathbf{x}_i - \mathbf{b})} - \beta \Bigr)^2,
+$$
+
+assuming we target a radius $$\beta$$. By including $$\mathbf{b}$$ in the least squares formulation, we ensure the best overall fit for both offset and shape corrections.
+
+Notice that we have to optimize over symmetric positive definite matrices. One approach is to reparameterize $$\mathbf{C}$$ using the **Cholesky decomposition**:
+
+$$
+\mathbf{C} = \mathbf{L}\,\mathbf{L}^\top,
+$$
+
+where $$\mathbf{L}$$ is a lower triangular matrix with positive diagonal entries. Then we minimize
+
+$$
+\sum_{i=1}^n 
+\Bigl(\sqrt{(\mathbf{x}_i - \mathbf{b})^\top \mathbf{L}\,\mathbf{L}^\top\, (\mathbf{x}_i - \mathbf{b})} - \beta\Bigr)^2
+$$
+
+over the parameters in $$\mathbf{L}$$ and $$\mathbf{b}$$.
+
+## A Note on Different Error Formulations
+
+A standard **least squares** approach might minimize
+
+$$
+\sum_{i=1}^n \Bigl(\sqrt{(\mathbf{x}_i - \mathbf{b})^\top \mathbf{C} (\mathbf{x}_i - \mathbf{b})} - \beta \Bigr)^2,
+$$
+
+penalizing the difference in **distance** between each point’s radius and $$\beta$$.
+
+The MathWorks website gives an alternative formulation:
+
+$$
+\frac{1}{2 \beta^2} \sqrt{ \frac{ \sum_{i=1}^n \|\mathbf{A}(\mathbf{x}_i - \mathbf{b})\|^2 - \beta^2 }{n} },
+$$
+
+which looks at **squared distances** relative to $$\beta^2$$. The difference is subtle: one approach directly penalizes deviations in distance ($$\|\mathbf{A}(\mathbf{x}-\mathbf{b})\| - \beta$$), while the other penalizes deviations in **squared distance** ($$\|\mathbf{A}(\mathbf{x}-\mathbf{b})\|^2 - \beta^2$$). Both methods aim to keep measurements on (or near) a sphere of radius $$\beta$$, but each weights the deviations slightly differently.
+
+## Summary of Steps
+
+- Collect data at various orientations.  
+- Solve a least squares problem for $$\mathbf{b}$$ and $$\mathbf{C}$$.  
+- Compute $$\mathbf{A} = \sqrt{\mathbf{C}}$$.  
+- (Optionally) scale $$\mathbf{A}$$ so that the calibrated measurements have magnitude $$\beta$$.  
+- Use $$\mathbf{y} = \mathbf{A}(\mathbf{x} - \mathbf{b})$$ for calibration.
+
+## References
+
+<a id="ref1"></a>
+[1] MathWorks. *Magnetometer Calibration Documentation.*  
+&nbsp;&nbsp;&nbsp;*Available at:* <https://www.mathworks.com/help/fusion/ug/magnetometer-calibration.html>  
+
+<a id="ref2"></a>
+[2] MathTheBeautiful. *Linear Algebra 22g: Geometric Interpretation of the Eigenvalue Decomposition for Symmetric Matrices.*  
+&nbsp;&nbsp;&nbsp;*Available at:* <https://www.youtube.com/watch?v=biKF85VOC2g&list=PLlXfTHzgMRUIqYrutsFXCOmiqKUgOgGJ5&index=102>
+
+<a id="ref3"></a>
+[3] MathTheBeautiful. *Linear Algebra 23a: Polar Decomposition - A Product of an Orthogonal and Symmetric Matrices.*  
+&nbsp;&nbsp;&nbsp;*Available at:* <https://www.youtube.com/watch?v=qTIwqnweaf8>
