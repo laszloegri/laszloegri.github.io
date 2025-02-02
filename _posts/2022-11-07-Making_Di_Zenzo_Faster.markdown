@@ -9,7 +9,7 @@ permalink: /di_zenzo_faster_gradient/
 common_media_height: 200
 attachments:
   - type: video
-    src: ../assets/animations/color_difference.mp4
+    src: /assets/animations/color_difference.mp4
 ---
 
 

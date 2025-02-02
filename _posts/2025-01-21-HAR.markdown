@@ -9,13 +9,13 @@ image0: /assets/images/exercise_recognition_zoom.png
 common_media_height: 150
 attachments:
   - type: video
-    src: ../assets/animations/motion_comparison.mp4
+    src: /assets/animations/motion_comparison.mp4
     alt: "Motion Comparison Demo"
   - type: video
-    src: ../assets/animations/3d_t_sne_of_exercise_dataset_animation.mp4
+    src: /assets/animations/3d_t_sne_of_exercise_dataset_animation.mp4
     alt: "3D t-SNE Visualization of Exercise Dataset"
   - type: video
-    src: ../assets/animations/exercise_recognition_small.mp4
+    src: /assets/animations/exercise_recognition_small.mp4
     alt: "Exercise Recognition Demo"
   - type: link
     href: "https://www.wearnotch.com"

@@ -8,9 +8,9 @@ permalink: /magneto/
 common_media_height: 150
 attachments:
   - type: video
-    src: ../assets/animations/magneto_calibration_demo.mp4
+    src: /assets/animations/magneto_calibration_demo.mp4
   - type: video
-    src: ../assets/animations/magneto_calibration_noisy_demo.mp4
+    src: /assets/animations/magneto_calibration_noisy_demo.mp4
 ---
 
 ## Introduction

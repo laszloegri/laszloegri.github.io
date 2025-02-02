@@ -10,9 +10,9 @@ image2: /assets/images/demo_images.svg
 common_media_height: 150
 attachments:
   - type: image
-    src: ../assets/images/marker.svg
+    src: /assets/images/marker.svg
   - type: video
-    src: ../assets/videos/stick.mp4
+    src: /assets/videos/stick.mp4
 ---
 
 ## In a nutshell
