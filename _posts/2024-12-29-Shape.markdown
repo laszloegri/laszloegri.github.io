@@ -20,9 +20,9 @@ image10: /assets/images/bending_curve.svg
 common_media_height: 200
 attachments:
   - type: image
-    src: ../assets/images/car_zoom.png
+    src: /assets/images/car_zoom.png
   - type: video
-    src: ../assets/animations/curvature_animation.mp4
+    src: /assets/animations/curvature_animation.mp4
 ---
 
 ## Introduction
