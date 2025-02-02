@@ -27,11 +27,11 @@ layout: default
                 {% for item in post.attachments %}
                   {% if item.type == "video" %}
                     <video muted autoplay loop controls preload style="height: {{ final_h }}px; object-fit: cover; overflow: hidden;">
-                      <source src="{{ item.src | relative_url }}" type="video/mp4" />
+                      <source src="{{ item.src | absolute_url }}" type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                   {% elsif item.type == "image" %}
-                    <img src="{{ item.src | relative_url }}" alt="Project media" style="height: {{ final_h }}px; object-fit: cover; overflow: hidden;" />
+                    <img src="{{ item.src | absolute_url }}" alt="Project media" style="height: {{ final_h }}px; object-fit: cover; overflow: hidden;" />
                   {% endif %}
                 {% endfor %}
               </div>
