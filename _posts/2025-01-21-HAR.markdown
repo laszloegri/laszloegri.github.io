@@ -19,7 +19,7 @@ attachments:
     alt: "Exercise Recognition Demo"
   - type: link
     href: "https://www.wearnotch.com"
-    text: "Visit Wearnotch"
+    text: "Visit Notch, see notice at bottom"
 ---
 
 ## Overview
