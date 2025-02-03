@@ -23,7 +23,7 @@ permalink: /publications/
 
 - **Constraint-Satisfaction Models**  
   *Egri, L., Shultz, T. R.*  
-  In James D. Wright (editor), International Encyclopedia of the Social & Behavioral Sciences, 2nd ed., Vol. 4, Oxford: Elsevier, pp. 716–723 (Invited article)
+  In James D. Wright (editor), International Encyclopedia of the Social & Behavioral Sciences, 2nd ed., Vol. 4, Oxford: Elsevier, pp. 716–723, 2015 (Invited article)
 
 - **Could knowledge-based neural learning be useful in developmental robotics? The case of KBCC**  
   *Shultz, T. R., Rivest, F., Egri, L., Thivierge, J-P., & Dandurand, F.*  
