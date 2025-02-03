@@ -16,7 +16,7 @@ attachments:
     src: /assets/animations/accelero_gyro_intertriad_calibration.mp4
   - type: link
     href: "https://www.wearnotch.com"
-    text: "Visit Notch, see notice at bottom"
+    text: "Visit Notch."
 ---
 
 In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developped in [\[1\]](#ref1) and [\[2\]](#ref2). (Details are limited due to contractual obligations.)
