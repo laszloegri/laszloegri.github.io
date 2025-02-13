@@ -6,7 +6,7 @@ permalink: /about/
 
 I'm a specialist in artificial intelligence and computer vision with a passion for solving complex challenges. My work spans diverse areas—from IMU sensor calibration to exploring color science while developing a color fiducial marker system. I hold a PhD in Computer Science from McGill University, where I specialized in computational complexity theory. This unique blend of rigorous research and practical expertise enables me to deliver innovative solutions.
 
-## Professional Certifications
+## Professional Certificates
 
 ### Machine Learning & Deep Learning
 
