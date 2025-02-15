@@ -56,7 +56,7 @@ figcaption {
 <figure>
 <center>
     <video width="80%" muted autoplay loop poster preload controls>
-        <source src="../assets/animations/color_difference.mp4" type="video/mp4">
+        <source src="../assets/animations/high/color_difference.mp4" type="video/mp4">
     </video>
 </center>
 <figcaption>Fig. 1. Function \(F(\theta)\) plotted for \(\theta \in [0^{\circ}, 360^{\circ})\),

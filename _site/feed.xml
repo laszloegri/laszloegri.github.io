@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-14T19:56:50-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Welcome László Egri’s Homepage</title><entry><title type="html">AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)</title><link href="http://localhost:4000/har/" rel="alternate" type="text/html" title="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)" /><published>2025-01-19T17:45:33-05:00</published><updated>2025-01-19T17:45:33-05:00</updated><id>http://localhost:4000/HAR</id><content type="html" xml:base="http://localhost:4000/har/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-14T20:38:34-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Welcome László Egri’s Homepage</title><entry><title type="html">AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)</title><link href="http://localhost:4000/har/" rel="alternate" type="text/html" title="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)" /><published>2025-01-19T17:45:33-05:00</published><updated>2025-01-19T17:45:33-05:00</updated><id>http://localhost:4000/HAR</id><content type="html" xml:base="http://localhost:4000/har/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 
 &lt;p&gt;Due to contractual obligations, only a high-level overview of the following three interrelated projects is provided.&lt;/p&gt;
 
@@ -462,7 +462,7 @@ Fisheye footage by &lt;a href=&quot;https://www.videvo.net/video/fisheye-timelap
 &lt;figure&gt;
    &lt;center&gt;
       &lt;video width=&quot;80%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;&quot; preload=&quot;&quot; controls=&quot;&quot;&gt;
-         &lt;source src=&quot;../assets/animations/curvature_animation.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+         &lt;source src=&quot;../assets/animations/high/curvature_animation.mp4&quot; type=&quot;video/mp4&quot; /&gt;
       &lt;/video&gt;
    &lt;/center&gt;
    &lt;figcaption style=&quot;font-size:inherit;&quot;&gt;
@@ -897,7 +897,7 @@ figcaption {
 &lt;figure&gt;
 &lt;center&gt;
     &lt;video width=&quot;80%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;&quot; preload=&quot;&quot; controls=&quot;&quot;&gt;
-        &lt;source src=&quot;../assets/animations/color_difference.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+        &lt;source src=&quot;../assets/animations/high/color_difference.mp4&quot; type=&quot;video/mp4&quot; /&gt;
     &lt;/video&gt;
 &lt;/center&gt;
 &lt;figcaption&gt;Fig. 1. Function \(F(\theta)\) plotted for \(\theta \in [0^{\circ}, 360^{\circ})\),
