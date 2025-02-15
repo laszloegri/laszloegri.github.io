@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v3.9.2" />
 <meta property="og:title" content="Implementing and Improving Existing Accelerometer and Gyroscope Calibration Algorithms (project, also includes improving some known approaches)" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developped in [1] and [2]. (Details are limited due to contractual obligations.)" />
-<meta property="og:description" content="In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developped in [1] and [2]. (Details are limited due to contractual obligations.)" />
+<meta name="description" content="In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developed in [1] and [2]. (Details are limited due to contractual obligations.)" />
+<meta property="og:description" content="In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developed in [1] and [2]. (Details are limited due to contractual obligations.)" />
 <link rel="canonical" href="http://localhost:4000/accelero_gyro/" />
 <meta property="og:url" content="http://localhost:4000/accelero_gyro/" />
 <meta property="og:site_name" content="Welcome László Egri’s Homepage" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Implementing and Improving Existing Accelerometer and Gyroscope Calibration Algorithms (project, also includes improving some known approaches)" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-12T00:00:00-05:00","datePublished":"2025-01-12T00:00:00-05:00","description":"In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developped in [1] and [2]. (Details are limited due to contractual obligations.)","headline":"Implementing and Improving Existing Accelerometer and Gyroscope Calibration Algorithms (project, also includes improving some known approaches)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/accelero_gyro/"},"url":"http://localhost:4000/accelero_gyro/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-12T00:00:00-05:00","datePublished":"2025-01-12T00:00:00-05:00","description":"In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developed in [1] and [2]. (Details are limited due to contractual obligations.)","headline":"Implementing and Improving Existing Accelerometer and Gyroscope Calibration Algorithms (project, also includes improving some known approaches)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/accelero_gyro/"},"url":"http://localhost:4000/accelero_gyro/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Welcome László Egri&apos;s Homepage" /></head>
 <body><header class="site-header" role="banner">
@@ -56,11 +56,11 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developped in <a href="#ref1">[1]</a> and <a href="#ref2">[2]</a>. (Details are limited due to contractual obligations.)</p>
+    <p>In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developed in <a href="#ref1">[1]</a> and <a href="#ref2">[2]</a>. (Details are limited due to contractual obligations.)</p>
 
 <p>For <strong>accelerometer calibration</strong>, the device is placed in various orientations. From these measurements, the algorithm estimates calibration parameters, leveraging the principle that the norm of the accelerometer measurement vector is equal to the magnitude of the specific force.</p>
 
-<p>Traditional <strong>gyroscope calibration</strong> often employs a high-precision two-axis or three-axis turntable, which can be expensive and sensitive to mechanical precision. In contrast, the method from <a href="#ref2">[2]</a> allows calibration using only a flat surface and an object to affix the IMU onto. By manually sliding the IMU in different orientations, the approach exploits the fact that the norm of the measured gyroscope output corresponds to the rotational velocity input.</p>
+<p>Traditional <strong>gyroscope calibration</strong> often employs a high-precision two-axis or three-axis turntable, which can be expensive and sensitive to mechanical precision. In contrast, the method from <a href="#ref2">[2]</a> allows calibration using only a flat surface and an object on which the IMU can be affixed. By manually sliding the IMU in different orientations, the approach exploits the fact that the norm of the measured gyroscope output corresponds to the rotational velocity input.</p>
 
 <p>However, manual calibration may not be sufficiently precise for inter-triad alignment, making a one-axis turntable preferable. Since full technical details are provided in <a href="#ref1">[1]</a> and <a href="#ref2">[2]</a>, below is a selection of media illustrating the implemented calibration algorithms.</p>
 
@@ -92,7 +92,7 @@
   </center>
   <figcaption style="font-size:inherit;">
     Fig. 3. Green arrows show gyroscope-derived rotation axes, while red axes represent those derived from the accelerometer. Alignment is achieved if these axes coincide. The calibration algorithm computes a rotation that best aligns them.
-    (Blue and red points represent accelerometer data collected while rotating in opposite directions.)
+    (Blue and red points represent accelerometer data.)
   </figcaption>
 </figure>
 
@@ -100,14 +100,15 @@
 
 <ol>
   <li>
-    <p><a id="ref1"></a> <strong>A Multi-Position Calibration Algorithm for Inertial Measurement Units</strong><br />
-<em>AIAA Guidance, Navigation and Control Conference and Exhibit, August 2008</em><br />
+    <p><a id="ref1"></a> <strong>Hongliang Zhang, Yuanxin Wu, Meiping Wu, Xiaoping Hu, &amp; Yabing Zha (2008).</strong><br />
+<em>A Multi-Position Calibration Algorithm for Inertial Measurement Units.</em><br />
+AIAA Guidance, Navigation and Control Conference and Exhibit, August 2008.<br />
 DOI: <a href="https://doi.org/10.2514/6.2008-7437">10.2514/6.2008-7437</a></p>
   </li>
   <li>
-    <p><a id="ref2"></a> <strong>Improved Multi-Position Calibration for Inertial Measurement Units</strong><br />
-Hongliang Zhang, Yuanxin Wu, Wenqi Wu, Meiping Wu, and Xiaoping Hu<br />
-<em>Measurement Science and Technology</em>, Volume 21, Number 1, 2010<br />
+    <p><a id="ref2"></a> <strong>Hongliang Zhang, Yuanxin Wu, Wenqi Wu, Meiping Wu, &amp; Xiaoping Hu (2010).</strong><br />
+<em>Improved Multi-Position Calibration for Inertial Measurement Units.</em><br />
+Measurement Science and Technology, 21(1).<br />
 DOI: <a href="https://doi.org/10.1088/0957-0233/21/1/015107">10.1088/0957-0233/21/1/015107</a></p>
   </li>
 </ol>

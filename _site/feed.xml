@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-14T21:01:12-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Welcome László Egri’s Homepage</title><entry><title type="html">AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)</title><link href="http://localhost:4000/har/" rel="alternate" type="text/html" title="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)" /><published>2025-01-19T17:45:33-05:00</published><updated>2025-01-19T17:45:33-05:00</updated><id>http://localhost:4000/HAR</id><content type="html" xml:base="http://localhost:4000/har/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-15T12:46:00-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Welcome László Egri’s Homepage</title><entry><title type="html">AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)</title><link href="http://localhost:4000/har/" rel="alternate" type="text/html" title="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)" /><published>2025-01-19T17:45:33-05:00</published><updated>2025-01-19T17:45:33-05:00</updated><id>http://localhost:4000/HAR</id><content type="html" xml:base="http://localhost:4000/har/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 
 &lt;p&gt;Due to contractual obligations, only a high-level overview of the following three interrelated projects is provided.&lt;/p&gt;
 
@@ -26,7 +26,7 @@
     &lt;/video&gt;
   &lt;/center&gt;
   &lt;figcaption&gt;
-    Figure 1. Exercise repetition counting (and recognition). Counts are shown in the small text at the top right corner, along with the time information of peaks recognized as exercise repetitions.
+    Figure 1. Exercise repetition counting (and recognition). Counts are shown in the small text at the top left corner, along with the time information of peaks recognized as exercise repetitions.
   &lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -78,7 +78,7 @@
     &lt;/video&gt;
   &lt;/center&gt;
   &lt;figcaption&gt;
-    Figure 4. Demonstration of matching a single exercise repetition (green) to motion time-series data (grey). The exercise is in the animation is deadlift.
+    Figure 4. Demonstration of matching a single exercise repetition (green) to motion time-series data (grey). The exercise in the animation is deadlift.
   &lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -694,11 +694,11 @@ Curvature based shape detection.&lt;br /&gt;
 &lt;em&gt;Computational Geometry&lt;/em&gt;, 48(3), 180-188.&lt;br /&gt;
 DOI: &lt;a href=&quot;https://doi.org/10.1016/j.comgeo.2014.09.005&quot;&gt;10.1016/j.comgeo.2014.09.005&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Introduction</summary></entry><entry><title type="html">Implementing and Improving Existing Accelerometer and Gyroscope Calibration Algorithms (project, also includes improving some known approaches)</title><link href="http://localhost:4000/accelero_gyro/" rel="alternate" type="text/html" title="Implementing and Improving Existing Accelerometer and Gyroscope Calibration Algorithms (project, also includes improving some known approaches)" /><published>2025-01-12T00:00:00-05:00</published><updated>2025-01-12T00:00:00-05:00</updated><id>http://localhost:4000/Accelero_Gyro</id><content type="html" xml:base="http://localhost:4000/accelero_gyro/">&lt;p&gt;In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developped in &lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt; and &lt;a href=&quot;#ref2&quot;&gt;[2]&lt;/a&gt;. (Details are limited due to contractual obligations.)&lt;/p&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Introduction</summary></entry><entry><title type="html">Implementing and Improving Existing Accelerometer and Gyroscope Calibration Algorithms (project, also includes improving some known approaches)</title><link href="http://localhost:4000/accelero_gyro/" rel="alternate" type="text/html" title="Implementing and Improving Existing Accelerometer and Gyroscope Calibration Algorithms (project, also includes improving some known approaches)" /><published>2025-01-12T00:00:00-05:00</published><updated>2025-01-12T00:00:00-05:00</updated><id>http://localhost:4000/Accelero_Gyro</id><content type="html" xml:base="http://localhost:4000/accelero_gyro/">&lt;p&gt;In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developed in &lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt; and &lt;a href=&quot;#ref2&quot;&gt;[2]&lt;/a&gt;. (Details are limited due to contractual obligations.)&lt;/p&gt;
 
 &lt;p&gt;For &lt;strong&gt;accelerometer calibration&lt;/strong&gt;, the device is placed in various orientations. From these measurements, the algorithm estimates calibration parameters, leveraging the principle that the norm of the accelerometer measurement vector is equal to the magnitude of the specific force.&lt;/p&gt;
 
-&lt;p&gt;Traditional &lt;strong&gt;gyroscope calibration&lt;/strong&gt; often employs a high-precision two-axis or three-axis turntable, which can be expensive and sensitive to mechanical precision. In contrast, the method from &lt;a href=&quot;#ref2&quot;&gt;[2]&lt;/a&gt; allows calibration using only a flat surface and an object to affix the IMU onto. By manually sliding the IMU in different orientations, the approach exploits the fact that the norm of the measured gyroscope output corresponds to the rotational velocity input.&lt;/p&gt;
+&lt;p&gt;Traditional &lt;strong&gt;gyroscope calibration&lt;/strong&gt; often employs a high-precision two-axis or three-axis turntable, which can be expensive and sensitive to mechanical precision. In contrast, the method from &lt;a href=&quot;#ref2&quot;&gt;[2]&lt;/a&gt; allows calibration using only a flat surface and an object on which the IMU can be affixed. By manually sliding the IMU in different orientations, the approach exploits the fact that the norm of the measured gyroscope output corresponds to the rotational velocity input.&lt;/p&gt;
 
 &lt;p&gt;However, manual calibration may not be sufficiently precise for inter-triad alignment, making a one-axis turntable preferable. Since full technical details are provided in &lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt; and &lt;a href=&quot;#ref2&quot;&gt;[2]&lt;/a&gt;, below is a selection of media illustrating the implemented calibration algorithms.&lt;/p&gt;
 
@@ -730,7 +730,7 @@ DOI: &lt;a href=&quot;https://doi.org/10.1016/j.comgeo.2014.09.005&quot;&gt;10.1
   &lt;/center&gt;
   &lt;figcaption style=&quot;font-size:inherit;&quot;&gt;
     Fig. 3. Green arrows show gyroscope-derived rotation axes, while red axes represent those derived from the accelerometer. Alignment is achieved if these axes coincide. The calibration algorithm computes a rotation that best aligns them.
-    (Blue and red points represent accelerometer data collected while rotating in opposite directions.)
+    (Blue and red points represent accelerometer data.)
   &lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -738,17 +738,18 @@ DOI: &lt;a href=&quot;https://doi.org/10.1016/j.comgeo.2014.09.005&quot;&gt;10.1
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;a id=&quot;ref1&quot;&gt;&lt;/a&gt; &lt;strong&gt;A Multi-Position Calibration Algorithm for Inertial Measurement Units&lt;/strong&gt;&lt;br /&gt;
-&lt;em&gt;AIAA Guidance, Navigation and Control Conference and Exhibit, August 2008&lt;/em&gt;&lt;br /&gt;
+    &lt;p&gt;&lt;a id=&quot;ref1&quot;&gt;&lt;/a&gt; &lt;strong&gt;Hongliang Zhang, Yuanxin Wu, Meiping Wu, Xiaoping Hu, &amp;amp; Yabing Zha (2008).&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;A Multi-Position Calibration Algorithm for Inertial Measurement Units.&lt;/em&gt;&lt;br /&gt;
+AIAA Guidance, Navigation and Control Conference and Exhibit, August 2008.&lt;br /&gt;
 DOI: &lt;a href=&quot;https://doi.org/10.2514/6.2008-7437&quot;&gt;10.2514/6.2008-7437&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;a id=&quot;ref2&quot;&gt;&lt;/a&gt; &lt;strong&gt;Improved Multi-Position Calibration for Inertial Measurement Units&lt;/strong&gt;&lt;br /&gt;
-Hongliang Zhang, Yuanxin Wu, Wenqi Wu, Meiping Wu, and Xiaoping Hu&lt;br /&gt;
-&lt;em&gt;Measurement Science and Technology&lt;/em&gt;, Volume 21, Number 1, 2010&lt;br /&gt;
+    &lt;p&gt;&lt;a id=&quot;ref2&quot;&gt;&lt;/a&gt; &lt;strong&gt;Hongliang Zhang, Yuanxin Wu, Wenqi Wu, Meiping Wu, &amp;amp; Xiaoping Hu (2010).&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;Improved Multi-Position Calibration for Inertial Measurement Units.&lt;/em&gt;&lt;br /&gt;
+Measurement Science and Technology, 21(1).&lt;br /&gt;
 DOI: &lt;a href=&quot;https://doi.org/10.1088/0957-0233/21/1/015107&quot;&gt;10.1088/0957-0233/21/1/015107&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><category term="projects" /><summary type="html">In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developped in [1] and [2]. (Details are limited due to contractual obligations.)</summary></entry><entry><title type="html">RainbowTag Fiducal Marker (published research project on fiducial markers)</title><link href="http://localhost:4000/rainbowtag/" rel="alternate" type="text/html" title="RainbowTag Fiducal Marker (published research project on fiducial markers)" /><published>2022-11-08T17:45:33-05:00</published><updated>2022-11-08T17:45:33-05:00</updated><id>http://localhost:4000/RainbowTag</id><content type="html" xml:base="http://localhost:4000/rainbowtag/">&lt;h2 id=&quot;in-a-nutshell&quot;&gt;In a nutshell&lt;/h2&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="projects" /><summary type="html">In this project, the primary objective was to calibrate the accelerometer and gyroscope of an Inertial Measurement Unit (IMU) and ensure that both sensors’ coordinate axes are properly aligned. I implemented the accelerometer calibration algorithm described, as well as an improved version of the gyroscope and inter-triad calibration algorithms developed in [1] and [2]. (Details are limited due to contractual obligations.)</summary></entry><entry><title type="html">RainbowTag Fiducal Marker (published research project on fiducial markers)</title><link href="http://localhost:4000/rainbowtag/" rel="alternate" type="text/html" title="RainbowTag Fiducal Marker (published research project on fiducial markers)" /><published>2022-11-08T17:45:33-05:00</published><updated>2022-11-08T17:45:33-05:00</updated><id>http://localhost:4000/RainbowTag</id><content type="html" xml:base="http://localhost:4000/rainbowtag/">&lt;h2 id=&quot;in-a-nutshell&quot;&gt;In a nutshell&lt;/h2&gt;
 
 &lt;p&gt;&lt;em&gt;RainbowTag&lt;/em&gt; (&lt;a href=&quot;https://ieeexplore.ieee.org/document/9743123&quot;&gt;&lt;em&gt;paper here&lt;/em&gt;&lt;/a&gt;, &lt;a href=&quot;https://github.com/laszloegri/rainbowtag&quot;&gt;&lt;em&gt;code here&lt;/em&gt;&lt;/a&gt;, &lt;a href=&quot;http://localhost:4000/assets/slides/RT_short.odp&quot;&gt;&lt;em&gt;download slides&lt;/em&gt;&lt;/a&gt;) is a color-based fiducial marker together with a detection algorithm that is robust to (motion) blur and marker deformations. Below is an example marker. Although lighting conditions affect color appearance, the RainbowTag detection algorithm is designed work reliably in everyday lighting conditions (e.g.,  lightbulbs with various color temperature or sunlight).&lt;/p&gt;
 

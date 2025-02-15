@@ -100,7 +100,7 @@ This project compares individual time points from a user’s exercise repetition
     </video>
   </center>
   <figcaption>
-    Figure 4. Demonstration of matching a single exercise repetition (green) to motion time-series data (grey). The exercise is in the animation is deadlift.
+    Figure 4. Demonstration of matching a single exercise repetition (green) to motion time-series data (grey). The exercise in the animation is deadlift.
   </figcaption>
 </figure>
 
