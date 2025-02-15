@@ -8,9 +8,9 @@ permalink: /magneto/
 common_media_height: 150
 attachments:
   - type: video
-    src: /assets/animations/magneto_calibration_demo.mp4
+    src: /assets/animations/low/magneto_calibration_demo.mp4
   - type: video
-    src: /assets/animations/magneto_calibration_noisy_demo.mp4
+    src: /assets/animations/low/magneto_calibration_noisy_demo.mp4
 ---
 
 ## Introduction
@@ -29,7 +29,7 @@ Our goal is to convert these distorted measurements into a sphere of radius 1 ce
 <figure>
   <center>
     <video width="55%" muted autoplay loop poster preload controls>
-      <source src="../assets/animations/magneto_calibration_demo.mp4" type="video/mp4">
+      <source src="../assets/animations/high/magneto_calibration_demo.mp4" type="video/mp4">
     </video>
   </center>
   <figcaption style="font-size:inherit;">
@@ -40,7 +40,7 @@ Our goal is to convert these distorted measurements into a sphere of radius 1 ce
 <figure>
   <center>
     <video width="55%" muted autoplay loop poster preload controls>
-      <source src="../assets/animations/magneto_calibration_noisy_demo.mp4" type="video/mp4">
+      <source src="../assets/animations/high/magneto_calibration_noisy_demo.mp4" type="video/mp4">
     </video>
   </center>
   <figcaption style="font-size:inherit;">

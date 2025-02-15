@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-13T14:27:25-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Welcome László Egri’s Homepage</title><entry><title type="html">AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)</title><link href="http://localhost:4000/har/" rel="alternate" type="text/html" title="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)" /><published>2025-01-19T17:45:33-05:00</published><updated>2025-01-19T17:45:33-05:00</updated><id>http://localhost:4000/HAR</id><content type="html" xml:base="http://localhost:4000/har/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-14T19:56:50-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Welcome László Egri’s Homepage</title><entry><title type="html">AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)</title><link href="http://localhost:4000/har/" rel="alternate" type="text/html" title="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)" /><published>2025-01-19T17:45:33-05:00</published><updated>2025-01-19T17:45:33-05:00</updated><id>http://localhost:4000/HAR</id><content type="html" xml:base="http://localhost:4000/har/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 
 &lt;p&gt;Due to contractual obligations, only a high-level overview of the following three interrelated projects is provided.&lt;/p&gt;
 
@@ -20,8 +20,8 @@
 
 &lt;figure&gt;
   &lt;center&gt;
-    &lt;video width=&quot;100%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;../assets/animations/exercise_recognition.mp4&quot; preload=&quot;auto&quot; controls=&quot;&quot; aria-label=&quot;Exercise Recognition Demo&quot;&gt;
-      &lt;source src=&quot;../assets/animations/exercise_recognition.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+    &lt;video width=&quot;100%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;../assets/animations/high/exercise_recognition.mp4&quot; preload=&quot;auto&quot; controls=&quot;&quot; aria-label=&quot;Exercise Recognition Demo&quot;&gt;
+      &lt;source src=&quot;../assets/animations/high/exercise_recognition.mp4&quot; type=&quot;video/mp4&quot; /&gt;
       Your browser does not support the video tag.
     &lt;/video&gt;
   &lt;/center&gt;
@@ -41,8 +41,8 @@
 &lt;div style=&quot;margin-top: 0px;&quot;&gt;&lt;/div&gt;
 &lt;figure&gt;
   &lt;center&gt;
-    &lt;video width=&quot;100%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;../assets/animations/3d_t_sne_of_exercise_dataset_animation.mp4&quot; preload=&quot;auto&quot; controls=&quot;&quot; aria-label=&quot;3D t-SNE Visualization of Exercise Dataset&quot;&gt;
-      &lt;source src=&quot;../assets/animations/3d_t_sne_of_exercise_dataset_animation.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+    &lt;video width=&quot;100%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;../assets/animations/high/3d_t_sne_of_exercise_dataset_animation.mp4&quot; preload=&quot;auto&quot; controls=&quot;&quot; aria-label=&quot;3D t-SNE Visualization of Exercise Dataset&quot;&gt;
+      &lt;source src=&quot;../assets/animations/high/3d_t_sne_of_exercise_dataset_animation.mp4&quot; type=&quot;video/mp4&quot; /&gt;
       Your browser does not support the video tag.
     &lt;/video&gt;
   &lt;/center&gt;
@@ -72,8 +72,8 @@
 &lt;div style=&quot;margin-top: 30px;&quot;&gt;&lt;/div&gt;
 &lt;figure&gt;
   &lt;center&gt;
-    &lt;video width=&quot;100%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;../assets/animations/motion_comparison.mp4&quot; preload=&quot;auto&quot; controls=&quot;&quot; aria-label=&quot;Motion Comparison Demo&quot;&gt;
-      &lt;source src=&quot;../assets/animations/motion_comparison.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+    &lt;video width=&quot;100%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;../assets/animations/high/motion_comparison.mp4&quot; preload=&quot;auto&quot; controls=&quot;&quot; aria-label=&quot;Motion Comparison Demo&quot;&gt;
+      &lt;source src=&quot;../assets/animations/high/motion_comparison.mp4&quot; type=&quot;video/mp4&quot; /&gt;
       Your browser does not support the video tag.
     &lt;/video&gt;
   &lt;/center&gt;
@@ -104,7 +104,7 @@
 &lt;figure&gt;
   &lt;center&gt;
     &lt;video width=&quot;55%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;&quot; preload=&quot;&quot; controls=&quot;&quot;&gt;
-      &lt;source src=&quot;../assets/animations/magneto_calibration_demo.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+      &lt;source src=&quot;../assets/animations/high/magneto_calibration_demo.mp4&quot; type=&quot;video/mp4&quot; /&gt;
     &lt;/video&gt;
   &lt;/center&gt;
   &lt;figcaption style=&quot;font-size:inherit;&quot;&gt;
@@ -115,7 +115,7 @@
 &lt;figure&gt;
   &lt;center&gt;
     &lt;video width=&quot;55%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;&quot; preload=&quot;&quot; controls=&quot;&quot;&gt;
-      &lt;source src=&quot;../assets/animations/magneto_calibration_noisy_demo.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+      &lt;source src=&quot;../assets/animations/high/magneto_calibration_noisy_demo.mp4&quot; type=&quot;video/mp4&quot; /&gt;
     &lt;/video&gt;
   &lt;/center&gt;
   &lt;figcaption style=&quot;font-size:inherit;&quot;&gt;
@@ -246,7 +246,7 @@ where
 &lt;figure&gt;
   &lt;center&gt;
     &lt;video width=&quot;100%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; poster=&quot;&quot; preload=&quot;&quot; controls=&quot;&quot;&gt;
-      &lt;source src=&quot;../assets/animations/dewarp_-90_60_-90_95_95_2000_2000_360_640_320_180_large.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+      &lt;source src=&quot;../assets/animations/high/dewarp_-90_60_-90_95_95_2000_2000_360_640_320_180.mp4&quot; type=&quot;video/mp4&quot; /&gt;
     &lt;/video&gt;
   &lt;/center&gt;
   &lt;figcaption style=&quot;font-size:inherit;&quot;&gt;
@@ -712,7 +712,7 @@ DOI: &lt;a href=&quot;https://doi.org/10.1016/j.comgeo.2014.09.005&quot;&gt;10.1
 &lt;figure&gt;
   &lt;center&gt;
     &lt;video width=&quot;70%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; controls=&quot;&quot; poster=&quot;/assets/images/video_poster.png&quot;&gt;
-      &lt;source src=&quot;/assets/animations/gyro_rotation_axes.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+      &lt;source src=&quot;/assets/animations/high/gyro_rotation_axes.mp4&quot; type=&quot;video/mp4&quot; /&gt;
       Your browser does not support the video tag.
     &lt;/video&gt;
   &lt;/center&gt;
@@ -724,7 +724,7 @@ DOI: &lt;a href=&quot;https://doi.org/10.1016/j.comgeo.2014.09.005&quot;&gt;10.1
 &lt;figure&gt;
   &lt;center&gt;
     &lt;video width=&quot;70%&quot; muted=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot; controls=&quot;&quot; poster=&quot;/assets/images/video_poster.png&quot;&gt;
-      &lt;source src=&quot;/assets/animations/accelero_gyro_intertriad_calibration.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+      &lt;source src=&quot;/assets/animations/high/accelero_gyro_intertriad_calibration.mp4&quot; type=&quot;video/mp4&quot; /&gt;
       Your browser does not support the video tag.
     &lt;/video&gt;
   &lt;/center&gt;

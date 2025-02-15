@@ -22,7 +22,7 @@ attachments:
   - type: image
     src: /assets/images/car_zoom.png
   - type: video
-    src: /assets/animations/curvature_animation.mp4
+    src: /assets/animations/low/curvature_animation.mp4
 ---
 
 ## Introduction

@@ -11,9 +11,9 @@ attachments:
   - type: image
     src: /assets/images/accelero_calibration.png
   - type: video
-    src: /assets/animations/gyro_rotation_axes.mp4
+    src: /assets/animations/low/gyro_rotation_axes.mp4
   - type: video
-    src: /assets/animations/accelero_gyro_intertriad_calibration.mp4
+    src: /assets/animations/low/accelero_gyro_intertriad_calibration.mp4
   - type: link
     href: "https://www.wearnotch.com"
     text: "Visit Notch."
@@ -37,7 +37,7 @@ However, manual calibration may not be sufficiently precise for inter-triad alig
 <figure>
   <center>
     <video width="70%" muted autoplay loop controls poster="/assets/images/video_poster.png">
-      <source src="/assets/animations/gyro_rotation_axes.mp4" type="video/mp4">
+      <source src="/assets/animations/high/gyro_rotation_axes.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </center>
@@ -49,7 +49,7 @@ However, manual calibration may not be sufficiently precise for inter-triad alig
 <figure>
   <center>
     <video width="70%" muted autoplay loop controls poster="/assets/images/video_poster.png">
-      <source src="/assets/animations/accelero_gyro_intertriad_calibration.mp4" type="video/mp4">
+      <source src="/assets/animations/high/accelero_gyro_intertriad_calibration.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </center>
