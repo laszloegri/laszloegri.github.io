@@ -49,7 +49,7 @@ Works well when (see experimental demonstration in [*paper*](https://ieeexplore.
 ##### (camera: Sony Alpha 5000)
 
 <center>
-<video width="100%" muted controls>
+<video width="70%" muted controls>
     <source src="../assets/videos/stick.mp4" type="video/mp4">
 </video>
 </center>
@@ -59,7 +59,7 @@ Works well when (see experimental demonstration in [*paper*](https://ieeexplore.
 ##### (camera: Sony Alpha 5000)
 
 <center>
-<video width="100%" muted controls>
+<video width="70%" muted controls>
     <source src="../assets/videos/sony_camera.mp4" type="video/mp4">
 </video>
 </center>
@@ -69,7 +69,7 @@ Works well when (see experimental demonstration in [*paper*](https://ieeexplore.
 ##### (camera: Sony Alpha 5000)
 
 <center>
-<video width="100%" muted controls>
+<video width="70%" muted controls>
     <source src="../assets/videos/slowmo_uneven.mp4" type="video/mp4">
 </video>
 </center>
@@ -79,7 +79,7 @@ Works well when (see experimental demonstration in [*paper*](https://ieeexplore.
 ##### (camera: Sony Alpha 5000)
 
 <center>
-<video width="100%" muted controls>
+<video width="70%" muted controls>
     <source src="../assets/videos/slowmo_cube.mp4" type="video/mp4">
 </video>
 </center>
@@ -90,7 +90,7 @@ Works well when (see experimental demonstration in [*paper*](https://ieeexplore.
 ##### (camera: Samsung Galaxy S5 phone camera)
 
 <center>
-<video width="60%" muted controls>
+<video width="40%" muted controls>
     <source src="../assets/videos/galaxyS5.mp4" type="video/mp4">
 </video>
 </center>  
@@ -101,7 +101,7 @@ Works well when (see experimental demonstration in [*paper*](https://ieeexplore.
 ##### (camera: Umidigi F2 phone camera)
 
 <center>
-<video width="60%" muted controls>
+<video width="40%" muted controls>
     <source src="../assets/videos/umidigiF2.mp4" type="video/mp4">
 </video>
 </center>  
