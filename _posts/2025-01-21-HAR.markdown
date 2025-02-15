@@ -48,7 +48,7 @@ I developed a precision exercise repetition counter specialized for gym workouts
     </video>
   </center>
   <figcaption>
-    Figure 1. Exercise repetition counting (and recognition). Counts are shown in the small text at the top right corner, along with the time information of peaks recognized as exercise repetitions.
+    Figure 1. Exercise repetition counting (and recognition). Counts are shown in the small text at the top left corner, along with the time information of peaks recognized as exercise repetitions.
   </figcaption>
 </figure>
 
