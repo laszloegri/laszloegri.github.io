@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Welcome László Egri's Homepage
+title: Welcome to László Egri's Website
 github_username: laszloegri
 email: laci.egri@gmail.com
 
