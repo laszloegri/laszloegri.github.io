@@ -108,4 +108,4 @@ For more information on Dynamic Time Warping, please visit the [Dynamic Time War
 
 ---
 
-For further details about the sensor technology, please visit [Wearnotch](https://www.wearnotch.com){:target="_blank" rel="noopener"}. Note that the website content is updated frequently and may not reflect all project details.
+For further details about the sensor technology, please visit [Notch](https://www.wearnotch.com){:target="_blank" rel="noopener"}. Note that the website content is updated frequently and may not reflect all project details.
