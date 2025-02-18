@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Automatic Shape Matching (Research Project)"
+title:  "Automatic Shape Matching (research project)"
 published: true
 date: 2025-01-13 17:45:33 -0500
 categories: projects

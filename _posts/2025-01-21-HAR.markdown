@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 Research Projects)"
+title: "AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 research projects)"
 published: true
 date: 2025-01-19 17:45:33 -0500
 categories: projects
