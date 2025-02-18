@@ -9,15 +9,19 @@ I’m an AI and computer vision specialist passionate about addressing complex t
 ## Education
 
 **PhD in Computer Science**  
-*McGill University*  
-Specialization in Computational Complexity Theory
+*McGill University (Canada)*  
+The fine-grained complexity of constraint satisfaction problems
 
+**MSc in Computer Science**  
+*McGill University (Canada)*  
+The complexity of constraint satisfaction problems and symmetric Datalog (**Dean’s Honour List**)
+
+**BSc in Psychology**  
+*McGill University (Canada)*  
+**First Class Honours**
 ## Continuing Professional Development
 
 ### Machine Learning & Deep Learning
-
-<!-- - **Generative AI for Software Development Specialization (In Progress, 2025)**  
-  *3-course program by DeepLearning.AI on Coursera (In progress)* -->
 
 - **Generative AI with Large Language Models (2023)**  
   *Course by DeepLearning.AI and Amazon Web Services on Coursera*  
