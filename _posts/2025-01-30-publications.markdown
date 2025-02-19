@@ -53,7 +53,7 @@ permalink: /publications/
 
 - **On Constraint Satisfaction Problems Below P**  
   *László Egri*  
-  J. Log. Comput. 26(3): 893–922, 2016
+  J. Log. Comput. 26(3): 893–922, 2014
 
 - **Fixed-Parameter Approximability of Boolean MinCSPs**  
   *Édouard Bonnet, László Egri, Dániel Marx*  
