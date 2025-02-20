@@ -9,13 +9,13 @@ permalink: /publications/
 
 ## Notes on Recognitions
 
-- **[List H-Coloring a Graph by Removing Few Vertices](https://doi.org/10.1007/978-3-642-40450-4_27)** (ESA 2013 Best Paper Award, Co-winner)  
-  Rajesh Chitnis, László Egri, Dániel Marx  
-  (see Computational Complexity Theory)
+**[List H-Coloring a Graph by Removing Few Vertices](https://doi.org/10.1007/978-3-642-40450-4_27)**  
+Rajesh Chitnis, László Egri, Dániel Marx  
+**Recognition:** [ESA 2013 Best Paper Award](https://www.eatcs.org/index.php/best-esa-paper) (Co-winner)
 
-- **[The Complexity of the List Homomorphism Problem for Graphs](https://doi.org/10.1007/s00224-011-9333-8)** (Invited extended version of a top-6 paper at STACS 2010; received Best of 2012 recognition from Computing Reviews as one of 91 notable computing items)  
-  László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson  
-  (see Computational Complexity Theory)
+**[The Complexity of the List Homomorphism Problem for Graphs](https://doi.org/10.1007/s00224-011-9333-8)**  
+László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson  
+**Recognition:** Invited extended version of a top-6 paper at [STACS 2010 Special Issue](https://link.springer.com/article/10.1007/s00224-012-9401-8) & received [Best of 2012 Recognition](http://www.computingreviews.com/recommend/bestof/notableitems_2012.cfm) as one of 91 notable computing items
 
 ## Neural Networks, Cognitive Science, Computer Vision
 
@@ -80,7 +80,7 @@ permalink: /publications/
 - **[The Complexity of the List Homomorphism Problem for Graphs](https://doi.org/10.1007/s00224-011-9333-8)**  
   László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson  
   Theory of Computing Systems (Special Issue) 51(2): 143–178, 2012  
-  (Invited extended version of a top-6 paper at STACS 2010; received Best of 2012 recognition from Computing Reviews as one of 91 notable computing items)
+  (Invited extended version of a top-6 paper at [STACS 2010 Special Issue](https://link.springer.com/article/10.1007/s00224-012-9401-8) & received [Best of 2012 Recognition](http://www.computingreviews.com/recommend/bestof/notableitems_2012.cfm) as one of 91 notable computing items)
 
 - **[On Constraint Satisfaction Problems below P](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CSL.2011.203)**  
   László Egri  
