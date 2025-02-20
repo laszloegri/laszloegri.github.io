@@ -15,7 +15,7 @@ Rajesh Chitnis, László Egri, Dániel Marx
 
 **[The Complexity of the List Homomorphism Problem for Graphs](https://doi.org/10.1007/s00224-011-9333-8)**  
 László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson  
-**Recognition:** The STACS 2010 paper (see Computational Complexity Theory section below) was selected among the best conference submissions. Our paper was one of six invited to be extended into a full journal version and was published in a [Special Issue](https://link.springer.com/article/10.1007/s00224-012-9401-8) of Theory of Computing; this extended version also received [Best of 2012 Recognition](http://www.computingreviews.com/recommend/bestof/notableitems_2012.cfm) as one of 91 notable computing items.
+**Recognition:** The STACS 2010 paper (see Computational Complexity Theory section below) was selected as one of the best conference submissions. Our paper was one of six invited to be extended into a full journal version and was published in a [Special Issue](https://link.springer.com/article/10.1007/s00224-012-9401-8) of Theory of Computing; this extended version was also included in the [Computing Reviews list of 91 notable computing items published in 2012](http://www.computingreviews.com/recommend/bestof/notableitems_2012.cfm).
 
 ## Neural Networks, Cognitive Science, Computer Vision
 
@@ -80,7 +80,7 @@ László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson
 - **[The Complexity of the List Homomorphism Problem for Graphs](https://doi.org/10.1007/s00224-011-9333-8)**  
   László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson  
   Theory of Computing Systems (Special Issue) 51(2): 143–178, 2012  
-  (The STACS 2010 paper was selected among the best conference submissions. Our paper was one of six invited to be extended into a full journal version and was published in a [Special Issue](https://link.springer.com/article/10.1007/s00224-012-9401-8) of Theory of Computing; this extended version also received [Best of 2012 Recognition](http://www.computingreviews.com/recommend/bestof/notableitems_2012.cfm) as one of 91 notable computing items.)
+  (The STACS 2010 paper was selected as one of the best conference submissions. Our paper was one of six invited to be extended into a full journal version and was published in a [Special Issue](https://link.springer.com/article/10.1007/s00224-012-9401-8) of Theory of Computing; this extended version was also included in the [Computing Reviews list of 91 notable computing items published in 2012](http://www.computingreviews.com/recommend/bestof/notableitems_2012.cfm).)
 
 - **[On Constraint Satisfaction Problems Below P](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CSL.2011.203)**  
   László Egri  
