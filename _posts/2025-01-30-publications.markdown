@@ -78,7 +78,7 @@ permalink: /publications/
 - **The Complexity of the List Homomorphism Problem for Graphs**  
   *László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson*  
   Theory of Computing Systems (Special Issue) 51(2): 143–178, 2012  
-  (Invited extended version of a top-6 paper at STACS 2010; also featured on the Best of 2012 list)
+  (Invited extended version of a top-6 paper at STACS 2010; received Best of 2012 recognition from Computing Reviews as one of 91 notable computing items published in 2012)
 
 - **On Constraint Satisfaction Problems below P**  
   *László Egri*  
