@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-19T19:05:25-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Welcome to László Egri’s Website</title><entry><title type="html">AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 research projects)</title><link href="http://localhost:4000/har/" rel="alternate" type="text/html" title="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 research projects)" /><published>2025-01-19T17:45:33-05:00</published><updated>2025-01-19T17:45:33-05:00</updated><id>http://localhost:4000/HAR</id><content type="html" xml:base="http://localhost:4000/har/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-19T19:29:53-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Welcome to László Egri’s Website</title><entry><title type="html">AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 research projects)</title><link href="http://localhost:4000/har/" rel="alternate" type="text/html" title="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 research projects)" /><published>2025-01-19T17:45:33-05:00</published><updated>2025-01-19T17:45:33-05:00</updated><id>http://localhost:4000/HAR</id><content type="html" xml:base="http://localhost:4000/har/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 
 &lt;p&gt;Due to contractual obligations, only a high-level overview of the following three interrelated projects is provided.&lt;/p&gt;
 
@@ -936,11 +936,18 @@ F(\theta) &amp;amp;= \frac{1}{2} \big( (\mathbf{u} \cdot \mathbf{u} + \mathbf{v}
 &lt;/ul&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Introduction</summary></entry><entry><title type="html">Publications</title><link href="http://localhost:4000/publications/" rel="alternate" type="text/html" title="Publications" /><published>2021-02-28T19:00:00-05:00</published><updated>2021-02-28T19:00:00-05:00</updated><id>http://localhost:4000/publications</id><content type="html" xml:base="http://localhost:4000/publications/">&lt;h2 id=&quot;notes-on-recognitions&quot;&gt;Notes on Recognitions&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;ESA 2013 Best Paper Award (Co-winner)&lt;/strong&gt;
-&lt;em&gt;List H-Coloring a Graph by Removing Few Vertices&lt;/em&gt; by Rajesh Chitnis, László Egri, Dániel Marx (see Computational Complexity Theory)&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://link.springer.com/article/10.1007/s00224-012-9401-8&quot;&gt;&lt;strong&gt;STACS 2010 Special Issue (Top 6 Paper)&lt;/strong&gt;&lt;/a&gt; &amp;amp; &lt;a href=&quot;http://www.computingreviews.com/recommend/bestof/notableitems_2012.cfm&quot;&gt;&lt;strong&gt;Best of 2012 Recognition&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;
-&lt;em&gt;The Complexity of the List Homomorphism Problem for Graphs&lt;/em&gt; by László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson
-(see Computational Complexity Theory)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;ESA 2013 Best Paper Award (Co-winner):&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;List H-Coloring a Graph by Removing Few Vertices&lt;/em&gt;&lt;br /&gt;
+Rajesh Chitnis, László Egri, Dániel Marx&lt;br /&gt;
+(see Computational Complexity Theory)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Invited Extended Version of a Top-6 Paper at &lt;a href=&quot;https://link.springer.com/article/10.1007/s00224-012-9401-8&quot;&gt;STACS 2010 Special Issue&lt;/a&gt; &amp;amp; &lt;a href=&quot;http://www.computingreviews.com/recommend/bestof/notableitems_2012.cfm&quot;&gt;Best of 2012 Recognition&lt;/a&gt;:&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;The Complexity of the List Homomorphism Problem for Graphs&lt;/em&gt;&lt;br /&gt;
+László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson&lt;br /&gt;
+(see Computational Complexity Theory)&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;neural-networks-cognitive-science-computer-vision&quot;&gt;Neural Networks, Cognitive Science, Computer Vision&lt;/h2&gt;
@@ -1018,7 +1025,7 @@ SODA 2014: 349–365&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;List H-Coloring a Graph by Removing Few Vertices&lt;/strong&gt;&lt;br /&gt;
-&lt;em&gt;Rajesh Hemant Chitnis, László Egri, Dániel Marx&lt;/em&gt;&lt;br /&gt;
+&lt;em&gt;Rajesh Chitnis, László Egri, Dániel Marx&lt;/em&gt;&lt;br /&gt;
 ESA 2013: 313–324 (Co-winner of the ESA 2013 Best Paper Award)&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;

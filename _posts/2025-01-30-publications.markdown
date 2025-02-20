@@ -9,10 +9,14 @@ permalink: /publications/
 
 ## Notes on Recognitions
 
-- **ESA 2013 Best Paper Award (Co-winner)**
-*List H-Coloring a Graph by Removing Few Vertices* by Rajesh Chitnis, László Egri, Dániel Marx (see Computational Complexity Theory)
-- [**STACS 2010 Special Issue (Top 6 Paper)**](https://link.springer.com/article/10.1007/s00224-012-9401-8) & [**Best of 2012 Recognition**](http://www.computingreviews.com/recommend/bestof/notableitems_2012.cfm)  
-  *The Complexity of the List Homomorphism Problem for Graphs* by László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson
+- **ESA 2013 Best Paper Award (Co-winner):**  
+  *List H-Coloring a Graph by Removing Few Vertices*  
+  Rajesh Chitnis, László Egri, Dániel Marx  
+  (see Computational Complexity Theory)
+
+- **Invited Extended Version of a Top-6 Paper at [STACS 2010 Special Issue](https://link.springer.com/article/10.1007/s00224-012-9401-8) & [Best of 2012 Recognition](http://www.computingreviews.com/recommend/bestof/notableitems_2012.cfm):**  
+  *The Complexity of the List Homomorphism Problem for Graphs*  
+  László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson  
   (see Computational Complexity Theory)
 
 ## Neural Networks, Cognitive Science, Computer Vision
@@ -72,7 +76,7 @@ permalink: /publications/
   SODA 2014: 349–365
 
 - **List H-Coloring a Graph by Removing Few Vertices**  
-  *Rajesh Hemant Chitnis, László Egri, Dániel Marx*  
+  *Rajesh Chitnis, László Egri, Dániel Marx*  
   ESA 2013: 313–324 (Co-winner of the ESA 2013 Best Paper Award)
 
 - **The Complexity of the List Homomorphism Problem for Graphs**  
