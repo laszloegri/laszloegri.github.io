@@ -17,7 +17,7 @@ Rajesh Chitnis, László Egri, Dániel Marx
 László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson  
 **Recognition:** The STACS 2010 paper (see Computational Complexity Theory section below) was selected as one of the best conference submissions. Our paper was one of six invited to be extended into a full journal version and was published in a [Special Issue](https://link.springer.com/article/10.1007/s00224-012-9401-8) of Theory of Computing; this extended version was also included in the [Computing Reviews list of 91 notable computing items published in 2012](http://www.computingreviews.com/recommend/bestof/notableitems_2012.cfm).
 
-## Neural Networks, Cognitive Science, Computer Vision
+## Neural Networks, Computer Vision, Cognitive Science 
 
 - **[RainbowTag: a Fiducial Marker System with a New Color Segmentation Algorithm](https://ieeexplore.ieee.org/document/9743123)**  
   László Egri, Hamid Nabati, Jia Yuan Yu  
