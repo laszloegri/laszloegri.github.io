@@ -33,7 +33,7 @@ The primary aim of this research project is to explore how complex shapes can be
 - **Maximal strictly convex segments** (each exhibiting a single maximum curvature)  
 - **Maximal strictly concave segments** (each exhibiting a single minimum curvature)
 
-Each component is characterized by various parameters—for example, the direction in which a concave segment opens. This “language” of shape provides a structured foundation for shape comparison. To match two shapes, the algorithm identifies corresponding components in the target shape by evaluating the similarity of their relative positions and component parameters. This process forms the core of this project.
+Each component is characterized by various parameters, for example, the direction in which a concave segment opens. This “language” of shape provides a structured foundation for shape comparison. To match two shapes, the algorithm identifies corresponding components in the target shape by evaluating the similarity of their relative positions and component parameters. This process forms the core of this project.
 
 There is a substantial body of literature on shape analysis and object detection that demonstrates diverse ways of exploiting contours. For example, see [\[1\]](#ref1), [\[2\]](#ref2), [\[4\]](#ref4), [\[8\]](#ref8), or [\[9\]](#ref9). However, to the best of my knowledge, no existing research employs the specific shape components and matching algorithm developed in this project.
 
@@ -223,7 +223,7 @@ Let $$C_1$$ denote the template curve and $$C_2$$ denote the target curve. The g
 4. The rotation angle to apply to $$C_1$$.
 5. The translation vector to apply to $$C_1$$.
 
-The algorithm exhaustively explores various combinations of these parameters. For each configuration, it extracts the corresponding shape components from both $$C_1$$ and $$C_2$$, computes the matches, and assigns a similarity score—finally selecting the configuration with the highest overall score.
+The algorithm exhaustively explores various combinations of these parameters. For each configuration, it extracts the corresponding shape components from both $$C_1$$ and $$C_2$$, computes the matches, and assigns a similarity score, finally selecting the configuration with the highest overall score.
 
 **Translation Matching:**  
 Once the scaling, rotation, and bar length parameters are fixed, the algorithm extracts the features from both curves. Suppose $$C_1$$ yields subcurves $$a_1, a_2, \ldots, a_k$$ and $$C_2$$ yields subcurves $$b_1, b_2, \ldots, b_l$$ (and similarly for the straight-line segments). The algorithm considers all possible pairings; for example, mapping $$a_1$$ to $$b_1$$ yields a candidate translation vector $$t$$. Then, $$C_1$$ is translated by $$t$$, and for each feature in $$C_1$$ the nearest corresponding feature in $$C_2$$ is identified based solely on relative position. Once these correspondences are established, a similarity score is computed for that configuration.
@@ -274,7 +274,7 @@ While the current algorithm provides a robust framework for matching shapes, sev
    The matching algorithm currently explores all possible parameter settings exhaustively. Incorporating Bayesian Optimization using Gaussian Processes could dramatically reduce computation time by intelligently guiding the search for optimal parameters.
 
 2. **Enhanced Feature Matching:**  
-   At present, the algorithm first matches straight lines and subcurves based solely on location, and then computes similarity scores between these matched pairs. A more integrated approach—where the similarity score is considered during the matching process—could improve the overall robustness and accuracy of the feature pairing.
+   At present, the algorithm first matches straight lines and subcurves based solely on location, and then computes similarity scores between these matched pairs. A more integrated approach, where the similarity score is considered during the matching process, could improve the overall robustness and accuracy of the feature pairing.
 
 3. **Learning Comparison Parameters:**  
    The various width parameters (e.g., $$\sigma_{\alpha}$$, $$\sigma_{\theta}$$, $$\sigma_d$$, etc.) are currently set heuristically. These parameters could be optimized or even learned using supervised learning techniques on a labeled dataset, ensuring that the similarity measures are better tuned to the specific characteristics of the shapes being compared.

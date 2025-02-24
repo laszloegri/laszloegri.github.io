@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-21T14:32:32-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Welcome to László Egri’s Website</title><entry><title type="html">AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 research projects)</title><link href="http://localhost:4000/har/" rel="alternate" type="text/html" title="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 research projects)" /><published>2025-01-19T17:45:33-05:00</published><updated>2025-01-19T17:45:33-05:00</updated><id>http://localhost:4000/HAR</id><content type="html" xml:base="http://localhost:4000/har/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-24T12:21:38-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Welcome to László Egri’s Website</title><entry><title type="html">AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 research projects)</title><link href="http://localhost:4000/har/" rel="alternate" type="text/html" title="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 research projects)" /><published>2025-01-19T17:45:33-05:00</published><updated>2025-01-19T17:45:33-05:00</updated><id>http://localhost:4000/HAR</id><content type="html" xml:base="http://localhost:4000/har/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 
 &lt;p&gt;Due to contractual obligations, only a high-level overview of the following three interrelated projects is provided.&lt;/p&gt;
 
@@ -16,7 +16,7 @@
 
 &lt;h3 id=&quot;exercise-repetition-counting&quot;&gt;1. Exercise Repetition Counting&lt;/h3&gt;
 
-&lt;p&gt;I developed a precision exercise repetition counter specialized for gym workouts. The system uses four IMU (Inertial Measurement Unit) sensors attached to different parts of the body—depending on the exercise. Its parameters can be optimized via Bayesian optimization with Gaussian processes, allowing fine-tuning for specific exercises or individual users when sufficient data is available. Notably, it works “out of the box” without custom training data. See Figure 1 for a demonstration. While large-scale validation is pending, the counter has demonstrated near-perfect accuracy on limited test data.&lt;/p&gt;
+&lt;p&gt;I developed a precision exercise repetition counter specialized for gym workouts. The system uses four IMU (Inertial Measurement Unit) sensors attached to different parts of the body, depending on the exercise. Its parameters can be optimized via Bayesian optimization with Gaussian processes, allowing fine-tuning for specific exercises or individual users when sufficient data is available. Notably, it works “out of the box” without custom training data. See Figure 1 for a demonstration. While large-scale validation is pending, the counter has demonstrated near-perfect accuracy on limited test data.&lt;/p&gt;
 
 &lt;figure&gt;
   &lt;center&gt;
@@ -36,7 +36,7 @@
 
 &lt;h3 id=&quot;human-activity-recognition-har-with-deep-learning&quot;&gt;2. Human Activity Recognition (HAR) with Deep Learning&lt;/h3&gt;
 
-&lt;p&gt;Building on the repetition counter, the system precisely marks the start and end of each repetition. Once isolated, the IMU sensor data is preprocessed—using methods such as SLERP (spherical linear interpolation) to ensure each repetition’s data is consistently sized. The standardized data is then fed into a custom deep neural network that classifies each repetition in real time on a mobile device, identifying the specific exercise performed. Although comprehensive evaluations require larger datasets, tests of an 11-class classifier have achieved near-perfect accuracy on the available data.&lt;/p&gt;
+&lt;p&gt;Building on the repetition counter, the system precisely marks the start and end of each repetition. Once isolated, the IMU sensor data is preprocessed, using methods such as SLERP (spherical linear interpolation) to ensure each repetition’s data is consistently sized. The standardized data is then fed into a custom deep neural network that classifies each repetition in real time on a mobile device, identifying the specific exercise performed. Although comprehensive evaluations require larger datasets, tests of an 11-class classifier have achieved near-perfect accuracy on the available data.&lt;/p&gt;
 
 &lt;div style=&quot;margin-top: 0px;&quot;&gt;&lt;/div&gt;
 &lt;figure&gt;
@@ -67,7 +67,7 @@
 
 &lt;h3 id=&quot;fine-grained-human-motion-comparison&quot;&gt;3. Fine-Grained Human Motion Comparison&lt;/h3&gt;
 
-&lt;p&gt;This project compares individual time points from a user’s exercise repetition against a reference sequence—be it an expert’s ideal form or the user’s own past performance—to assess technique and track improvements over time. To accomplish this, I customized Dynamic Time Warping (DTW) for more precise alignment of the IMU data across repetitions. A key challenge was devising an effective method to compare body-position data so that the motion matching remains both accurate and robust. See Figure 4 for a demonstration.&lt;/p&gt;
+&lt;p&gt;This project compares individual time points from a user’s exercise repetition against a reference sequence, be it an expert’s ideal form or the user’s own past performance, to assess technique and track improvements over time. To accomplish this, I customized Dynamic Time Warping (DTW) for more precise alignment of the IMU data across repetitions. A key challenge was devising an effective method to compare body-position data so that the motion matching remains both accurate and robust. See Figure 4 for a demonstration.&lt;/p&gt;
 
 &lt;div style=&quot;margin-top: 30px;&quot;&gt;&lt;/div&gt;
 &lt;figure&gt;
@@ -349,7 +349,7 @@ Fisheye footage by &lt;a href=&quot;https://www.videvo.net/video/fisheye-timelap
   &lt;li&gt;&lt;strong&gt;Maximal strictly concave segments&lt;/strong&gt; (each exhibiting a single minimum curvature)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Each component is characterized by various parameters—for example, the direction in which a concave segment opens. This “language” of shape provides a structured foundation for shape comparison. To match two shapes, the algorithm identifies corresponding components in the target shape by evaluating the similarity of their relative positions and component parameters. This process forms the core of this project.&lt;/p&gt;
+&lt;p&gt;Each component is characterized by various parameters, for example, the direction in which a concave segment opens. This “language” of shape provides a structured foundation for shape comparison. To match two shapes, the algorithm identifies corresponding components in the target shape by evaluating the similarity of their relative positions and component parameters. This process forms the core of this project.&lt;/p&gt;
 
 &lt;p&gt;There is a substantial body of literature on shape analysis and object detection that demonstrates diverse ways of exploiting contours. For example, see &lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt;, &lt;a href=&quot;#ref2&quot;&gt;[2]&lt;/a&gt;, &lt;a href=&quot;#ref4&quot;&gt;[4]&lt;/a&gt;, &lt;a href=&quot;#ref8&quot;&gt;[8]&lt;/a&gt;, or &lt;a href=&quot;#ref9&quot;&gt;[9]&lt;/a&gt;. However, to the best of my knowledge, no existing research employs the specific shape components and matching algorithm developed in this project.&lt;/p&gt;
 
@@ -569,7 +569,7 @@ Defined similarly to a convex subcurve, but with \(\kappa(p) &amp;lt; 0\).&lt;/l
   &lt;li&gt;The translation vector to apply to \(C_1\).&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;The algorithm exhaustively explores various combinations of these parameters. For each configuration, it extracts the corresponding shape components from both \(C_1\) and \(C_2\), computes the matches, and assigns a similarity score—finally selecting the configuration with the highest overall score.&lt;/p&gt;
+&lt;p&gt;The algorithm exhaustively explores various combinations of these parameters. For each configuration, it extracts the corresponding shape components from both \(C_1\) and \(C_2\), computes the matches, and assigns a similarity score, finally selecting the configuration with the highest overall score.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Translation Matching:&lt;/strong&gt;&lt;br /&gt;
 Once the scaling, rotation, and bar length parameters are fixed, the algorithm extracts the features from both curves. Suppose \(C_1\) yields subcurves \(a_1, a_2, \ldots, a_k\) and \(C_2\) yields subcurves \(b_1, b_2, \ldots, b_l\) (and similarly for the straight-line segments). The algorithm considers all possible pairings; for example, mapping \(a_1\) to \(b_1\) yields a candidate translation vector \(t\). Then, \(C_1\) is translated by \(t\), and for each feature in \(C_1\) the nearest corresponding feature in \(C_2\) is identified based solely on relative position. Once these correspondences are established, a similarity score is computed for that configuration.&lt;/p&gt;
@@ -623,7 +623,7 @@ The matching algorithm currently explores all possible parameter settings exhaus
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;Enhanced Feature Matching:&lt;/strong&gt;&lt;br /&gt;
-At present, the algorithm first matches straight lines and subcurves based solely on location, and then computes similarity scores between these matched pairs. A more integrated approach—where the similarity score is considered during the matching process—could improve the overall robustness and accuracy of the feature pairing.&lt;/p&gt;
+At present, the algorithm first matches straight lines and subcurves based solely on location, and then computes similarity scores between these matched pairs. A more integrated approach, where the similarity score is considered during the matching process, could improve the overall robustness and accuracy of the feature pairing.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;Learning Comparison Parameters:&lt;/strong&gt;&lt;br /&gt;

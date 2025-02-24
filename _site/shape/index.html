@@ -66,7 +66,7 @@
   <li><strong>Maximal strictly concave segments</strong> (each exhibiting a single minimum curvature)</li>
 </ul>
 
-<p>Each component is characterized by various parameters—for example, the direction in which a concave segment opens. This “language” of shape provides a structured foundation for shape comparison. To match two shapes, the algorithm identifies corresponding components in the target shape by evaluating the similarity of their relative positions and component parameters. This process forms the core of this project.</p>
+<p>Each component is characterized by various parameters, for example, the direction in which a concave segment opens. This “language” of shape provides a structured foundation for shape comparison. To match two shapes, the algorithm identifies corresponding components in the target shape by evaluating the similarity of their relative positions and component parameters. This process forms the core of this project.</p>
 
 <p>There is a substantial body of literature on shape analysis and object detection that demonstrates diverse ways of exploiting contours. For example, see <a href="#ref1">[1]</a>, <a href="#ref2">[2]</a>, <a href="#ref4">[4]</a>, <a href="#ref8">[8]</a>, or <a href="#ref9">[9]</a>. However, to the best of my knowledge, no existing research employs the specific shape components and matching algorithm developed in this project.</p>
 
@@ -286,7 +286,7 @@ Defined similarly to a convex subcurve, but with \(\kappa(p) &lt; 0\).</li>
   <li>The translation vector to apply to \(C_1\).</li>
 </ol>
 
-<p>The algorithm exhaustively explores various combinations of these parameters. For each configuration, it extracts the corresponding shape components from both \(C_1\) and \(C_2\), computes the matches, and assigns a similarity score—finally selecting the configuration with the highest overall score.</p>
+<p>The algorithm exhaustively explores various combinations of these parameters. For each configuration, it extracts the corresponding shape components from both \(C_1\) and \(C_2\), computes the matches, and assigns a similarity score, finally selecting the configuration with the highest overall score.</p>
 
 <p><strong>Translation Matching:</strong><br />
 Once the scaling, rotation, and bar length parameters are fixed, the algorithm extracts the features from both curves. Suppose \(C_1\) yields subcurves \(a_1, a_2, \ldots, a_k\) and \(C_2\) yields subcurves \(b_1, b_2, \ldots, b_l\) (and similarly for the straight-line segments). The algorithm considers all possible pairings; for example, mapping \(a_1\) to \(b_1\) yields a candidate translation vector \(t\). Then, \(C_1\) is translated by \(t\), and for each feature in \(C_1\) the nearest corresponding feature in \(C_2\) is identified based solely on relative position. Once these correspondences are established, a similarity score is computed for that configuration.</p>
@@ -340,7 +340,7 @@ The matching algorithm currently explores all possible parameter settings exhaus
   </li>
   <li>
     <p><strong>Enhanced Feature Matching:</strong><br />
-At present, the algorithm first matches straight lines and subcurves based solely on location, and then computes similarity scores between these matched pairs. A more integrated approach—where the similarity score is considered during the matching process—could improve the overall robustness and accuracy of the feature pairing.</p>
+At present, the algorithm first matches straight lines and subcurves based solely on location, and then computes similarity scores between these matched pairs. A more integrated approach, where the similarity score is considered during the matching process, could improve the overall robustness and accuracy of the feature pairing.</p>
   </li>
   <li>
     <p><strong>Learning Comparison Parameters:</strong><br />

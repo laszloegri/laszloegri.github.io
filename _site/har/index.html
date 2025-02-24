@@ -74,7 +74,7 @@
 
 <h3 id="exercise-repetition-counting">1. Exercise Repetition Counting</h3>
 
-<p>I developed a precision exercise repetition counter specialized for gym workouts. The system uses four IMU (Inertial Measurement Unit) sensors attached to different parts of the body—depending on the exercise. Its parameters can be optimized via Bayesian optimization with Gaussian processes, allowing fine-tuning for specific exercises or individual users when sufficient data is available. Notably, it works “out of the box” without custom training data. See Figure 1 for a demonstration. While large-scale validation is pending, the counter has demonstrated near-perfect accuracy on limited test data.</p>
+<p>I developed a precision exercise repetition counter specialized for gym workouts. The system uses four IMU (Inertial Measurement Unit) sensors attached to different parts of the body, depending on the exercise. Its parameters can be optimized via Bayesian optimization with Gaussian processes, allowing fine-tuning for specific exercises or individual users when sufficient data is available. Notably, it works “out of the box” without custom training data. See Figure 1 for a demonstration. While large-scale validation is pending, the counter has demonstrated near-perfect accuracy on limited test data.</p>
 
 <figure>
   <center>
@@ -94,7 +94,7 @@
 
 <h3 id="human-activity-recognition-har-with-deep-learning">2. Human Activity Recognition (HAR) with Deep Learning</h3>
 
-<p>Building on the repetition counter, the system precisely marks the start and end of each repetition. Once isolated, the IMU sensor data is preprocessed—using methods such as SLERP (spherical linear interpolation) to ensure each repetition’s data is consistently sized. The standardized data is then fed into a custom deep neural network that classifies each repetition in real time on a mobile device, identifying the specific exercise performed. Although comprehensive evaluations require larger datasets, tests of an 11-class classifier have achieved near-perfect accuracy on the available data.</p>
+<p>Building on the repetition counter, the system precisely marks the start and end of each repetition. Once isolated, the IMU sensor data is preprocessed, using methods such as SLERP (spherical linear interpolation) to ensure each repetition’s data is consistently sized. The standardized data is then fed into a custom deep neural network that classifies each repetition in real time on a mobile device, identifying the specific exercise performed. Although comprehensive evaluations require larger datasets, tests of an 11-class classifier have achieved near-perfect accuracy on the available data.</p>
 
 <div style="margin-top: 0px;"></div>
 <figure>
@@ -125,7 +125,7 @@
 
 <h3 id="fine-grained-human-motion-comparison">3. Fine-Grained Human Motion Comparison</h3>
 
-<p>This project compares individual time points from a user’s exercise repetition against a reference sequence—be it an expert’s ideal form or the user’s own past performance—to assess technique and track improvements over time. To accomplish this, I customized Dynamic Time Warping (DTW) for more precise alignment of the IMU data across repetitions. A key challenge was devising an effective method to compare body-position data so that the motion matching remains both accurate and robust. See Figure 4 for a demonstration.</p>
+<p>This project compares individual time points from a user’s exercise repetition against a reference sequence, be it an expert’s ideal form or the user’s own past performance, to assess technique and track improvements over time. To accomplish this, I customized Dynamic Time Warping (DTW) for more precise alignment of the IMU data across repetitions. A key challenge was devising an effective method to compare body-position data so that the motion matching remains both accurate and robust. See Figure 4 for a demonstration.</p>
 
 <div style="margin-top: 30px;"></div>
 <figure>

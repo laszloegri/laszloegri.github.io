@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-I’m an AI and computer vision specialist passionate about addressing complex technical challenges. My work spans a range of projects—from developing a deep learning–based exercise recognition system that achieves over 99% accuracy in real-time motion analysis, to designing a reliable fiducial marker system for precise tracking and identification. I have also contributed to advanced sensor calibration and fusion techniques, and explored shape matching methods. I hold a PhD in Computer Science from McGill University, where I specialized in computational complexity theory. I combine rigorous academic research with hands-on algorithm development to create novel solutions for complex problems in AI and computer vision.
+I’m an AI and computer vision specialist passionate about addressing complex technical challenges. My work spans a range of projects, from developing a deep learning–based exercise recognition system that achieves over 99% accuracy in real-time motion analysis, to designing a reliable fiducial marker system for precise tracking and identification. I have also contributed to advanced sensor calibration and fusion techniques, and explored shape matching methods. I hold a PhD in Computer Science from McGill University, where I specialized in computational complexity theory. I combine rigorous academic research with hands-on algorithm development to create novel solutions for complex problems in AI and computer vision.
 
 ## Education
 
