@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Computing Di Zenzo's multichannel image gradient faster (improving an existing algorithm using a simple insight)"
+title:  "Computing Di Zenzo's Multichannel Image Gradient Faster (improving an existing algorithm using a simple insight)"
 published: true
 date:   2022-11-07 17:45:33 -0500
 categories: projects
