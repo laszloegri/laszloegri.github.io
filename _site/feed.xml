@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-27T13:32:35-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Welcome to László Egri’s Website</title><entry><title type="html">AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 research projects)</title><link href="http://localhost:4000/har/" rel="alternate" type="text/html" title="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 research projects)" /><published>2025-01-19T17:45:33-05:00</published><updated>2025-01-19T17:45:33-05:00</updated><id>http://localhost:4000/HAR</id><content type="html" xml:base="http://localhost:4000/har/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-03-04T17:32:26-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Welcome to László Egri’s Website</title><entry><title type="html">AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 research projects)</title><link href="http://localhost:4000/har/" rel="alternate" type="text/html" title="AI-Powered Gym: Precision Exercise Recognition, Counting, and Motion Analysis (3 research projects)" /><published>2025-01-19T17:45:33-05:00</published><updated>2025-01-19T17:45:33-05:00</updated><id>http://localhost:4000/HAR</id><content type="html" xml:base="http://localhost:4000/har/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 
 &lt;p&gt;Due to contractual obligations, only a high-level overview of the following three interrelated projects is provided.&lt;/p&gt;
 
@@ -992,11 +992,6 @@ Rajesh Chitnis, László Egri, Dániel Marx&lt;br /&gt;
 Algorithmica 78(1): 110–146, 2017&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://doi.org/10.1093/logcom/exu003&quot;&gt;On Constraint Satisfaction Problems Below P&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt;
-László Egri&lt;br /&gt;
-J. Log. Comput. 26(3): 893–922, 2014&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://drops.dagstuhl.de/storage/00lipics/lipics-vol057-esa2016/LIPIcs.ESA.2016.18/LIPIcs.ESA.2016.18.pdf&quot;&gt;Fixed-Parameter Approximability of Boolean MinCSPs&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt;
 Édouard Bonnet, László Egri, Dániel Marx&lt;br /&gt;
 ESA 2016: 18:1–18:18&lt;/p&gt;
@@ -1015,6 +1010,11 @@ LICS 2015: 487–498&lt;/p&gt;
     &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://doi.org/10.1137/1.9781611973402.26&quot;&gt;Space Complexity of List H-Coloring: a Dichotomy&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt;
 László Egri, Pavol Hell, Benoît Larose, Arash Rafiey&lt;br /&gt;
 SODA 2014: 349–365&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://doi.org/10.1093/logcom/exu003&quot;&gt;On Constraint Satisfaction Problems Below P&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt;
+László Egri&lt;br /&gt;
+J. Log. Comput. 26(3): 893–922, 2014&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://doi.org/10.1007/978-3-642-40450-4_27&quot;&gt;List H-Coloring a Graph by Removing Few Vertices&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt;
