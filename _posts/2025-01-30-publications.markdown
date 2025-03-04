@@ -53,10 +53,6 @@ László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson
   Rajesh Chitnis, László Egri, Dániel Marx  
   Algorithmica 78(1): 110–146, 2017
 
-- **[On Constraint Satisfaction Problems Below P](https://doi.org/10.1093/logcom/exu003)**  
-  László Egri  
-  J. Log. Comput. 26(3): 893–922, 2014
-
 - **[Fixed-Parameter Approximability of Boolean MinCSPs](https://drops.dagstuhl.de/storage/00lipics/lipics-vol057-esa2016/LIPIcs.ESA.2016.18/LIPIcs.ESA.2016.18.pdf)**  
   Édouard Bonnet, László Egri, Dániel Marx  
   ESA 2016: 18:1–18:18
@@ -72,6 +68,10 @@ László Egri, Andrei A. Krokhin, Benoît Larose, Pascal Tesson
 - **[Space Complexity of List H-Coloring: a Dichotomy](https://doi.org/10.1137/1.9781611973402.26)**  
   László Egri, Pavol Hell, Benoît Larose, Arash Rafiey  
   SODA 2014: 349–365
+
+- **[On Constraint Satisfaction Problems Below P](https://doi.org/10.1093/logcom/exu003)**  
+  László Egri  
+  J. Log. Comput. 26(3): 893–922, 2014
 
 - **[List H-Coloring a Graph by Removing Few Vertices](https://doi.org/10.1007/978-3-642-40450-4_27)**  
   Rajesh Chitnis, László Egri, Dániel Marx  
