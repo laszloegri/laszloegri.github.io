@@ -10,7 +10,7 @@ layout: default
   {{ content }}
 
   {% if site.posts.size > 0 %}
-    <h2 class="page-heading">{{ page.list_title | default: "Selected AI, computer vision and other projects:" }}</h2>
+    <h2 class="page-heading">{{ page.list_title | default: "Selected AI, Computer Vision and Other Projects:" }}</h2>
     <ul class="post-list">
       {% for post in site.posts %}
         {% unless post.categories contains "publications" %}
